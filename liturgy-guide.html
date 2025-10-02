@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily Liturgy Guide - The Carpenter</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .pdf-page {
+      max-width: 8.5in;
+      margin: 2rem auto;
+      background: white;
+      padding: 1in;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .pdf-header {
+      text-align: center;
+      border-bottom: 3px solid var(--gold);
+      padding-bottom: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .pdf-header h1 {
+      color: var(--navy);
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .pdf-header p {
+      color: var(--olive);
+      font-style: italic;
+    }
+
+    .liturgy-section {
+      margin-bottom: 2rem;
+      page-break-inside: avoid;
+    }
+
+    .liturgy-section h2 {
+      color: var(--navy);
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .liturgy-number {
+      background: var(--gold);
+      color: var(--navy);
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+
+    .liturgy-content {
+      padding-left: 2.5rem;
+    }
+
+    .liturgy-prompt {
+      background: var(--linen);
+      padding: 1rem;
+      border-left: 4px solid var(--olive);
+      font-style: italic;
+      margin: 0.5rem 0;
+    }
+
+    .verse-ref-pdf {
+      color: var(--olive);
+      font-size: 0.875rem;
+      font-weight: 600;
+    }
+
+    @media print {
+      body { background: white; }
+      .no-print { display: none !important; }
+      .pdf-page { 
+        box-shadow: none; 
+        margin: 0; 
+        padding: 0.75in;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="no-print" style="background: var(--navy); padding: 1rem; text-align: center;">
+    <button onclick="window.print()" class="btn btn-primary">
+      Download as PDF
+    </button>
+    <a href="resources.html" class="btn btn-secondary" style="margin-left: 1rem;">
+      Back to Resources
+    </a>
+  </div>
+
+  <div class="pdf-page">
+    <div class="pdf-header">
+      <h1>Daily Liturgy of Work</h1>
+      <p>Monday at 9am: Six Micro-Practices for Your Workweek</p>
+    </div>
+
+    <div class="liturgy-section">
+      <h2><span class="liturgy-number">1</span> Begin with Thanks</h2>
+      <div class="liturgy-content">
+        <p><strong>Practice:</strong> Start your workday by acknowledging that this shift, these tasks, and this opportunity belong to the Lord.</p>
+        <div class="liturgy-prompt">"This shift is Yours, Lord."</div>
+        <p class="verse-ref-pdf">— Colossians 3:23–24</p>
+      </div>
+    </div>
+
+    <div class="liturgy-section">
+      <h2><span class="liturgy-number">2</span> Name Your Neighbor</h2>
+      <div class="liturgy-content">
+        <p><strong>Practice:</strong> Pick one coworker or customer to quietly serve today. Look for a small way to love them well.</p>
+        <div class="liturgy-prompt">Who will I serve today?</div>
+        <p class="verse-ref-pdf">— Matthew 5:16</p>
+      </div>
+    </div>
+
+    <div class="liturgy-section">
+      <h2><span class="liturgy-number">3</span> Integrity Check</h2>
+      <div class="liturgy-content">
+        <p><strong>Practice:</strong> Commit to telling the truth in emails, estimates, and time tracking. Let your yes be yes.</p>
+        <div class="liturgy-prompt">Will I be honest in all things today?</div>
+        <p class="verse-ref-pdf">— Westminster Larger Catechism Q141</p>
+      </div>
+    </div>
+
+    <div class="liturgy-section">
+      <h2><span class="liturgy-number">4</span> Excellence Sprint</h2>
+      <div class="liturgy-content">
+        <p><strong>Practice:</strong> Choose one task to do beautifully—even if no one else notices. Do it as unto Christ.</p>
+        <div class="liturgy-prompt">What one thing will I do with excellence?</div>
+        <p class="verse-ref-pdf">— Hebrews 6:10</p>
+      </div>
+    </div>
+
+    <div class="liturgy-section">
+      <h2><span class="liturgy-number">5</span> Witness with Wisdom</h2>
+      <div class="liturgy-content">
+        <p><strong>Practice:</strong> Be ready to answer questions about your faith with gentleness and respect when the opportunity arises.</p>
+        <div class="liturgy-prompt">Am I ready to give an answer?</div>
+        <p class="verse-ref-pdf">— 1 Peter 3:15</p>
+      </div>
+    </div>
+
+    <div class="liturgy-section">
+      <h2><span class="liturgy-number">6</span> Close in Rest</h2>
+      <div class="liturgy-content">
+        <p><strong>Practice:</strong> At day's end, release outcomes to God. Trust that your labor in the Lord is not in vain.</p>
+        <div class="liturgy-prompt">"It is finished. My work is in Your hands."</div>
+        <p class="verse-ref-pdf">— 1 Corinthians 15:58</p>
+      </div>
+    </div>
+
+    <div style="margin-top: 3rem; padding-top: 1rem; border-top: 2px solid var(--linen); text-align: center; font-size: 0.875rem; color: var(--olive);">
+      <p>© 2025 The Carpenter • thecarpenter.com</p>
+    </div>
+  </div>
+</body>
+</html>
+

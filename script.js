@@ -1,0 +1,38 @@
+// Mobile Menu Toggle
+const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+const mobileNav = document.getElementById('mobileNav');
+
+if (mobileMenuBtn && mobileNav) {
+  mobileMenuBtn.addEventListener('click', () => {
+    mobileNav.classList.toggle('active');
+    mobileMenuBtn.textContent = mobileNav.classList.contains('active') ? '✕' : '☰';
+  });
+}
+
+// Email Form
+const emailForm = document.getElementById('emailForm');
+if (emailForm) {
+  emailForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const formData = new FormData(emailForm);
+    const email = formData.get('email') || emailForm.querySelector('input[type="email"]').value;
+    
+    // Replace with actual email service integration
+    alert('Thanks! Check your email to confirm your subscription.');
+    emailForm.reset();
+  });
+}
+
+// Smooth Scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    const target = this.getAttribute('href');
+    if (target !== '#' && document.querySelector(target)) {
+      e.preventDefault();
+      document.querySelector(target).scrollIntoView({
+        behavior: 'smooth'
+      });
+    }
+  });
+});
+
