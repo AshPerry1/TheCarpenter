@@ -989,7 +989,7 @@ footer {
 }
 
 .hero-simple {
-  background: linear-gradient(135deg, var(--navy) 0%, var(--olive) 100%);
+  background: var(--navy);
   color: var(--linen);
   padding: 4rem 0 3rem;
   text-align: center;
