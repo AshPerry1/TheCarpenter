@@ -20,11 +20,61 @@ body {
   color: var(--graphite);
   background: var(--linen);
   line-height: 1.6;
+  font-size: 16px;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Cinzel', serif;
+  line-height: 1.3;
+}
+
+h1 {
+  font-size: 3rem;
   line-height: 1.2;
+}
+
+h2 {
+  font-size: 2.25rem;
+}
+
+h3 {
+  font-size: 1.75rem;
+}
+
+@media (max-width: 768px) {
+  body {
+    font-size: 15px;
+  }
+  
+  h1 {
+    font-size: 2.25rem;
+  }
+  
+  h2 {
+    font-size: 1.85rem;
+  }
+  
+  h3 {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 640px) {
+  body {
+    font-size: 14px;
+  }
+  
+  h1 {
+    font-size: 1.85rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+  
+  h3 {
+    font-size: 1.25rem;
+  }
 }
 
 a {
@@ -225,16 +275,20 @@ nav {
   font-size: 3.5rem;
   color: var(--navy);
   margin-bottom: 1.5rem;
+  line-height: 1.15;
 }
 
 .hero p {
   font-size: 1.25rem;
   margin-bottom: 1rem;
+  line-height: 1.7;
 }
 
 .verse-chip {
   font-style: italic;
   color: var(--graphite);
+  font-size: 1rem;
+  line-height: 1.6;
 }
 
 .verse-ref {
@@ -242,6 +296,16 @@ nav {
   font-weight: 500;
   color: var(--olive);
   margin-left: 0.5rem;
+}
+
+@media (max-width: 640px) {
+  .verse-chip {
+    font-size: 0.9rem;
+  }
+  
+  .verse-ref {
+    font-size: 0.8rem;
+  }
 }
 
 .hero-cta {
@@ -274,12 +338,12 @@ nav {
   }
   
   .hero h1 {
-    font-size: 2rem;
+    font-size: 2.5rem;
     line-height: 1.2;
   }
   
   .hero p {
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
   
   .hero-cta {
@@ -290,6 +354,18 @@ nav {
   .hero-cta a, .hero-cta button {
     width: 100%;
     text-align: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero h1 {
+    font-size: 2rem;
+    line-height: 1.15;
+  }
+  
+  .hero p {
+    font-size: 1rem;
+    line-height: 1.6;
   }
 }
 
@@ -343,13 +419,28 @@ section {
   margin: 0 auto 3rem;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .section-title {
-    font-size: 1.75rem;
+    font-size: 2rem;
+    line-height: 1.25;
   }
   
   .section-subtitle {
-    font-size: 0.95rem;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+}
+
+@media (max-width: 640px) {
+  .section-title {
+    font-size: 1.65rem;
+    line-height: 1.25;
+  }
+  
+  .section-subtitle {
+    font-size: 0.925rem;
+    line-height: 1.5;
+    margin-bottom: 2rem;
   }
 }
 
@@ -428,6 +519,15 @@ section {
 .card-content {
   color: var(--graphite);
   margin-bottom: 1rem;
+  line-height: 1.7;
+  font-size: 1rem;
+}
+
+@media (max-width: 640px) {
+  .card-content {
+    font-size: 0.925rem;
+    line-height: 1.65;
+  }
 }
 
 .icon {
@@ -667,12 +767,18 @@ footer {
 }
 
 @media (max-width: 640px) {
+  .page-header {
+    padding: 1.5rem 0;
+  }
+  
   .page-header h1 {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
+    line-height: 1.25;
   }
   
   .page-header p {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
+    line-height: 1.6;
   }
 }
 
