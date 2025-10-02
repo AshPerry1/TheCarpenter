@@ -761,6 +761,13 @@ footer {
   color: var(--gold);
 }
 
+.footer-links-two-column {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 0.75rem;
+}
+
 @media (max-width: 768px) {
   .footer-grid {
     grid-template-columns: 1fr;
@@ -769,6 +776,11 @@ footer {
   .footer-grid-compact {
     grid-template-columns: 1fr;
     gap: 1.5rem;
+  }
+  
+  .footer-links-two-column {
+    grid-template-columns: 1fr;
+    gap: 1rem;
   }
 }
 
