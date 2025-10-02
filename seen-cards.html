@@ -226,14 +226,14 @@
       width: 8.5in;
       height: 11in;
       margin: 2rem auto;
-      padding: 0.375in 0.5in;
+      padding: 0.5in 0.625in;
       background: white;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       display: grid;
       grid-template-columns: repeat(2, 3.5in);
       grid-template-rows: repeat(5, 2in);
       row-gap: 0.2in;
-      column-gap: 0.5in;
+      column-gap: 0.125in;
       justify-content: center;
       box-sizing: border-box;
       position: relative;
@@ -275,7 +275,7 @@
         box-shadow: none;
         page-break-after: always;
         margin: 0;
-        padding: 0.375in 0.5in;
+        padding: 0.5in 0.625in;
       }
       .cut-guide {
         display: block;
@@ -375,11 +375,13 @@
 
     <!-- 10-up Sheet FRONT (for printing multiple) -->
     <div class="no-print" style="margin: 3rem 0; padding: 2rem; background: var(--gold); border-radius: 8px; text-align: center;">
-      <h2 style="color: var(--navy); margin-bottom: 1rem;">Printing Instructions</h2>
-      <p style="color: var(--navy); margin-bottom: 0.5rem;"><strong>Step 1:</strong> Print the FRONT page (next page) on cardstock</p>
-      <p style="color: var(--navy); margin-bottom: 0.5rem;"><strong>Step 2:</strong> Flip the paper and print the BACK page on the reverse side</p>
-      <p style="color: var(--navy); margin-bottom: 0.5rem;"><strong>Step 3:</strong> Cut along the dotted lines</p>
-      <p style="color: var(--navy); font-size: 0.875rem; opacity: 0.8; margin-top: 1rem;">Tip: Do a test print on regular paper first to verify alignment before using cardstock.</p>
+      <h2 style="color: var(--navy); margin-bottom: 1rem;">Duplex Printing Instructions</h2>
+      <p style="color: var(--navy); margin-bottom: 0.5rem;"><strong>Step 1:</strong> Print page 1 (FRONTS) on heavy cardstock (67lb+)</p>
+      <p style="color: var(--navy); margin-bottom: 0.5rem;"><strong>Step 2:</strong> Remove printed sheet from printer</p>
+      <p style="color: var(--navy); margin-bottom: 0.5rem;"><strong>Step 3:</strong> Flip paper on SHORT EDGE (8.5" side) and reinsert</p>
+      <p style="color: var(--navy); margin-bottom: 0.5rem;"><strong>Step 4:</strong> Print page 2 (BACKS) on reverse side</p>
+      <p style="color: var(--navy); margin-bottom: 0.5rem;"><strong>Step 5:</strong> Cut along dotted lines with paper cutter</p>
+      <p style="color: var(--navy); font-size: 0.875rem; opacity: 0.8; margin-top: 1rem;"><strong>Important:</strong> Do a test print on regular paper first to verify front/back alignment before using expensive cardstock. The backs are reversed left-to-right to align with fronts when flipped.</p>
     </div>
 
     <div class="sheet-10up" style="page-break-before: always;">
@@ -395,16 +397,22 @@
       <div class="business-card card-front"><div class="card-safe-area" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;"><h1>You are seen.<br>You are loved.</h1><h2>Your work matters to God.</h2><p>"God is not unjust so as to overlook your work …" — Hebrews 6:10 (ESV)</p></div></div>
     </div>
 
-    <!-- 10-up Back Side - FLIP ON SHORT EDGE for duplex alignment -->
+    <!-- 10-up Back Side - REVERSED for duplex flip alignment -->
+    <!-- When you flip on short edge, backs appear in correct position -->
     <div class="sheet-10up" style="page-break-before: always;">
+      <!-- Row 1: Cards 2, 1 (reversed) -->
       <div class="business-card card-back"><div class="card-back-content"><h3>The Carpenter</h3><p style="font-weight: 600;">Scan to explore</p><ul><li>Work as worship</li><li>Why your job matters</li><li>A hopeful gospel</li></ul><p class="verse-small">"Let your light shine …" — Matthew 5:16 (ESV)</p></div><div class="card-qr"><div class="qr-back"></div><p>No tip expected.<br>This is a gift.</p></div></div>
       <div class="business-card card-back"><div class="card-back-content"><h3>The Carpenter</h3><p style="font-weight: 600;">Scan to explore</p><ul><li>Work as worship</li><li>Why your job matters</li><li>A hopeful gospel</li></ul><p class="verse-small">"Let your light shine …" — Matthew 5:16 (ESV)</p></div><div class="card-qr"><div class="qr-back"></div><p>No tip expected.<br>This is a gift.</p></div></div>
+      <!-- Row 2: Cards 4, 3 (reversed) -->
       <div class="business-card card-back"><div class="card-back-content"><h3>The Carpenter</h3><p style="font-weight: 600;">Scan to explore</p><ul><li>Work as worship</li><li>Why your job matters</li><li>A hopeful gospel</li></ul><p class="verse-small">"Let your light shine …" — Matthew 5:16 (ESV)</p></div><div class="card-qr"><div class="qr-back"></div><p>No tip expected.<br>This is a gift.</p></div></div>
       <div class="business-card card-back"><div class="card-back-content"><h3>The Carpenter</h3><p style="font-weight: 600;">Scan to explore</p><ul><li>Work as worship</li><li>Why your job matters</li><li>A hopeful gospel</li></ul><p class="verse-small">"Let your light shine …" — Matthew 5:16 (ESV)</p></div><div class="card-qr"><div class="qr-back"></div><p>No tip expected.<br>This is a gift.</p></div></div>
+      <!-- Row 3: Cards 6, 5 (reversed) -->
       <div class="business-card card-back"><div class="card-back-content"><h3>The Carpenter</h3><p style="font-weight: 600;">Scan to explore</p><ul><li>Work as worship</li><li>Why your job matters</li><li>A hopeful gospel</li></ul><p class="verse-small">"Let your light shine …" — Matthew 5:16 (ESV)</p></div><div class="card-qr"><div class="qr-back"></div><p>No tip expected.<br>This is a gift.</p></div></div>
       <div class="business-card card-back"><div class="card-back-content"><h3>The Carpenter</h3><p style="font-weight: 600;">Scan to explore</p><ul><li>Work as worship</li><li>Why your job matters</li><li>A hopeful gospel</li></ul><p class="verse-small">"Let your light shine …" — Matthew 5:16 (ESV)</p></div><div class="card-qr"><div class="qr-back"></div><p>No tip expected.<br>This is a gift.</p></div></div>
+      <!-- Row 4: Cards 8, 7 (reversed) -->
       <div class="business-card card-back"><div class="card-back-content"><h3>The Carpenter</h3><p style="font-weight: 600;">Scan to explore</p><ul><li>Work as worship</li><li>Why your job matters</li><li>A hopeful gospel</li></ul><p class="verse-small">"Let your light shine …" — Matthew 5:16 (ESV)</p></div><div class="card-qr"><div class="qr-back"></div><p>No tip expected.<br>This is a gift.</p></div></div>
       <div class="business-card card-back"><div class="card-back-content"><h3>The Carpenter</h3><p style="font-weight: 600;">Scan to explore</p><ul><li>Work as worship</li><li>Why your job matters</li><li>A hopeful gospel</li></ul><p class="verse-small">"Let your light shine …" — Matthew 5:16 (ESV)</p></div><div class="card-qr"><div class="qr-back"></div><p>No tip expected.<br>This is a gift.</p></div></div>
+      <!-- Row 5: Cards 10, 9 (reversed) -->
       <div class="business-card card-back"><div class="card-back-content"><h3>The Carpenter</h3><p style="font-weight: 600;">Scan to explore</p><ul><li>Work as worship</li><li>Why your job matters</li><li>A hopeful gospel</li></ul><p class="verse-small">"Let your light shine …" — Matthew 5:16 (ESV)</p></div><div class="card-qr"><div class="qr-back"></div><p>No tip expected.<br>This is a gift.</p></div></div>
       <div class="business-card card-back"><div class="card-back-content"><h3>The Carpenter</h3><p style="font-weight: 600;">Scan to explore</p><ul><li>Work as worship</li><li>Why your job matters</li><li>A hopeful gospel</li></ul><p class="verse-small">"Let your light shine …" — Matthew 5:16 (ESV)</p></div><div class="card-qr"><div class="qr-back"></div><p>No tip expected.<br>This is a gift.</p></div></div>
     </div>
