@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="styles.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <style>
-    /* Card dimensions: 3.5in × 2in with 0.125in bleed */
+    /* Card dimensions: 3.5in × 2in - Standard business card size */
     .print-container {
       max-width: 1200px;
       margin: 2rem auto;
@@ -27,12 +27,19 @@
       border-radius: 0.125in;
       overflow: hidden;
       page-break-inside: avoid;
+      box-sizing: border-box;
+    }
+
+    /* Safe area for content (0.125in from edges) */
+    .card-safe-area {
+      padding: 0.25in;
+      height: 100%;
+      box-sizing: border-box;
     }
 
     .card-front {
       background: var(--navy);
       color: var(--linen);
-      padding: 0.5in;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -40,6 +47,7 @@
       text-align: center;
       position: relative;
       height: 100%;
+      width: 100%;
     }
 
     .card-front::before {
@@ -48,72 +56,79 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 1.5in;
-      height: 1.5in;
+      width: 1.4in;
+      height: 1.4in;
       background: url('images/logo-icon-only.png') center/contain no-repeat;
-      opacity: 0.08;
+      opacity: 0.07;
+      pointer-events: none;
     }
 
     .card-front h1 {
-      font-size: 20pt;
-      margin-bottom: 0.15in;
-      line-height: 1.2;
+      font-size: 18pt;
+      margin: 0 0 0.1in 0;
+      line-height: 1.15;
       position: relative;
       z-index: 1;
+      font-weight: 600;
     }
 
     .card-front h2 {
-      font-size: 16pt;
+      font-size: 15pt;
       font-weight: 600;
-      margin-bottom: 0.2in;
+      margin: 0 0 0.15in 0;
       color: var(--gold);
       position: relative;
       z-index: 1;
     }
 
     .card-front p {
-      font-size: 9pt;
+      font-size: 8.5pt;
       font-style: italic;
-      line-height: 1.4;
-      max-width: 2.5in;
+      line-height: 1.35;
+      max-width: 2.8in;
       position: relative;
       z-index: 1;
+      margin: 0;
+      padding: 0 0.2in;
     }
 
     .card-back {
       background: var(--linen);
       color: var(--graphite);
-      padding: 0.4in;
+      padding: 0.25in 0.3in;
       display: grid;
-      grid-template-columns: 1.8in 1.5in;
-      gap: 0.15in;
+      grid-template-columns: 1.75in 1.2in;
+      gap: 0.2in;
       height: 100%;
       align-items: center;
+      box-sizing: border-box;
     }
 
     .card-back-content h3 {
-      font-size: 14pt;
+      font-size: 13pt;
       color: var(--navy);
-      margin-bottom: 0.1in;
+      margin: 0 0 0.08in 0;
+      font-weight: 700;
     }
 
     .card-back-content p {
-      font-size: 8pt;
+      font-size: 7.5pt;
       line-height: 1.3;
-      margin: 0.08in 0;
+      margin: 0.06in 0;
     }
 
     .card-back-content ul {
       list-style: none;
       padding: 0;
-      margin: 0.1in 0;
+      margin: 0.08in 0;
     }
 
     .card-back-content li {
-      font-size: 7.5pt;
-      margin: 0.04in 0;
+      font-size: 7pt;
+      margin: 0.035in 0;
       padding-left: 0.12in;
       position: relative;
+      line-height: 1.3;
     }
 
     .card-back-content li::before {
@@ -121,54 +136,113 @@
       position: absolute;
       left: 0;
       color: var(--gold);
+      font-weight: bold;
+    }
+
+    .card-back-content .verse-small {
+      font-size: 6.5pt;
+      font-style: italic;
+      color: var(--olive);
+      margin-top: 0.08in;
+      line-height: 1.2;
     }
 
     .card-qr {
       text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
 
     .card-qr canvas, .card-qr img {
-      max-width: 1.2in;
-      height: auto;
+      width: 1in !important;
+      height: 1in !important;
+      margin: 0 auto 0.05in;
     }
 
     .card-qr p {
-      font-size: 6.5pt;
-      margin-top: 0.08in;
+      font-size: 6pt;
+      margin: 0;
       color: var(--olive);
+      line-height: 1.2;
     }
 
-    /* 10-up sheet */
+    /* 10-up sheet - Precisely calculated for 8.5x11 paper */
     .sheet-10up {
       width: 8.5in;
       height: 11in;
       margin: 2rem auto;
-      padding: 0.5in;
+      padding: 0.375in 0.5in;
       background: white;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       display: grid;
       grid-template-columns: repeat(2, 3.5in);
       grid-template-rows: repeat(5, 2in);
-      gap: 0.25in;
+      row-gap: 0.2in;
+      column-gap: 0.5in;
       justify-content: center;
+      box-sizing: border-box;
+      position: relative;
+    }
+
+    /* Cut guides */
+    .cut-guide {
+      position: absolute;
+      background: var(--olive);
+    }
+
+    .cut-guide-h {
+      width: 100%;
+      height: 1px;
+      left: 0;
+    }
+
+    .cut-guide-v {
+      height: 100%;
+      width: 1px;
+      top: 0;
     }
 
     @media print {
-      body { background: white; }
+      body { 
+        background: white;
+        margin: 0;
+        padding: 0;
+      }
       .no-print { display: none !important; }
       .print-container { margin: 0; padding: 0; }
       .business-card { 
         box-shadow: none; 
-        border: 1px dashed #ccc;
+        border: 0.5pt dotted #999;
         page-break-inside: avoid;
+        margin: 0;
       }
       .sheet-10up {
         box-shadow: none;
         page-break-after: always;
+        margin: 0;
+        padding: 0.375in 0.5in;
+      }
+      .cut-guide {
+        display: block;
       }
       @page {
-        size: letter;
+        size: letter portrait;
         margin: 0;
+      }
+      
+      /* Ensure colors print */
+      * {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        color-adjust: exact;
+      }
+    }
+    
+    @media screen {
+      .cut-guide {
+        display: none;
       }
     }
   </style>
@@ -200,9 +274,11 @@
     </div>
 
     <div class="business-card card-front">
-      <h1>You are seen.<br>You are loved.</h1>
-      <h2>Your work matters to God.</h2>
-      <p>"God is not unjust so as to overlook your work …" — Hebrews 6:10 (ESV)</p>
+      <div class="card-safe-area" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+        <h1>You are seen.<br>You are loved.</h1>
+        <h2>Your work matters to God.</h2>
+        <p>"God is not unjust so as to overlook your work …" — Hebrews 6:10 (ESV)</p>
+      </div>
     </div>
 
     <div class="business-card card-back">
@@ -214,7 +290,7 @@
           <li>Why your job matters</li>
           <li>A hopeful gospel</li>
         </ul>
-        <p style="font-style: italic; font-size: 7pt; margin-top: 0.12in;">"Let your light shine …" — Matthew 5:16 (ESV)</p>
+        <p class="verse-small">"Let your light shine …" — Matthew 5:16 (ESV)</p>
       </div>
       <div class="card-qr">
         <div id="cardQR"></div>
@@ -235,32 +311,40 @@
       </ol>
     </div>
 
-    <!-- 10-up Sheet (for printing multiple) -->
-    <div class="sheet-10up" style="page-break-before: always;">
-      <div class="business-card card-front"><h1>You are seen.<br>You are loved.</h1><h2>Your work matters to God.</h2><p>"God is not unjust so as to overlook your work …" — Hebrews 6:10 (ESV)</p></div>
-      <div class="business-card card-front"><h1>You are seen.<br>You are loved.</h1><h2>Your work matters to God.</h2><p>"God is not unjust so as to overlook your work …" — Hebrews 6:10 (ESV)</p></div>
-      <div class="business-card card-front"><h1>You are seen.<br>You are loved.</h1><h2>Your work matters to God.</h2><p>"God is not unjust so as to overlook your work …" — Hebrews 6:10 (ESV)</p></div>
-      <div class="business-card card-front"><h1>You are seen.<br>You are loved.</h1><h2>Your work matters to God.</h2><p>"God is not unjust so as to overlook your work …" — Hebrews 6:10 (ESV)</p></div>
-      <div class="business-card card-front"><h1>You are seen.<br>You are loved.</h1><h2>Your work matters to God.</h2><p>"God is not unjust so as to overlook your work …" — Hebrews 6:10 (ESV)</p></div>
-      <div class="business-card card-front"><h1>You are seen.<br>You are loved.</h1><h2>Your work matters to God.</h2><p>"God is not unjust so as to overlook your work …" — Hebrews 6:10 (ESV)</p></div>
-      <div class="business-card card-front"><h1>You are seen.<br>You are loved.</h1><h2>Your work matters to God.</h2><p>"God is not unjust so as to overlook your work …" — Hebrews 6:10 (ESV)</p></div>
-      <div class="business-card card-front"><h1>You are seen.<br>You are loved.</h1><h2>Your work matters to God.</h2><p>"God is not unjust so as to overlook your work …" — Hebrews 6:10 (ESV)</p></div>
-      <div class="business-card card-front"><h1>You are seen.<br>You are loved.</h1><h2>Your work matters to God.</h2><p>"God is not unjust so as to overlook your work …" — Hebrews 6:10 (ESV)</p></div>
-      <div class="business-card card-front"><h1>You are seen.<br>You are loved.</h1><h2>Your work matters to God.</h2><p>"God is not unjust so as to overlook your work …" — Hebrews 6:10 (ESV)</p></div>
+    <!-- 10-up Sheet FRONT (for printing multiple) -->
+    <div class="no-print" style="margin: 3rem 0; padding: 2rem; background: var(--gold); border-radius: 8px; text-align: center;">
+      <h2 style="color: var(--navy); margin-bottom: 1rem;">Printing Instructions</h2>
+      <p style="color: var(--navy); margin-bottom: 0.5rem;"><strong>Step 1:</strong> Print the FRONT page (next page) on cardstock</p>
+      <p style="color: var(--navy); margin-bottom: 0.5rem;"><strong>Step 2:</strong> Flip the paper and print the BACK page on the reverse side</p>
+      <p style="color: var(--navy); margin-bottom: 0.5rem;"><strong>Step 3:</strong> Cut along the dotted lines</p>
+      <p style="color: var(--navy); font-size: 0.875rem; opacity: 0.8; margin-top: 1rem;">Tip: Do a test print on regular paper first to verify alignment before using cardstock.</p>
     </div>
 
-    <!-- 10-up Back Side -->
     <div class="sheet-10up" style="page-break-before: always;">
-      <div class="business-card card-back"><div class="card-back-content"><h3>The Carpenter</h3><p style="font-weight: 600;">Scan to explore</p><ul><li>Work as worship</li><li>Why your job matters</li><li>A hopeful gospel</li></ul></div><div class="card-qr"><div class="qr-back"></div><p>This is a gift.</p></div></div>
-      <div class="business-card card-back"><div class="card-back-content"><h3>The Carpenter</h3><p style="font-weight: 600;">Scan to explore</p><ul><li>Work as worship</li><li>Why your job matters</li><li>A hopeful gospel</li></ul></div><div class="card-qr"><div class="qr-back"></div><p>This is a gift.</p></div></div>
-      <div class="business-card card-back"><div class="card-back-content"><h3>The Carpenter</h3><p style="font-weight: 600;">Scan to explore</p><ul><li>Work as worship</li><li>Why your job matters</li><li>A hopeful gospel</li></ul></div><div class="card-qr"><div class="qr-back"></div><p>This is a gift.</p></div></div>
-      <div class="business-card card-back"><div class="card-back-content"><h3>The Carpenter</h3><p style="font-weight: 600;">Scan to explore</p><ul><li>Work as worship</li><li>Why your job matters</li><li>A hopeful gospel</li></ul></div><div class="card-qr"><div class="qr-back"></div><p>This is a gift.</p></div></div>
-      <div class="business-card card-back"><div class="card-back-content"><h3>The Carpenter</h3><p style="font-weight: 600;">Scan to explore</p><ul><li>Work as worship</li><li>Why your job matters</li><li>A hopeful gospel</li></ul></div><div class="card-qr"><div class="qr-back"></div><p>This is a gift.</p></div></div>
-      <div class="business-card card-back"><div class="card-back-content"><h3>The Carpenter</h3><p style="font-weight: 600;">Scan to explore</p><ul><li>Work as worship</li><li>Why your job matters</li><li>A hopeful gospel</li></ul></div><div class="card-qr"><div class="qr-back"></div><p>This is a gift.</p></div></div>
-      <div class="business-card card-back"><div class="card-back-content"><h3>The Carpenter</h3><p style="font-weight: 600;">Scan to explore</p><ul><li>Work as worship</li><li>Why your job matters</li><li>A hopeful gospel</li></ul></div><div class="card-qr"><div class="qr-back"></div><p>This is a gift.</p></div></div>
-      <div class="business-card card-back"><div class="card-back-content"><h3>The Carpenter</h3><p style="font-weight: 600;">Scan to explore</p><ul><li>Work as worship</li><li>Why your job matters</li><li>A hopeful gospel</li></ul></div><div class="card-qr"><div class="qr-back"></div><p>This is a gift.</p></div></div>
-      <div class="business-card card-back"><div class="card-back-content"><h3>The Carpenter</h3><p style="font-weight: 600;">Scan to explore</p><ul><li>Work as worship</li><li>Why your job matters</li><li>A hopeful gospel</li></ul></div><div class="card-qr"><div class="qr-back"></div><p>This is a gift.</p></div></div>
-      <div class="business-card card-back"><div class="card-back-content"><h3>The Carpenter</h3><p style="font-weight: 600;">Scan to explore</p><ul><li>Work as worship</li><li>Why your job matters</li><li>A hopeful gospel</li></ul></div><div class="card-qr"><div class="qr-back"></div><p>This is a gift.</p></div></div>
+      <div class="business-card card-front"><div class="card-safe-area" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;"><h1>You are seen.<br>You are loved.</h1><h2>Your work matters to God.</h2><p>"God is not unjust so as to overlook your work …" — Hebrews 6:10 (ESV)</p></div></div>
+      <div class="business-card card-front"><div class="card-safe-area" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;"><h1>You are seen.<br>You are loved.</h1><h2>Your work matters to God.</h2><p>"God is not unjust so as to overlook your work …" — Hebrews 6:10 (ESV)</p></div></div>
+      <div class="business-card card-front"><div class="card-safe-area" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;"><h1>You are seen.<br>You are loved.</h1><h2>Your work matters to God.</h2><p>"God is not unjust so as to overlook your work …" — Hebrews 6:10 (ESV)</p></div></div>
+      <div class="business-card card-front"><div class="card-safe-area" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;"><h1>You are seen.<br>You are loved.</h1><h2>Your work matters to God.</h2><p>"God is not unjust so as to overlook your work …" — Hebrews 6:10 (ESV)</p></div></div>
+      <div class="business-card card-front"><div class="card-safe-area" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;"><h1>You are seen.<br>You are loved.</h1><h2>Your work matters to God.</h2><p>"God is not unjust so as to overlook your work …" — Hebrews 6:10 (ESV)</p></div></div>
+      <div class="business-card card-front"><div class="card-safe-area" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;"><h1>You are seen.<br>You are loved.</h1><h2>Your work matters to God.</h2><p>"God is not unjust so as to overlook your work …" — Hebrews 6:10 (ESV)</p></div></div>
+      <div class="business-card card-front"><div class="card-safe-area" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;"><h1>You are seen.<br>You are loved.</h1><h2>Your work matters to God.</h2><p>"God is not unjust so as to overlook your work …" — Hebrews 6:10 (ESV)</p></div></div>
+      <div class="business-card card-front"><div class="card-safe-area" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;"><h1>You are seen.<br>You are loved.</h1><h2>Your work matters to God.</h2><p>"God is not unjust so as to overlook your work …" — Hebrews 6:10 (ESV)</p></div></div>
+      <div class="business-card card-front"><div class="card-safe-area" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;"><h1>You are seen.<br>You are loved.</h1><h2>Your work matters to God.</h2><p>"God is not unjust so as to overlook your work …" — Hebrews 6:10 (ESV)</p></div></div>
+      <div class="business-card card-front"><div class="card-safe-area" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;"><h1>You are seen.<br>You are loved.</h1><h2>Your work matters to God.</h2><p>"God is not unjust so as to overlook your work …" — Hebrews 6:10 (ESV)</p></div></div>
+    </div>
+
+    <!-- 10-up Back Side - FLIP ON SHORT EDGE for duplex alignment -->
+    <div class="sheet-10up" style="page-break-before: always;">
+      <div class="business-card card-back"><div class="card-back-content"><h3>The Carpenter</h3><p style="font-weight: 600;">Scan to explore</p><ul><li>Work as worship</li><li>Why your job matters</li><li>A hopeful gospel</li></ul><p class="verse-small">"Let your light shine …" — Matthew 5:16 (ESV)</p></div><div class="card-qr"><div class="qr-back"></div><p>No tip expected.<br>This is a gift.</p></div></div>
+      <div class="business-card card-back"><div class="card-back-content"><h3>The Carpenter</h3><p style="font-weight: 600;">Scan to explore</p><ul><li>Work as worship</li><li>Why your job matters</li><li>A hopeful gospel</li></ul><p class="verse-small">"Let your light shine …" — Matthew 5:16 (ESV)</p></div><div class="card-qr"><div class="qr-back"></div><p>No tip expected.<br>This is a gift.</p></div></div>
+      <div class="business-card card-back"><div class="card-back-content"><h3>The Carpenter</h3><p style="font-weight: 600;">Scan to explore</p><ul><li>Work as worship</li><li>Why your job matters</li><li>A hopeful gospel</li></ul><p class="verse-small">"Let your light shine …" — Matthew 5:16 (ESV)</p></div><div class="card-qr"><div class="qr-back"></div><p>No tip expected.<br>This is a gift.</p></div></div>
+      <div class="business-card card-back"><div class="card-back-content"><h3>The Carpenter</h3><p style="font-weight: 600;">Scan to explore</p><ul><li>Work as worship</li><li>Why your job matters</li><li>A hopeful gospel</li></ul><p class="verse-small">"Let your light shine …" — Matthew 5:16 (ESV)</p></div><div class="card-qr"><div class="qr-back"></div><p>No tip expected.<br>This is a gift.</p></div></div>
+      <div class="business-card card-back"><div class="card-back-content"><h3>The Carpenter</h3><p style="font-weight: 600;">Scan to explore</p><ul><li>Work as worship</li><li>Why your job matters</li><li>A hopeful gospel</li></ul><p class="verse-small">"Let your light shine …" — Matthew 5:16 (ESV)</p></div><div class="card-qr"><div class="qr-back"></div><p>No tip expected.<br>This is a gift.</p></div></div>
+      <div class="business-card card-back"><div class="card-back-content"><h3>The Carpenter</h3><p style="font-weight: 600;">Scan to explore</p><ul><li>Work as worship</li><li>Why your job matters</li><li>A hopeful gospel</li></ul><p class="verse-small">"Let your light shine …" — Matthew 5:16 (ESV)</p></div><div class="card-qr"><div class="qr-back"></div><p>No tip expected.<br>This is a gift.</p></div></div>
+      <div class="business-card card-back"><div class="card-back-content"><h3>The Carpenter</h3><p style="font-weight: 600;">Scan to explore</p><ul><li>Work as worship</li><li>Why your job matters</li><li>A hopeful gospel</li></ul><p class="verse-small">"Let your light shine …" — Matthew 5:16 (ESV)</p></div><div class="card-qr"><div class="qr-back"></div><p>No tip expected.<br>This is a gift.</p></div></div>
+      <div class="business-card card-back"><div class="card-back-content"><h3>The Carpenter</h3><p style="font-weight: 600;">Scan to explore</p><ul><li>Work as worship</li><li>Why your job matters</li><li>A hopeful gospel</li></ul><p class="verse-small">"Let your light shine …" — Matthew 5:16 (ESV)</p></div><div class="card-qr"><div class="qr-back"></div><p>No tip expected.<br>This is a gift.</p></div></div>
+      <div class="business-card card-back"><div class="card-back-content"><h3>The Carpenter</h3><p style="font-weight: 600;">Scan to explore</p><ul><li>Work as worship</li><li>Why your job matters</li><li>A hopeful gospel</li></ul><p class="verse-small">"Let your light shine …" — Matthew 5:16 (ESV)</p></div><div class="card-qr"><div class="qr-back"></div><p>No tip expected.<br>This is a gift.</p></div></div>
+      <div class="business-card card-back"><div class="card-back-content"><h3>The Carpenter</h3><p style="font-weight: 600;">Scan to explore</p><ul><li>Work as worship</li><li>Why your job matters</li><li>A hopeful gospel</li></ul><p class="verse-small">"Let your light shine …" — Matthew 5:16 (ESV)</p></div><div class="card-qr"><div class="qr-back"></div><p>No tip expected.<br>This is a gift.</p></div></div>
     </div>
   </div>
 
