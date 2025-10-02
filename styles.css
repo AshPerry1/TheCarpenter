@@ -83,9 +83,19 @@ nav {
   width: auto;
 }
 
+@media (max-width: 768px) {
+  .nav-container {
+    padding: 0.75rem 1rem;
+  }
+  
+  .logo img {
+    max-height: 35px;
+  }
+}
+
 @media (max-width: 640px) {
   .logo img {
-    max-height: 40px;
+    max-height: 32px;
   }
 }
 
@@ -134,12 +144,27 @@ nav {
 }
 
 @media (max-width: 768px) {
+  nav {
+    box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+  }
+  
   .nav-links {
     display: none;
   }
   
   .mobile-menu-btn {
     display: block;
+    padding: 0.5rem;
+  }
+  
+  .mobile-nav {
+    max-height: 70vh;
+    overflow-y: auto;
+  }
+  
+  .mobile-nav a {
+    padding: 0.6rem 1rem;
+    font-size: 0.95rem;
   }
 }
 
