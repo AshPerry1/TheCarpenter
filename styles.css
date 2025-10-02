@@ -764,8 +764,27 @@ footer {
 .footer-links-two-column {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
+  gap: 2rem;
   margin-top: 0.75rem;
+}
+
+.footer-links-two-column > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footer-links-two-column a {
+  color: var(--linen);
+  text-decoration: none;
+  opacity: 0.8;
+  transition: all 0.3s;
+  font-size: 0.875rem;
+}
+
+.footer-links-two-column a:hover {
+  opacity: 1;
+  color: var(--gold);
 }
 
 @media (max-width: 768px) {
