@@ -66,40 +66,38 @@
             <h3>We leave the seen cards</h3>
             <p>You are seen. You are loved. Your work matters to God. Scan to learn more. <span class="verse-inline">(Heb 6:10)</span></p>
             
-            <!-- Interactive Flip Card -->
+            <!-- Interactive Flip Card - Same as Seen Cards Page -->
             <div class="flip-card-container-small" id="flipCardStep1" onclick="this.classList.toggle('flipped')">
               <div class="flip-card-inner-small">
                 <!-- Front -->
-                <div class="flip-card-front-small seen-card-front">
-                  <div style="padding: 0.3in; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; height: 100%; box-sizing: border-box;">
-                    <h1 style="font-size: 1.25rem; margin-bottom: 0.5rem; line-height: 1.2;">You are seen.<br>You are loved.</h1>
-                    <h2 style="font-size: 0.875rem; margin-bottom: 0.5rem; font-weight: 600;">Your work matters to God.</h2>
-                    <p style="font-size: 0.75rem; line-height: 1.4;">"God is not unjust so as to overlook your work …" — Hebrews 6:10 (ESV)</p>
+                <div class="flip-card-front-small card-front-small">
+                  <div class="card-safe-area" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+                    <h1>You are seen.<br>You are loved.</h1>
+                    <h2>Your work matters to God.</h2>
+                    <p>"God is not unjust so as to overlook your work …" — Hebrews 6:10 (ESV)</p>
                   </div>
                 </div>
                 
                 <!-- Back -->
-                <div class="flip-card-back-small seen-card-back">
-                  <div style="padding: 0.3in; display: flex; justify-content: space-between; align-items: stretch; height: 100%; box-sizing: border-box;">
-                    <div style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-                      <h3 style="font-size: 0.875rem; margin-bottom: 0.25rem;">The Carpenter</h3>
-                      <p style="font-weight: 600; font-size: 0.75rem; margin-bottom: 0.25rem;">Scan to explore thecarpenter.com</p>
-                      <ul style="font-size: 0.7rem; margin: 0.25rem 0; padding-left: 1.25rem; line-height: 1.5;">
-                        <li>Work as worship</li>
-                        <li>Why your job matters</li>
-                        <li>A hopeful gospel</li>
-                      </ul>
-                      <p style="font-size: 0.625rem; margin-top: 0.25rem; font-style: italic;">"Let your light shine …" — Matthew 5:16 (ESV)</p>
-                    </div>
-                    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding-left: 0.25in;">
-                      <div id="step1QR" style="margin-bottom: 0.25rem;"></div>
-                      <p style="font-size: 0.625rem; text-align: center; line-height: 1.3;">No tip expected.<br>This is a gift.</p>
-                    </div>
+                <div class="flip-card-back-small card-back-small">
+                  <div class="card-back-content">
+                    <h3>The Carpenter</h3>
+                    <p style="font-weight: 600;">Scan to explore thecarpenter.com</p>
+                    <ul>
+                      <li>Work as worship</li>
+                      <li>Why your job matters</li>
+                      <li>A hopeful gospel</li>
+                    </ul>
+                    <p class="verse-small">"Let your light shine …" — Matthew 5:16 (ESV)</p>
+                  </div>
+                  <div class="card-qr">
+                    <div id="step1QR"></div>
+                    <p>No tip expected.<br>This is a gift.</p>
                   </div>
                 </div>
               </div>
             </div>
-            <p style="text-align: center; font-size: 0.875rem; font-style: italic; color: var(--gold); margin-top: 0.5rem;">Click to flip the card</p>
+            <p class="flip-hint" style="text-align: center;">Click to flip the card</p>
           </div>
         </div>
 
