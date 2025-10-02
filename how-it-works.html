@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Carpenter — How It Works</title>
+  <meta name="description" content="See how The Carpenter works: leave-behind card → QR scan → personal welcome → tools that help people see their work as worship.">
+  <link rel="icon" type="image/png" href="images/logo-icon-only.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <img src="images/logo-icon-text.png" alt="The Carpenter" style="height: 50px; width: auto;">
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="gospel.html">Gospel</a></li>
+        <li><a href="work.html">Your Work</a></li>
+        <li><a href="stories.html">Stories</a></li>
+        <li><a href="tools.html">Tools</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+
+      <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+    </div>
+
+    <div class="mobile-nav" id="mobileNav">
+      <a href="index.html">Home</a>
+      <a href="gospel.html">Gospel</a>
+      <a href="work.html">Your Work</a>
+      <a href="stories.html">Stories</a>
+      <a href="tools.html">Tools</a>
+      <a href="resources.html">Resources</a>
+      <a href="about.html">About</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-simple">
+    <div class="container">
+      <h1>How It Works</h1>
+      <p style="max-width: 700px; margin: 1.5rem auto 2rem; font-size: 1.125rem; line-height: 1.7;">We leave a simple card with a verse and a QR. When you scan, you're welcomed by name and shown how your everyday work matters to God—then pointed to practical, Scripture-anchored tools you can use today. <span style="font-style: italic; color: var(--gold);">(Matt 5:16; Heb 6:10)</span></p>
+      <div class="hero-cta">
+        <a href="#journey" class="btn btn-primary">See the journey</a>
+        <a href="#partner" class="btn" style="background: transparent; border: 2px solid var(--linen); color: var(--linen);">Partner with us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Flow -->
+  <section class="section-white" id="journey">
+    <div class="container">
+      <h2 style="text-align: center; margin-bottom: 3rem;">The Journey</h2>
+      
+      <div class="timeline">
+        <!-- Step 1 -->
+        <div class="timeline-step">
+          <div class="timeline-number">1</div>
+          <div class="timeline-content">
+            <h3>We leave the card</h3>
+            <p>You are seen. You are loved. Your work matters to God. Scan to learn more. <span class="verse-inline">(Heb 6:10)</span></p>
+            
+            <!-- Card Preview -->
+            <div class="card-preview-small">
+              <div class="mini-card card-front-mini">
+                <div style="text-align: center; padding: 0.5rem;">
+                  <img src="images/logo-icon-only.png" alt="The Carpenter" style="width: 60px; opacity: 0.15; margin-bottom: 0.25rem;">
+                  <h4 style="font-size: 0.7rem; margin: 0.25rem 0; color: var(--navy);">You are seen.</h4>
+                  <p style="font-size: 0.5rem; margin: 0.25rem 0; line-height: 1.3;">"God is not unjust so as to overlook your work and the love that you have shown for his name..."</p>
+                  <p style="font-size: 0.45rem; font-weight: 600; color: var(--gold); margin-top: 0.25rem;">— Hebrews 6:10 (ESV)</p>
+                </div>
+              </div>
+              <div class="mini-card card-back-mini">
+                <div style="padding: 0.5rem; font-size: 0.5rem;">
+                  <h4 style="font-size: 0.6rem; margin-bottom: 0.25rem;">The Carpenter</h4>
+                  <p style="font-weight: 600; font-size: 0.5rem;">Scan to explore:</p>
+                  <ul style="font-size: 0.45rem; margin: 0.25rem 0; padding-left: 1rem; line-height: 1.4;">
+                    <li>Work as worship</li>
+                    <li>Why your job matters</li>
+                    <li>A hopeful gospel</li>
+                  </ul>
+                  <div style="width: 40px; height: 40px; background: var(--navy); margin: 0.25rem auto; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: var(--linen); font-size: 0.4rem;">QR</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="timeline-step">
+          <div class="timeline-number">2</div>
+          <div class="timeline-content">
+            <h3>You scan the QR</h3>
+            <p>The code opens a special page reachable by scan, not by menus or socials. <span class="verse-inline">(Rom 10:17)</span></p>
+            <div class="qr-visual">
+              <div style="width: 120px; height: 120px; background: var(--navy); margin: 1rem auto; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--linen); font-weight: 600;">QR Code</div>
+              <p style="font-size: 0.875rem; font-style: italic; color: var(--graphite); opacity: 0.7;">Tokenized route • noindex, nofollow</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="timeline-step">
+          <div class="timeline-number">3</div>
+          <div class="timeline-content">
+            <h3>You're welcomed by name</h3>
+            <p>A simple "What's your name?" prompt leads to a personal greeting: "<em>[Name], you are seen and loved.</em>" <span class="verse-inline">(Isa 43:1; Heb 6:10)</span></p>
+            <a href="card.html?t=demo" target="_blank" class="btn-ghost" style="margin-top: 1rem; display: inline-block;">Preview welcome</a>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="timeline-step">
+          <div class="timeline-number">4</div>
+          <div class="timeline-content">
+            <h3>You discover why work matters</h3>
+            <p>Short, clear teaching with Scripture: work as worship, witness, service, and eternal significance. <span class="verse-inline">(Col 3:23–24; 1 Thes 4:11–12; 1 Cor 15:58)</span></p>
+            <a href="work.html" class="text-link" style="margin-top: 0.5rem; display: inline-block;">Explore resources →</a>
+          </div>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="timeline-step">
+          <div class="timeline-number">5</div>
+          <div class="timeline-content">
+            <h3>You take a next step</h3>
+            <p>Choose one small, faithful action for tomorrow's shift. Grace-filled, practical, repeatable. <span class="verse-inline">(Eph 2:10)</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What the QR Page Says -->
+  <section class="section-linen">
+    <div class="container-sm">
+      <h2>A personal welcome, Scripture, and real next steps</h2>
+      <div class="two-col-grid" style="margin-top: 2rem;">
+        <div>
+          <ul class="feature-list">
+            <li>You are seen and loved; God will not overlook your work. <span class="verse-inline">(Heb 6:10; 1 Cor 15:58)</span></li>
+            <li>Your work is worship—do it unto the Lord, with integrity and excellence. <span class="verse-inline">(Col 3:23–24; 1 Thes 4:11–12)</span></li>
+          </ul>
+        </div>
+        <div>
+          <ul class="feature-list">
+            <li>If you're exploring faith: the gospel is good news for all of life. <span class="verse-inline">(Rom 10:9–10; John 3:5–8; Rom 10:17)</span></li>
+          </ul>
+          <p style="font-size: 0.875rem; font-style: italic; margin-top: 1.5rem; color: var(--graphite); opacity: 0.8;">Full texts quoted from the ESV.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What's on the Site -->
+  <section class="section-white">
+    <div class="container">
+      <h2 style="text-align: center; margin-bottom: 2rem;">What's on the Site</h2>
+      <div class="resources-grid">
+        <a href="gospel.html" class="resource-card">
+          <h3>Gospel</h3>
+          <p>Creation → Fall → Redemption → Restoration.</p>
+          <p class="verse-inline">(Eph 2:8–10; Rom 10:9–10)</p>
+        </a>
+        <a href="work.html" class="resource-card">
+          <h3>Your Work</h3>
+          <p>Why your 9-to-5 matters forever.</p>
+          <p class="verse-inline">(Col 3:23–24; 1 Cor 15:58)</p>
+        </a>
+        <a href="tools.html" class="resource-card">
+          <h3>Tools</h3>
+          <p>Prayers, integrity checklists, printable cards.</p>
+          <p class="verse-inline">(1 Pet 3:15; Matt 5:16)</p>
+        </a>
+        <a href="books.html" class="resource-card">
+          <h3>Books</h3>
+          <p>Short, actionable reading guides.</p>
+          <p class="verse-inline">(Prov 4:7)</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why This Matters -->
+  <section class="section-linen">
+    <div class="container-sm">
+      <h2>Why This Matters</h2>
+      <p style="margin-top: 1.5rem; font-size: 1.125rem; line-height: 1.7;">We exist to help people see that Jesus cares about everyday labor and that faithful, ordinary work brings Him glory. <span class="verse-inline">(Mark 6:3; Col 3:23–24)</span></p>
+      
+      <div class="scripture-callout">
+        <p class="scripture-text">"For God is not unjust so as to overlook your work and the love that you have shown for his name in serving the saints, as you still do."</p>
+        <p class="scripture-ref">— Hebrews 6:10 (ESV)</p>
+      </div>
+
+      <div class="scripture-callout">
+        <p class="scripture-text">"Therefore, my beloved brothers, be steadfast, immovable, always abounding in the work of the Lord, knowing that in the Lord your labor is not in vain."</p>
+        <p class="scripture-ref">— 1 Corinthians 15:58 (ESV)</p>
+      </div>
+
+      <div class="scripture-callout">
+        <p class="scripture-text">"Whatever you do, work heartily, as for the Lord and not for men, knowing that from the Lord you will receive the inheritance as your reward. You are serving the Lord Christ."</p>
+        <p class="scripture-ref">— Colossians 3:23–24 (ESV)</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partner Section -->
+  <section class="section-white" id="partner">
+    <div class="container">
+      <h2 style="text-align: center; margin-bottom: 2rem;">Partner with Us</h2>
+      <p style="text-align: center; max-width: 600px; margin: 0 auto 3rem; font-size: 1.125rem;">Help more people encounter a gentle, Scripture-anchored reminder that their work matters to God. <span class="verse-inline">(Prov 11:25)</span></p>
+      
+      <div class="partner-grid">
+        <div class="partner-card">
+          <h3>Churches & Ministries</h3>
+          <p>Equip your people to live the gospel at work. We'll share cards, training moments, and tools. <span class="verse-inline">(Eph 4:12)</span></p>
+          <a href="mailto:hello@thecarpenter.com?subject=Church Partnership Inquiry" class="btn btn-primary">Start a conversation</a>
+        </div>
+
+        <div class="partner-card">
+          <h3>Businesses & Sponsors</h3>
+          <p>Help underwrite printing and distribution. Sponsor a city, industry, or campus. <span class="verse-inline">(Prov 11:25)</span></p>
+          <a href="mailto:hello@thecarpenter.com?subject=Sponsorship Inquiry" class="btn btn-primary">Request sponsor info</a>
+        </div>
+
+        <div class="partner-card">
+          <h3>Volunteers & Advocates</h3>
+          <p>Print cards at home, leave them with love and prayer. <span class="verse-inline">(Matt 5:16)</span></p>
+          <a href="seen-cards.html" class="btn btn-primary">Print the cards</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section-linen">
+    <div class="container-sm">
+      <h2 style="text-align: center; margin-bottom: 2rem;">Frequently Asked Questions</h2>
+      
+      <div class="faq-item">
+        <h3>Is this a church?</h3>
+        <p>No. We're Christians pointing people to Scripture and local churches. <span class="verse-inline">(Heb 10:24–25)</span></p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Is the QR page public?</h3>
+        <p>It's accessible by scanning only; it uses a tokenized URL and is hidden from nav/search. <span class="verse-inline">(1 Cor 10:31 — wisdom & integrity)</span></p>
+      </div>
+
+      <div class="faq-item">
+        <h3>What translation do you use?</h3>
+        <p>We quote from the English Standard Version (ESV).</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>How can I help?</h3>
+        <p>Pray, share cards, partner locally, or sponsor printing costs. <span class="verse-inline">(1 Thes 5:17; Gal 6:9)</span></p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Do you use affiliate links?</h3>
+        <p>Some book links on our site may include affiliate codes. Any proceeds support printing and distribution costs.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="images/logo-icon-text.png" alt="The Carpenter" style="height: 60px; width: auto; margin-bottom: 1rem;">
+          <p>Helping every follower of Jesus see their everyday work as worship.</p>
+        </div>
+        
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <a href="gospel.html">Gospel</a>
+          <a href="work.html">Your Work</a>
+          <a href="stories.html">Stories</a>
+          <a href="tools.html">Tools</a>
+          <a href="resources.html">Resources</a>
+          <a href="how-it-works.html">How It Works</a>
+          <a href="about.html">About</a>
+        </div>
+        
+        <div class="footer-links">
+          <h4>Scripture</h4>
+          <p style="font-size: 0.9rem; line-height: 1.6;">All Scripture quotations are from the English Standard Version (ESV).</p>
+        </div>
+      </div>
+      
+      <div style="text-align: center; padding-top: 2rem; margin-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1);">
+        <p>&copy; 2025 The Carpenter. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
