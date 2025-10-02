@@ -729,10 +729,10 @@ footer {
 /* Compact Footer Styles */
 .footer-grid-compact {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
+  grid-template-columns: 2fr 1fr;
+  gap: 3rem;
   margin-bottom: 1rem;
-  max-width: 900px;
+  max-width: 1000px;
   margin-left: auto;
   margin-right: auto;
 }
