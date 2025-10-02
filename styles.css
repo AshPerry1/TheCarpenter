@@ -1505,7 +1505,10 @@ footer {
   font-size: 18pt;
   margin: 0 0 0.1in 0;
   line-height: 1.15;
+  position: relative;
+  z-index: 1;
   font-weight: 600;
+  color: var(--linen);
 }
 
 .card-front-small h2 {
@@ -1513,6 +1516,8 @@ footer {
   font-weight: 600;
   margin: 0 0 0.15in 0;
   color: var(--gold);
+  position: relative;
+  z-index: 1;
 }
 
 .card-front-small p {
@@ -1520,8 +1525,11 @@ footer {
   font-style: italic;
   line-height: 1.35;
   max-width: 2.8in;
+  position: relative;
+  z-index: 1;
   margin: 0;
   padding: 0 0.2in;
+  color: var(--linen);
 }
 
 .card-back-small {
