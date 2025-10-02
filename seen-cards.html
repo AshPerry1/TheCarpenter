@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Print Seen Cards - The Carpenter</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <style>
+    /* Card dimensions: 3.5in × 2in with 0.125in bleed */
+    .print-container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 2rem;
+    }
+
+    .card-preview {
+      margin: 2rem 0;
+    }
+
+    .business-card {
+      width: 3.5in;
+      height: 2in;
+      margin: 1rem auto;
+      position: relative;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      border-radius: 0.125in;
+      overflow: hidden;
+      page-break-inside: avoid;
+    }
+
+    .card-front {
+      background: var(--navy);
+      color: var(--linen);
+      padding: 0.5in;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      height: 100%;
+    }
+
+    .card-front::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 1.5in;
+      height: 1.5in;
+      background: url('images/logo-icon-only.png') center/contain no-repeat;
+      opacity: 0.08;
+    }
+
+    .card-front h1 {
+      font-size: 20pt;
+      margin-bottom: 0.15in;
+      line-height: 1.2;
+      position: relative;
+      z-index: 1;
+    }
+
+    .card-front h2 {
+      font-size: 16pt;
+      font-weight: 600;
+      margin-bottom: 0.2in;
+      color: var(--gold);
+      position: relative;
+      z-index: 1;
+    }
+
+    .card-front p {
+      font-size: 9pt;
+      font-style: italic;
+      line-height: 1.4;
+      max-width: 2.5in;
+      position: relative;
+      z-index: 1;
+    }
+
+    .card-back {
+      background: var(--linen);
+      color: var(--graphite);
+      padding: 0.4in;
+      display: grid;
+      grid-template-columns: 1.8in 1.5in;
+      gap: 0.15in;
+      height: 100%;
+      align-items: center;
+    }
+
+    .card-back-content h3 {
+      font-size: 14pt;
+      color: var(--navy);
+      margin-bottom: 0.1in;
+    }
+
+    .card-back-content p {
+      font-size: 8pt;
+      line-height: 1.3;
+      margin: 0.08in 0;
+    }
+
+    .card-back-content ul {
+      list-style: none;
+      padding: 0;
+      margin: 0.1in 0;
+    }
+
+    .card-back-content li {
+      font-size: 7.5pt;
+      margin: 0.04in 0;
+      padding-left: 0.12in;
+      position: relative;
+    }
+
+    .card-back-content li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+    }
+
+    .card-qr {
+      text-align: center;
+    }
+
+    .card-qr canvas, .card-qr img {
+      max-width: 1.2in;
+      height: auto;
+    }
+
+    .card-qr p {
+      font-size: 6.5pt;
+      margin-top: 0.08in;
+      color: var(--olive);
+    }
+
+    /* 10-up sheet */
+    .sheet-10up {
+      width: 8.5in;
+      height: 11in;
+      margin: 2rem auto;
+      padding: 0.5in;
+      background: white;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      display: grid;
+      grid-template-columns: repeat(2, 3.5in);
+      grid-template-rows: repeat(5, 2in);
+      gap: 0.25in;
+      justify-content: center;
+    }
+
+    @media print {
+      body { background: white; }
+      .no-print { display: none !important; }
+      .print-container { margin: 0; padding: 0; }
+      .business-card { 
+        box-shadow: none; 
+        border: 1px dashed #ccc;
+        page-break-inside: avoid;
+      }
+      .sheet-10up {
+        box-shadow: none;
+        page-break-after: always;
+      }
+      @page {
+        size: letter;
+        margin: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="no-print">
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <img src="images/logo-icon-text.png" alt="The Carpenter" style="height: 50px; width: auto;">
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="resources.html">Resources</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="no-print" style="background: var(--navy); color: var(--linen); padding: 2rem; text-align: center;">
+    <h1 style="margin-bottom: 1rem;">Print "Seen Cards"</h1>
+    <p style="margin-bottom: 1.5rem; opacity: 0.9;">Business cards to leave as anonymous encouragement—in restaurants, books, or around town</p>
+    <button onclick="window.print()" class="btn btn-primary">Print Cards</button>
+  </div>
+
+  <div class="print-container">
+    <!-- Single Card Preview -->
+    <div class="card-preview no-print">
+      <h2 style="color: var(--navy); text-align: center; margin-bottom: 1rem;">Preview</h2>
+      <p style="text-align: center; margin-bottom: 2rem; color: var(--olive);">Front and Back</p>
+    </div>
+
+    <div class="business-card card-front">
+      <h1>You are seen.<br>You are loved.</h1>
+      <h2>Your work matters to God.</h2>
+      <p>"God is not unjust so as to overlook your work …" — Hebrews 6:10 (ESV)</p>
+    </div>
+
+    <div class="business-card card-back">
+      <div class="card-back-content">
+        <h3>The Carpenter</h3>
+        <p style="font-weight: 600;">Scan to explore thecarpenter.com</p>
+        <ul>
+          <li>Work as worship</li>
+          <li>Why your job matters</li>
+          <li>A hopeful gospel</li>
+        </ul>
+        <p style="font-style: italic; font-size: 7pt; margin-top: 0.12in;">"Let your light shine …" — Matthew 5:16 (ESV)</p>
+      </div>
+      <div class="card-qr">
+        <div id="cardQR"></div>
+        <p>No tip expected.<br>This is a gift.</p>
+      </div>
+    </div>
+
+    <!-- Instructions -->
+    <div class="no-print" style="background: var(--linen); padding: 2rem; border-radius: 12px; margin: 3rem 0;">
+      <h3 style="color: var(--navy); margin-bottom: 1rem;">Printing Instructions</h3>
+      <ol style="padding-left: 1.5rem; line-height: 2; color: var(--graphite);">
+        <li>Click "Print Cards" above</li>
+        <li>Print on heavy cardstock (67lb or higher)</li>
+        <li>Print front, flip paper, print back (test alignment first)</li>
+        <li>Cut along the guides to 3.5" × 2" size</li>
+        <li>Optional: Round corners with a 1/8" corner rounder</li>
+        <li>Leave in restaurant billfolds, books, or anywhere someone might need encouragement</li>
+      </ol>
+    </div>
+
+    <!-- 10-up Sheet (for printing multiple) -->
+    <div class="sheet-10up" style="page-break-before: always;">
+      <div class="business-card card-front"><h1>You are seen.<br>You are loved.</h1><h2>Your work matters to God.</h2><p>"God is not unjust so as to overlook your work …" — Hebrews 6:10 (ESV)</p></div>
+      <div class="business-card card-front"><h1>You are seen.<br>You are loved.</h1><h2>Your work matters to God.</h2><p>"God is not unjust so as to overlook your work …" — Hebrews 6:10 (ESV)</p></div>
+      <div class="business-card card-front"><h1>You are seen.<br>You are loved.</h1><h2>Your work matters to God.</h2><p>"God is not unjust so as to overlook your work …" — Hebrews 6:10 (ESV)</p></div>
+      <div class="business-card card-front"><h1>You are seen.<br>You are loved.</h1><h2>Your work matters to God.</h2><p>"God is not unjust so as to overlook your work …" — Hebrews 6:10 (ESV)</p></div>
+      <div class="business-card card-front"><h1>You are seen.<br>You are loved.</h1><h2>Your work matters to God.</h2><p>"God is not unjust so as to overlook your work …" — Hebrews 6:10 (ESV)</p></div>
+      <div class="business-card card-front"><h1>You are seen.<br>You are loved.</h1><h2>Your work matters to God.</h2><p>"God is not unjust so as to overlook your work …" — Hebrews 6:10 (ESV)</p></div>
+      <div class="business-card card-front"><h1>You are seen.<br>You are loved.</h1><h2>Your work matters to God.</h2><p>"God is not unjust so as to overlook your work …" — Hebrews 6:10 (ESV)</p></div>
+      <div class="business-card card-front"><h1>You are seen.<br>You are loved.</h1><h2>Your work matters to God.</h2><p>"God is not unjust so as to overlook your work …" — Hebrews 6:10 (ESV)</p></div>
+      <div class="business-card card-front"><h1>You are seen.<br>You are loved.</h1><h2>Your work matters to God.</h2><p>"God is not unjust so as to overlook your work …" — Hebrews 6:10 (ESV)</p></div>
+      <div class="business-card card-front"><h1>You are seen.<br>You are loved.</h1><h2>Your work matters to God.</h2><p>"God is not unjust so as to overlook your work …" — Hebrews 6:10 (ESV)</p></div>
+    </div>
+
+    <!-- 10-up Back Side -->
+    <div class="sheet-10up" style="page-break-before: always;">
+      <div class="business-card card-back"><div class="card-back-content"><h3>The Carpenter</h3><p style="font-weight: 600;">Scan to explore</p><ul><li>Work as worship</li><li>Why your job matters</li><li>A hopeful gospel</li></ul></div><div class="card-qr"><div class="qr-back"></div><p>This is a gift.</p></div></div>
+      <div class="business-card card-back"><div class="card-back-content"><h3>The Carpenter</h3><p style="font-weight: 600;">Scan to explore</p><ul><li>Work as worship</li><li>Why your job matters</li><li>A hopeful gospel</li></ul></div><div class="card-qr"><div class="qr-back"></div><p>This is a gift.</p></div></div>
+      <div class="business-card card-back"><div class="card-back-content"><h3>The Carpenter</h3><p style="font-weight: 600;">Scan to explore</p><ul><li>Work as worship</li><li>Why your job matters</li><li>A hopeful gospel</li></ul></div><div class="card-qr"><div class="qr-back"></div><p>This is a gift.</p></div></div>
+      <div class="business-card card-back"><div class="card-back-content"><h3>The Carpenter</h3><p style="font-weight: 600;">Scan to explore</p><ul><li>Work as worship</li><li>Why your job matters</li><li>A hopeful gospel</li></ul></div><div class="card-qr"><div class="qr-back"></div><p>This is a gift.</p></div></div>
+      <div class="business-card card-back"><div class="card-back-content"><h3>The Carpenter</h3><p style="font-weight: 600;">Scan to explore</p><ul><li>Work as worship</li><li>Why your job matters</li><li>A hopeful gospel</li></ul></div><div class="card-qr"><div class="qr-back"></div><p>This is a gift.</p></div></div>
+      <div class="business-card card-back"><div class="card-back-content"><h3>The Carpenter</h3><p style="font-weight: 600;">Scan to explore</p><ul><li>Work as worship</li><li>Why your job matters</li><li>A hopeful gospel</li></ul></div><div class="card-qr"><div class="qr-back"></div><p>This is a gift.</p></div></div>
+      <div class="business-card card-back"><div class="card-back-content"><h3>The Carpenter</h3><p style="font-weight: 600;">Scan to explore</p><ul><li>Work as worship</li><li>Why your job matters</li><li>A hopeful gospel</li></ul></div><div class="card-qr"><div class="qr-back"></div><p>This is a gift.</p></div></div>
+      <div class="business-card card-back"><div class="card-back-content"><h3>The Carpenter</h3><p style="font-weight: 600;">Scan to explore</p><ul><li>Work as worship</li><li>Why your job matters</li><li>A hopeful gospel</li></ul></div><div class="card-qr"><div class="qr-back"></div><p>This is a gift.</p></div></div>
+      <div class="business-card card-back"><div class="card-back-content"><h3>The Carpenter</h3><p style="font-weight: 600;">Scan to explore</p><ul><li>Work as worship</li><li>Why your job matters</li><li>A hopeful gospel</li></ul></div><div class="card-qr"><div class="qr-back"></div><p>This is a gift.</p></div></div>
+      <div class="business-card card-back"><div class="card-back-content"><h3>The Carpenter</h3><p style="font-weight: 600;">Scan to explore</p><ul><li>Work as worship</li><li>Why your job matters</li><li>A hopeful gospel</li></ul></div><div class="card-qr"><div class="qr-back"></div><p>This is a gift.</p></div></div>
+    </div>
+  </div>
+
+  <script>
+    // Generate QR code
+    const cardURL = 'https://ashperry1.github.io/TheCarpenter/card.html?t=evangel-2025-01';
+    
+    // Main preview QR
+    new QRCode(document.getElementById("cardQR"), {
+      text: cardURL,
+      width: 96,
+      height: 96,
+      colorDark: "#0B1E2D",
+      colorLight: "#FAF6EF",
+      correctLevel: QRCode.CorrectLevel.H
+    });
+
+    // Generate QR codes for all back cards
+    document.querySelectorAll('.qr-back').forEach((el, index) => {
+      new QRCode(el, {
+        text: cardURL,
+        width: 96,
+        height: 96,
+        colorDark: "#0B1E2D",
+        colorLight: "#FAF6EF",
+        correctLevel: QRCode.CorrectLevel.H
+      });
+    });
+  </script>
+</body>
+</html>
+
