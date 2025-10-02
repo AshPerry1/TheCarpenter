@@ -483,6 +483,23 @@
       position: relative;
       animation: popupSlideUp 0.4s ease;
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    @media (max-width: 640px) {
+      .welcome-popup-card {
+        padding: 1.5rem;
+        width: 95%;
+      }
+      
+      .welcome-popup-card h2 {
+        font-size: 1.35rem !important;
+      }
+      
+      .welcome-popup-card p {
+        font-size: 0.95rem !important;
+      }
     }
 
     @keyframes popupSlideUp {
@@ -558,6 +575,23 @@
       width: 90%;
       box-shadow: 0 10px 40px rgba(0,0,0,0.4);
       animation: tourPop 0.4s ease;
+      max-height: 85vh;
+      overflow-y: auto;
+    }
+
+    @media (max-width: 640px) {
+      .tour-content {
+        padding: 1.5rem;
+        width: 95%;
+      }
+      
+      .tour-content h3 {
+        font-size: 1.25rem !important;
+      }
+      
+      .tour-content p {
+        font-size: 0.95rem !important;
+      }
     }
 
     @keyframes tourPop {

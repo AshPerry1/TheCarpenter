@@ -78,9 +78,15 @@ nav {
   font-weight: 600;
 }
 
-.logo svg {
-  width: 40px;
-  height: 40px;
+.logo img {
+  max-height: 50px;
+  width: auto;
+}
+
+@media (max-width: 640px) {
+  .logo img {
+    max-height: 40px;
+  }
 }
 
 .nav-links {
@@ -147,6 +153,13 @@ nav {
   cursor: pointer;
   border: none;
   font-size: 1rem;
+}
+
+@media (max-width: 640px) {
+  .btn {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.95rem;
+  }
 }
 
 .btn-primary {
@@ -226,22 +239,52 @@ nav {
 }
 
 @media (max-width: 768px) {
+  .hero {
+    padding: 2rem 0;
+  }
+  
   .hero-grid {
     grid-template-columns: 1fr;
+    gap: 2rem;
   }
   
   .hero h1 {
     font-size: 2rem;
+    line-height: 1.2;
   }
   
   .hero p {
     font-size: 1rem;
+  }
+  
+  .hero-cta {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .hero-cta a, .hero-cta button {
+    width: 100%;
+    text-align: center;
   }
 }
 
 /* Sections */
 section {
   padding: 4rem 0;
+}
+
+@media (max-width: 640px) {
+  section {
+    padding: 2rem 0;
+  }
+  
+  .container {
+    padding: 0 1rem;
+  }
+  
+  .container-sm {
+    padding: 0 1rem;
+  }
 }
 
 .section-white {
@@ -273,6 +316,16 @@ section {
   opacity: 0.7;
   max-width: 700px;
   margin: 0 auto 3rem;
+}
+
+@media (max-width: 640px) {
+  .section-title {
+    font-size: 1.75rem;
+  }
+  
+  .section-subtitle {
+    font-size: 0.95rem;
+  }
 }
 
 /* Cards & Grid Layouts */
@@ -331,6 +384,20 @@ section {
   font-size: 1.5rem;
   color: var(--navy);
   margin-bottom: 1rem;
+}
+
+@media (max-width: 640px) {
+  .card, .card-white {
+    padding: 1.5rem;
+  }
+  
+  .card-title {
+    font-size: 1.25rem;
+  }
+  
+  .card-content {
+    font-size: 0.95rem;
+  }
 }
 
 .card-content {
@@ -561,12 +628,26 @@ footer {
 }
 
 @media (max-width: 768px) {
+  .page-header {
+    padding: 2rem 0;
+  }
+  
   .page-header h1 {
     font-size: 2rem;
   }
   
   .page-header p {
     font-size: 1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .page-header h1 {
+    font-size: 1.5rem;
+  }
+  
+  .page-header p {
+    font-size: 0.9rem;
   }
 }
 
