@@ -11,12 +11,19 @@ function validateToken() {
   const params = new URLSearchParams(window.location.search);
   const token = params.get('t');
   
-  if (token !== VALID_TOKEN) {
+  // Allow 'demo' token for preview from How It Works page
+  if (token !== VALID_TOKEN && token !== 'demo') {
     showError();
     return false;
   }
   
-  // Check if returning visitor
+  // For demo, don't save name to localStorage
+  if (token === 'demo') {
+    showNamePrompt();
+    return true;
+  }
+  
+  // Check if returning visitor (only for real token)
   const savedName = localStorage.getItem('seenCardName');
   if (savedName) {
     userName = savedName;
