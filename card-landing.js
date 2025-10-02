@@ -83,7 +83,12 @@ function showNamePrompt() {
     e.preventDefault();
     userName = document.getElementById('nameInput').value.trim();
     if (userName) {
-      localStorage.setItem('seenCardName', userName);
+      // Only save to localStorage if not in demo mode
+      const params = new URLSearchParams(window.location.search);
+      const token = params.get('t');
+      if (token !== 'demo') {
+        localStorage.setItem('seenCardName', userName);
+      }
       showGreeting();
     }
   });
