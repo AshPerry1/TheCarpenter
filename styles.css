@@ -913,3 +913,135 @@ footer {
   margin-bottom: 4rem;
 }
 
+/* About Page Styles */
+.about-intro-grid {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 3rem;
+  align-items: start;
+  margin-bottom: 2rem;
+}
+
+.about-photo {
+  display: flex;
+  justify-content: center;
+}
+
+.photo-circle {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid var(--gold);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.photo-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--navy) 0%, var(--olive) 100%);
+  color: var(--linen);
+  font-size: 3rem;
+  font-family: 'Cinzel', serif;
+  font-weight: 600;
+}
+
+.photo-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.about-intro-text h2 {
+  margin-bottom: 1rem;
+  color: var(--navy);
+}
+
+.about-intro-text p {
+  margin-bottom: 1rem;
+}
+
+.scripture-callout {
+  background: linear-gradient(135deg, rgba(201, 162, 39, 0.1) 0%, rgba(201, 162, 39, 0.05) 100%);
+  border-left: 4px solid var(--gold);
+  padding: 1.5rem;
+  margin: 2rem 0;
+  border-radius: 4px;
+}
+
+.scripture-callout .scripture-text {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  font-style: italic;
+  color: var(--graphite);
+  margin-bottom: 0.75rem;
+}
+
+.scripture-callout .scripture-ref {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--gold);
+  text-align: right;
+  display: block;
+}
+
+.hero-simple {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--olive) 100%);
+  color: var(--linen);
+  padding: 4rem 0 3rem;
+  text-align: center;
+}
+
+.hero-simple h1 {
+  color: var(--linen);
+  margin: 0;
+}
+
+/* Responsive - About Page */
+@media (max-width: 768px) {
+  .about-intro-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+  }
+  
+  .about-photo {
+    justify-content: center;
+  }
+  
+  .hero-simple {
+    padding: 3rem 0 2rem;
+  }
+  
+  .scripture-callout {
+    padding: 1.25rem;
+    margin: 1.5rem 0;
+  }
+  
+  .scripture-callout .scripture-text {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .photo-circle {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .photo-placeholder {
+    font-size: 2.5rem;
+  }
+  
+  .about-intro-grid {
+    gap: 1.5rem;
+  }
+  
+  .hero-simple {
+    padding: 2.5rem 0 1.5rem;
+  }
+}
+
