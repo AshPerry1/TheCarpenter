@@ -1323,3 +1323,78 @@ footer {
   }
 }
 
+/* Flip Card for How It Works - Step 1 */
+.flip-card-container-small {
+  width: 3.5in;
+  height: 2in;
+  margin: 1.5rem auto;
+  perspective: 1000px;
+  cursor: pointer;
+  position: relative;
+}
+
+.flip-card-inner-small {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s ease-in-out;
+  transform-style: preserve-3d;
+  transform-origin: center center;
+}
+
+.flip-card-container-small.flipped .flip-card-inner-small {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front-small,
+.flip-card-back-small {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 0.125in;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+}
+
+.flip-card-back-small {
+  transform: rotateY(180deg);
+}
+
+.flip-card-container-small:active {
+  transform: scale(0.98);
+  transition: transform 0.1s;
+}
+
+.seen-card-front {
+  background: var(--navy);
+  color: var(--linen);
+}
+
+.seen-card-back {
+  background: var(--linen);
+  color: var(--graphite);
+}
+
+@media (max-width: 768px) {
+  .flip-card-container-small {
+    width: 300px;
+    height: 171px;
+    max-width: 90vw;
+  }
+  
+  .flip-card-front-small h1 {
+    font-size: 1rem !important;
+  }
+  
+  .flip-card-front-small h2 {
+    font-size: 0.75rem !important;
+  }
+  
+  .flip-card-front-small p {
+    font-size: 0.65rem !important;
+  }
+}
+
