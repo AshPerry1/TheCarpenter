@@ -250,33 +250,60 @@
   </section>
 
   <!-- FAQ -->
-  <section class="section-linen">
+  <section class="section-linen" id="faq">
     <div class="container-sm">
       <h2 style="text-align: center; margin-bottom: 2rem;">Frequently Asked Questions</h2>
       
-      <div class="faq-item">
-        <h3>Is this a church?</h3>
-        <p>No. We're Christians pointing people to Scripture and local churches. <span class="verse-inline">(Heb 10:24–25)</span></p>
-      </div>
+      <div class="faq-accordion">
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            <h3>Is this a church?</h3>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>No. We're Christians pointing people to Scripture and local churches. <span class="verse-inline">(Heb 10:24–25)</span></p>
+          </div>
+        </div>
 
-      <div class="faq-item">
-        <h3>Is the QR page public?</h3>
-        <p>It's accessible by scanning only; it uses a tokenized URL and is hidden from nav/search. <span class="verse-inline">(1 Cor 10:31 — wisdom & integrity)</span></p>
-      </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            <h3>Is the QR page public?</h3>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>It's accessible by scanning only; it uses a tokenized URL and is hidden from nav/search. <span class="verse-inline">(1 Cor 10:31 — wisdom & integrity)</span></p>
+          </div>
+        </div>
 
-      <div class="faq-item">
-        <h3>What translation do you use?</h3>
-        <p>We quote from the English Standard Version (ESV).</p>
-      </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            <h3>What translation do you use?</h3>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>We quote from the English Standard Version (ESV).</p>
+          </div>
+        </div>
 
-      <div class="faq-item">
-        <h3>How can I help?</h3>
-        <p>Pray, share cards, partner locally, or sponsor printing costs. <span class="verse-inline">(1 Thes 5:17; Gal 6:9)</span></p>
-      </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            <h3>How can I help?</h3>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Pray, share cards, partner locally, or create content to help equip others. <span class="verse-inline">(1 Thes 5:17; Gal 6:9)</span></p>
+          </div>
+        </div>
 
-      <div class="faq-item">
-        <h3>Do you use affiliate links?</h3>
-        <p>Some book links on our site may include affiliate codes. Any proceeds support printing and distribution costs.</p>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            <h3>Do you use affiliate links?</h3>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Some book links on our site may include affiliate codes. Any proceeds support printing and distribution costs.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -343,6 +370,34 @@
         correctLevel: QRCode.CorrectLevel.H
       });
     });
+
+    // FAQ Accordion Toggle
+    function toggleFAQ(button) {
+      const faqItem = button.closest('.faq-item');
+      const answer = faqItem.querySelector('.faq-answer');
+      const icon = button.querySelector('.faq-icon');
+      const isOpen = faqItem.classList.contains('active');
+      
+      // Close all other FAQs
+      document.querySelectorAll('.faq-item.active').forEach(item => {
+        if (item !== faqItem) {
+          item.classList.remove('active');
+          item.querySelector('.faq-answer').style.maxHeight = null;
+          item.querySelector('.faq-icon').textContent = '+';
+        }
+      });
+      
+      // Toggle current FAQ
+      if (isOpen) {
+        faqItem.classList.remove('active');
+        answer.style.maxHeight = null;
+        icon.textContent = '+';
+      } else {
+        faqItem.classList.add('active');
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+        icon.textContent = '−';
+      }
+    }
   </script>
 </body>
 </html>
