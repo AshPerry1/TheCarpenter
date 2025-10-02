@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Small Group Guide - The Carpenter</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .pdf-page {
+      max-width: 8.5in;
+      margin: 2rem auto;
+      background: white;
+      padding: 1in;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .pdf-header {
+      text-align: center;
+      border-bottom: 3px solid var(--gold);
+      padding-bottom: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .pdf-header h1 {
+      color: var(--navy);
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .week-section {
+      margin-bottom: 3rem;
+      page-break-inside: avoid;
+    }
+
+    .week-header {
+      background: var(--navy);
+      color: var(--linen);
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border-radius: 4px;
+    }
+
+    .week-header h2 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+
+    .week-subtitle {
+      font-style: italic;
+      opacity: 0.8;
+      margin-top: 0.25rem;
+    }
+
+    .discussion-questions {
+      background: var(--linen);
+      padding: 1.5rem;
+      border-radius: 4px;
+      margin: 1rem 0;
+    }
+
+    .discussion-questions h3 {
+      color: var(--navy);
+      margin-bottom: 1rem;
+    }
+
+    .question-item {
+      margin: 1rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+
+    .question-item::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-weight: bold;
+      font-size: 1.5rem;
+    }
+
+    .scripture-box {
+      background: white;
+      padding: 1rem;
+      border-left: 4px solid var(--gold);
+      margin: 1rem 0;
+      font-style: italic;
+    }
+
+    .verse-ref-pdf {
+      color: var(--olive);
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin-top: 0.5rem;
+      display: block;
+    }
+
+    .practice-box {
+      background: var(--linen);
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 4px;
+    }
+
+    @media print {
+      body { background: white; }
+      .no-print { display: none !important; }
+      .pdf-page { 
+        box-shadow: none; 
+        margin: 0; 
+        padding: 0.75in;
+      }
+      .week-section {
+        page-break-after: always;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="no-print" style="background: var(--navy); padding: 1rem; text-align: center;">
+    <button onclick="window.print()" class="btn btn-primary">
+      Download as PDF
+    </button>
+    <a href="resources.html" class="btn btn-secondary" style="margin-left: 1rem;">
+      Back to Resources
+    </a>
+  </div>
+
+  <div class="pdf-page">
+    <div class="pdf-header">
+      <h1>Small Group Study Guide</h1>
+      <p>The Theology of Work: A 6-Week Journey</p>
+    </div>
+
+    <div style="background: var(--linen); padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem;">
+      <h3 style="color: var(--navy); margin-bottom: 1rem;">How to Use This Guide</h3>
+      <p>This 6-week study helps your small group explore the biblical theology of work. Each session includes Scripture reading, discussion questions, and practical application. Encourage honest conversation and support one another in seeing your everyday work as worship.</p>
+    </div>
+
+    <div class="week-section">
+      <div class="week-header">
+        <h2>Week 1: Work as God's Gift</h2>
+        <p class="week-subtitle">Before the Fall, God gave work</p>
+      </div>
+      
+      <div class="scripture-box">
+        "Then God said, 'Let us make man in our image, after our likeness. And let them have dominion...' The LORD God took the man and put him in the garden of Eden to work it and keep it."
+        <span class="verse-ref-pdf">— Genesis 1:26–28; 2:15</span>
+      </div>
+
+      <div class="discussion-questions">
+        <h3>Discussion Questions</h3>
+        <div class="question-item">How does understanding that God gave work before the Fall change your view of your job?</div>
+        <div class="question-item">What are some ways your work allows you to "exercise dominion" or create value in the world?</div>
+        <div class="question-item">When do you most feel that your work is meaningful? When does it feel meaningless?</div>
+        <div class="question-item">How can we help each other see our jobs as gifts from God rather than necessary evils?</div>
+      </div>
+
+      <div class="practice-box">
+        <strong>This Week's Practice:</strong> Each morning, thank God for one specific aspect of your job.
+      </div>
+    </div>
+
+    <div class="week-section">
+      <div class="week-header">
+        <h2>Week 2: Work as Worship</h2>
+        <p class="week-subtitle">Doing all things "as for the Lord"</p>
+      </div>
+      
+      <div class="scripture-box">
+        "Whatever you do, work heartily, as for the Lord and not for men, knowing that from the Lord you will receive the inheritance as your reward. You are serving the Lord Christ."
+        <span class="verse-ref-pdf">— Colossians 3:23–24</span>
+      </div>
+
+      <div class="discussion-questions">
+        <h3>Discussion Questions</h3>
+        <div class="question-item">What would change in your work if you truly believed Jesus was your direct manager?</div>
+        <div class="question-item">In what areas of your job are you tempted to work for human approval rather than God's glory?</div>
+        <div class="question-item">How can mundane tasks (emails, meetings, etc.) become acts of worship?</div>
+        <div class="question-item">Share one way you'll practice working "as for the Lord" this week.</div>
+      </div>
+
+      <div class="practice-box">
+        <strong>This Week's Practice:</strong> Before each task, pause and dedicate it to the Lord.
+      </div>
+    </div>
+
+    <div class="week-section">
+      <div class="week-header">
+        <h2>Week 3: Work with Integrity</h2>
+        <p class="week-subtitle">Truth-telling in all things</p>
+      </div>
+      
+      <div class="scripture-box">
+        "The integrity of the upright guides them, but the crookedness of the treacherous destroys them."
+        <span class="verse-ref-pdf">— Proverbs 11:3</span>
+      </div>
+
+      <div class="discussion-questions">
+        <h3>Discussion Questions</h3>
+        <div class="question-item">Where are you most tempted to compromise integrity at work? (Time, expenses, communication, etc.)</div>
+        <div class="question-item">What does it cost to maintain integrity in your workplace?</div>
+        <div class="question-item">How does our integrity (or lack of it) affect our witness to coworkers?</div>
+        <div class="question-item">How can we hold each other accountable to work with integrity?</div>
+      </div>
+
+      <div class="practice-box">
+        <strong>This Week's Practice:</strong> Report time and expenses with complete accuracy. Confess and correct any areas of compromise.
+      </div>
+    </div>
+
+    <div class="week-section">
+      <div class="week-header">
+        <h2>Week 4: Work as Service</h2>
+        <p class="week-subtitle">Loving your neighbor through your vocation</p>
+      </div>
+      
+      <div class="scripture-box">
+        "For you were called to freedom, brothers. Only do not use your freedom as an opportunity for the flesh, but through love serve one another."
+        <span class="verse-ref-pdf">— Galatians 5:13</span>
+      </div>
+
+      <div class="discussion-questions">
+        <h3>Discussion Questions</h3>
+        <div class="question-item">Who does your work serve? (Customers, coworkers, community, etc.)</div>
+        <div class="question-item">How does your job meet real human needs?</div>
+        <div class="question-item">In what ways can you better serve others through your work this week?</div>
+        <div class="question-item">How does seeing work as service change your motivation?</div>
+      </div>
+
+      <div class="practice-box">
+        <strong>This Week's Practice:</strong> Each day, identify one person your work serves and pray for them.
+      </div>
+    </div>
+
+    <div class="week-section">
+      <div class="week-header">
+        <h2>Week 5: Eternal Significance</h2>
+        <p class="week-subtitle">Your labor is not in vain</p>
+      </div>
+      
+      <div class="scripture-box">
+        "Therefore, my beloved brothers, be steadfast, immovable, always abounding in the work of the Lord, knowing that in the Lord your labor is not in vain."
+        <span class="verse-ref-pdf">— 1 Corinthians 15:58</span>
+      </div>
+
+      <div class="discussion-questions">
+        <h3>Discussion Questions</h3>
+        <div class="question-item">What parts of your work feel most meaningless? How might they have eternal significance?</div>
+        <div class="question-item">How does knowing God sees and remembers your work change your perspective?</div>
+        <div class="question-item">In what ways might your current work echo into eternity?</div>
+        <div class="question-item">How can we encourage each other when work feels futile?</div>
+      </div>
+
+      <div class="practice-box">
+        <strong>This Week's Practice:</strong> When tasks feel meaningless, remind yourself: "In the Lord, this is not in vain."
+      </div>
+    </div>
+
+    <div class="week-section">
+      <div class="week-header">
+        <h2>Week 6: Work as Witness</h2>
+        <p class="week-subtitle">Letting your light shine</p>
+      </div>
+      
+      <div class="scripture-box">
+        "In the same way, let your light shine before others, so that they may see your good works and give glory to your Father who is in heaven."
+        <span class="verse-ref-pdf">— Matthew 5:16</span>
+      </div>
+
+      <div class="discussion-questions">
+        <h3>Discussion Questions</h3>
+        <div class="question-item">How does your work provide opportunities to point others to Christ?</div>
+        <div class="question-item">What kind of reputation do you have at work? Does it adorn the gospel?</div>
+        <div class="question-item">How can we be bold witnesses without being obnoxious?</div>
+        <div class="question-item">Who in your workplace needs to hear about Jesus? How will you pray for them?</div>
+      </div>
+
+      <div class="practice-box">
+        <strong>This Week's Practice:</strong> Pray daily for one coworker's salvation. Be ready to share the gospel if God opens a door.
+      </div>
+    </div>
+
+    <div style="background: var(--navy); color: var(--linen); padding: 1.5rem; border-radius: 8px; margin-top: 2rem;">
+      <h3 style="margin-bottom: 1rem;">Moving Forward</h3>
+      <p>Continue the journey at thecarpenter.com with our 52-week devotional guide, weekly resources, and tools for seeing your work as worship.</p>
+    </div>
+
+    <div style="margin-top: 2rem; padding-top: 1rem; border-top: 2px solid var(--linen); text-align: center; font-size: 0.875rem; color: var(--olive);">
+      <p>© 2025 The Carpenter • thecarpenter.com</p>
+    </div>
+  </div>
+</body>
+</html>
+

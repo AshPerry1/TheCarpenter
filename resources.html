@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weekly Resources - The Carpenter</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <nav>
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <svg viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="48" fill="none" stroke="currentColor" stroke-width="2"/>
+          <path d="M35 30 L50 45 L35 60" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="50" y1="25" x2="50" y2="75" stroke="currentColor" stroke-width="2"/>
+          <line x1="65" y1="30" x2="65" y2="70" stroke="currentColor" stroke-width="2"/>
+        </svg>
+        <span>The Carpenter</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="gospel.html">Gospel</a></li>
+        <li><a href="work.html">Your Work</a></li>
+        <li><a href="stories.html">Stories</a></li>
+        <li><a href="tools.html">Tools</a></li>
+        <li><a href="resources.html">Resources</a></li>
+      </ul>
+      <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+    </div>
+    <div class="mobile-nav" id="mobileNav">
+      <a href="index.html">Home</a>
+      <a href="gospel.html">Gospel</a>
+      <a href="work.html">Your Work</a>
+      <a href="stories.html">Stories</a>
+      <a href="tools.html">Tools</a>
+      <a href="resources.html">Resources</a>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <div class="container-sm">
+      <h1>Weekly Resources</h1>
+      <p>Printable guides organized for everyday use and by week—helping you see your work as worship all year long.</p>
+      <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(250, 246, 239, 0.2); border-radius: 8px;">
+        <label for="weekSelector" style="font-size: 1.125rem; font-weight: 600; display: block; margin-bottom: 0.75rem;">Select Your Week:</label>
+        <select id="weekSelector" style="width: 100%; max-width: 300px; padding: 0.75rem; border-radius: 8px; border: 2px solid var(--navy); font-size: 1rem; background: white; cursor: pointer;">
+          <!-- Options will be populated by JavaScript -->
+        </select>
+        <p style="margin-top: 0.5rem; font-size: 0.875rem; opacity: 0.7;">Current week: <span id="currentWeekIndicator"></span></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add All Weeks Reminders -->
+  <section class="section-navy" style="padding: 2rem 0;">
+    <div class="container">
+      <div class="text-center">
+        <h2 style="font-size: 2rem; margin-bottom: 1rem; color: var(--linen);">Add Reminders for All Unlocked Weeks</h2>
+        <p style="color: rgba(250, 246, 239, 0.8); margin-bottom: 2rem; max-width: 700px; margin-left: auto; margin-right: auto;">
+          Get accountability reminders for every week you've unlocked. Set once, stay on track all year.
+        </p>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+          <button onclick="addAllWeeksReminders('all')" class="btn btn-primary">
+            Add All Weeks (Full Schedule)
+          </button>
+          <button onclick="addAllWeeksReminders('morning')" class="btn" style="background: var(--gold); color: var(--navy);">
+            All Weeks - Morning Only
+          </button>
+          <button onclick="addAllWeeksReminders('lunch')" class="btn" style="background: var(--gold); color: var(--navy);">
+            All Weeks - Lunch Only
+          </button>
+        </div>
+        <p style="color: rgba(250, 246, 239, 0.6); font-size: 0.875rem; margin-top: 1rem;">
+          <span id="totalWeeksAvailable"></span> weeks currently available
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Everyday Resources -->
+  <section class="section-white">
+    <div class="container">
+      <h2 class="section-title">Everyday Resources</h2>
+      <p class="section-subtitle">Timeless tools for any day of the week</p>
+
+      <div class="grid-3">
+        <div class="card-white">
+          <h3 class="card-title">Work Prayer Cards</h3>
+          <p class="card-content">4 pocket-sized cards with Scripture reminders for your wallet or desk.</p>
+          <a href="print-cards.html" class="btn btn-primary" style="margin-top: 1rem; display: inline-block;">Print Cards</a>
+        </div>
+
+        <div class="card-white">
+          <h3 class="card-title">Daily Liturgy Guide</h3>
+          <p class="card-content">6 micro-practices for Monday through Friday—one page to guide your workweek.</p>
+          <button onclick="printResource('liturgy')" class="btn btn-primary" style="margin-top: 1rem;">Download PDF</button>
+        </div>
+
+        <div class="card-white">
+          <h3 class="card-title">Gospel Summary</h3>
+          <p class="card-content">One-page overview of Creation, Fall, Redemption, Restoration with key verses.</p>
+          <button onclick="printResource('gospel')" class="btn btn-primary" style="margin-top: 1rem;">Download PDF</button>
+        </div>
+
+        <div class="card-white">
+          <h3 class="card-title">Integrity Checklist</h3>
+          <p class="card-content">10 practical questions for workplace honesty and excellence.</p>
+          <a href="tools.html#checklist" class="btn btn-primary" style="margin-top: 1rem; display: inline-block;">View & Print</a>
+        </div>
+
+        <div class="card-white">
+          <h3 class="card-title">Conversation Starters</h3>
+          <p class="card-content">8 questions to discuss faith and work with coworkers or small groups.</p>
+          <a href="tools.html#conversations" class="btn btn-primary" style="margin-top: 1rem; display: inline-block;">View & Print</a>
+        </div>
+
+        <div class="card-white">
+          <h3 class="card-title">Small Group Guide</h3>
+          <p class="card-content">6-week study guide for discussing the theology of work with your community.</p>
+          <button onclick="printResource('small-group')" class="btn btn-primary" style="margin-top: 1rem;">Download PDF</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- This Week's Resources -->
+  <section class="section-linen">
+    <div class="container">
+      <h2 class="section-title">This Week's Resources</h2>
+      <p class="section-subtitle">Week <span id="weekNumberDisplay"></span> of 52</p>
+
+      <div id="weeklyContent" class="container-sm">
+        <!-- Dynamic weekly content will be inserted here -->
+      </div>
+
+      <div class="text-center mt-4">
+        <a href="#weekly-archive" class="text-link">Browse All 52 Weeks →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Weekly Archive -->
+  <section id="weekly-archive" class="section-white">
+    <div class="container">
+      <h2 class="section-title">Browse by Week</h2>
+      <p class="section-subtitle">52 weeks of resources for seeing your work as worship</p>
+
+      <div class="grid-3" id="weekCardsGrid">
+        <!-- Week cards will be populated by JavaScript -->
+      </div>
+
+      <div class="text-center mt-4">
+        <p style="color: var(--olive); font-style: italic;">
+          Weeks unlock at midnight as you progress through the year. Use the dropdown above to explore unlocked weeks.
+        </p>
+      </div>
+
+      <div class="grid-3" id="highlightWeeksGrid" style="margin-top: 2rem;">
+        <!-- Highlight weeks will be populated by JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h3 class="footer-title">The Carpenter</h3>
+          <p class="footer-text">Helping every follower of Jesus see their everyday work as worship—because God sees it, and it matters forever.</p>
+        </div>
+        <div>
+          <h3 class="footer-title">Quick Links</h3>
+          <div class="footer-links">
+            <a href="gospel.html">Gospel</a>
+            <a href="work.html">Your Work</a>
+            <a href="stories.html">Stories</a>
+            <a href="tools.html">Tools</a>
+            <a href="resources.html">Resources</a>
+          </div>
+        </div>
+        <div>
+          <h3 class="footer-title">Statement of Faith</h3>
+          <p class="footer-text">We affirm salvation by grace alone through faith alone in Christ alone. We hold to historic Protestant orthodoxy and the Westminster Standards (PCA).</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 The Carpenter. All Scripture quotations are from the ESV® Bible.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="resources.js"></script>
+  <script src="calendar-reminders.js"></script>
+</body>
+</html>
+

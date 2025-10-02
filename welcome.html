@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to The Carpenter</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .welcome-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--navy);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 1;
+      transition: opacity 0.5s ease;
+    }
+
+    .welcome-overlay.fade-out {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .welcome-card {
+      background: var(--linen);
+      border-radius: 16px;
+      padding: 3rem 2rem;
+      max-width: 500px;
+      width: 90%;
+      text-align: center;
+      animation: slideUp 0.6s ease;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .welcome-logo {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 1.5rem;
+    }
+
+    .welcome-card h1 {
+      color: var(--navy);
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .welcome-card p {
+      color: var(--graphite);
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    .name-input {
+      width: 100%;
+      padding: 1rem;
+      border: 2px solid var(--navy);
+      border-radius: 8px;
+      font-size: 1.125rem;
+      margin-bottom: 1.5rem;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .name-input:focus {
+      outline: none;
+      border-color: var(--gold);
+    }
+
+    .tutorial-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(11, 30, 45, 0.95);
+      z-index: 9998;
+      display: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .tutorial-overlay.active {
+      display: block;
+      opacity: 1;
+    }
+
+    .tutorial-content {
+      position: absolute;
+      background: var(--linen);
+      border-radius: 12px;
+      padding: 2rem;
+      max-width: 400px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+      animation: tutorialPop 0.4s ease;
+    }
+
+    @keyframes tutorialPop {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .tutorial-content h3 {
+      color: var(--navy);
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+
+    .tutorial-content p {
+      color: var(--graphite);
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    .tutorial-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .tutorial-dots {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .tutorial-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--olive);
+      opacity: 0.3;
+      transition: all 0.3s;
+    }
+
+    .tutorial-dot.active {
+      opacity: 1;
+      width: 24px;
+      border-radius: 4px;
+      background: var(--gold);
+    }
+
+    .tutorial-arrow {
+      width: 0;
+      height: 0;
+      border-style: solid;
+      position: absolute;
+    }
+
+    .arrow-down {
+      border-width: 15px 15px 0 15px;
+      border-color: var(--linen) transparent transparent transparent;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .arrow-up {
+      border-width: 0 15px 15px 15px;
+      border-color: transparent transparent var(--linen) transparent;
+      top: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .greeting {
+      color: var(--gold);
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+
+    .skip-btn {
+      background: transparent;
+      color: var(--olive);
+      border: none;
+      text-decoration: underline;
+      cursor: pointer;
+      font-size: 0.875rem;
+      margin-top: 1rem;
+    }
+
+    .skip-btn:hover {
+      color: var(--navy);
+    }
+  </style>
+</head>
+<body>
+  <!-- Welcome Name Collection -->
+  <div class="welcome-overlay" id="welcomeOverlay">
+    <div class="welcome-card">
+      <svg viewBox="0 0 100 100" class="welcome-logo">
+        <circle cx="50" cy="50" r="48" fill="none" stroke="var(--navy)" stroke-width="2"/>
+        <path d="M35 30 L50 45 L35 60" fill="none" stroke="var(--navy)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <line x1="50" y1="25" x2="50" y2="75" stroke="var(--navy)" stroke-width="2"/>
+        <line x1="65" y1="30" x2="65" y2="70" stroke="var(--navy)" stroke-width="2"/>
+      </svg>
+      
+      <h1>Welcome to The Carpenter</h1>
+      <p>We're glad you're here. Before we begin, what should we call you?</p>
+      
+      <form id="nameForm">
+        <input 
+          type="text" 
+          id="nameInput" 
+          class="name-input" 
+          placeholder="Your name"
+          required
+          autocomplete="given-name"
+        >
+        <button type="submit" class="btn btn-primary" style="width: 100%;">
+          Let's Go
+        </button>
+      </form>
+      
+      <button class="skip-btn" onclick="skipWelcome()">Skip for now</button>
+    </div>
+  </div>
+
+  <!-- Tutorial Overlay -->
+  <div class="tutorial-overlay" id="tutorialOverlay">
+    <div class="tutorial-content" id="tutorialContent">
+      <!-- Tutorial steps will be injected here -->
+    </div>
+  </div>
+
+  <!-- Main Navigation (hidden during tutorial) -->
+  <nav id="mainNav">
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <svg viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="48" fill="none" stroke="currentColor" stroke-width="2"/>
+          <path d="M35 30 L50 45 L35 60" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="50" y1="25" x2="50" y2="75" stroke="currentColor" stroke-width="2"/>
+          <line x1="65" y1="30" x2="65" y2="70" stroke="currentColor" stroke-width="2"/>
+        </svg>
+        <span>The Carpenter</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="gospel.html">Gospel</a></li>
+        <li><a href="work.html">Your Work</a></li>
+        <li><a href="stories.html">Stories</a></li>
+        <li><a href="tools.html">Tools</a></li>
+        <li><a href="resources.html">Resources</a></li>
+      </ul>
+      <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+    </div>
+    <div class="mobile-nav" id="mobileNav">
+      <a href="index.html">Home</a>
+      <a href="gospel.html">Gospel</a>
+      <a href="work.html">Your Work</a>
+      <a href="stories.html">Stories</a>
+      <a href="tools.html">Tools</a>
+      <a href="resources.html">Resources</a>
+    </div>
+  </nav>
+
+  <!-- Hero with Personalized Greeting -->
+  <section class="hero" id="heroSection">
+    <div class="container">
+      <div class="hero-grid">
+        <div>
+          <p class="greeting" id="personalGreeting"></p>
+          <h1>Your everyday work is worship.</h1>
+          <p>God sees your shift, your spreadsheets, your lesson plans, your routes.</p>
+          <div class="verse-chip">
+            "God is not unjust so as to overlook your work …"
+            <span class="verse-ref">— Heb 6:10</span>
+          </div>
+          <div class="hero-cta">
+            <a href="gospel.html" class="btn btn-primary">Start Here</a>
+            <a href="work.html" class="text-link">Why your job matters →</a>
+          </div>
+        </div>
+        <div>
+          <svg viewBox="0 0 400 400">
+            <circle cx="200" cy="200" r="180" fill="#FAF6EF" stroke="#0B1E2D" stroke-width="2"/>
+            <circle cx="200" cy="200" r="150" fill="none" stroke="#C9A227" stroke-width="1" opacity="0.3"/>
+            <path d="M150 180 L150 220 L170 230 L170 170 Z" fill="#2E2E2E" stroke="#0B1E2D" stroke-width="2"/>
+            <rect x="168" y="150" width="4" height="20" fill="#5B6B4D"/>
+            <line x1="250" y1="150" x2="250" y2="250" stroke="#0B1E2D" stroke-width="2"/>
+            <circle cx="250" cy="255" r="8" fill="#C9A227" stroke="#0B1E2D" stroke-width="2"/>
+            <path d="M245 145 L250 135 L255 145 Z" fill="#2E2E2E"/>
+            <path d="M100 280 Q150 275 200 280 T300 280" fill="none" stroke="#5B6B4D" stroke-width="1" opacity="0.4"/>
+            <path d="M100 290 Q150 285 200 290 T300 290" fill="none" stroke="#5B6B4D" stroke-width="1" opacity="0.4"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Start Cards -->
+  <section class="section-white">
+    <div class="container">
+      <h2 class="section-title">Where would you like to start?</h2>
+      <div class="grid-3">
+        <a href="gospel.html" class="card-white" style="display: block; text-decoration: none; color: inherit;" id="gospelCard">
+          <h3 class="card-title">Understand the Gospel</h3>
+          <p class="card-content">Learn the story of Creation, Fall, Redemption, and Restoration—and how it connects to your work.</p>
+        </a>
+        <a href="work.html" class="card-white" style="display: block; text-decoration: none; color: inherit;" id="workCard">
+          <h3 class="card-title">Why Work Matters</h3>
+          <p class="card-content">Discover four biblical reasons your job has eternal significance.</p>
+        </a>
+        <a href="resources.html" class="card-white" style="display: block; text-decoration: none; color: inherit;" id="resourcesCard">
+          <h3 class="card-title">52-Week Journey</h3>
+          <p class="card-content">Join a year-long devotional, unlocking a new theme about work each week.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h3 class="footer-title">The Carpenter</h3>
+          <p class="footer-text">Helping every follower of Jesus see their everyday work as worship—because God sees it, and it matters forever.</p>
+        </div>
+        <div>
+          <h3 class="footer-title">Quick Links</h3>
+          <div class="footer-links">
+            <a href="gospel.html">Gospel</a>
+            <a href="work.html">Your Work</a>
+            <a href="stories.html">Stories</a>
+            <a href="tools.html">Tools</a>
+            <a href="resources.html">Resources</a>
+          </div>
+        </div>
+        <div>
+          <h3 class="footer-title">Statement of Faith</h3>
+          <p class="footer-text">We affirm salvation by grace alone through faith alone in Christ alone. We hold to historic Protestant orthodoxy and the Westminster Standards (PCA).</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 The Carpenter. All Scripture quotations are from the ESV® Bible.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="welcome.js"></script>
+</body>
+</html>
+

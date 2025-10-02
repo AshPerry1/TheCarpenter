@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QR Code - The Carpenter</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .qr-container {
+      max-width: 800px;
+      margin: 4rem auto;
+      padding: 0 2rem;
+    }
+
+    .qr-card {
+      background: white;
+      padding: 3rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .qr-code-display {
+      width: 300px;
+      height: 300px;
+      margin: 2rem auto;
+      padding: 1rem;
+      background: white;
+      border: 2px solid var(--navy);
+      border-radius: 12px;
+    }
+
+    .qr-instructions {
+      background: var(--linen);
+      padding: 2rem;
+      border-radius: 8px;
+      margin-top: 2rem;
+      text-align: left;
+    }
+
+    .qr-instructions h3 {
+      color: var(--navy);
+      margin-bottom: 1rem;
+    }
+
+    .qr-instructions ol {
+      padding-left: 1.5rem;
+      line-height: 2;
+    }
+
+    .qr-url {
+      background: white;
+      padding: 1rem;
+      border-radius: 8px;
+      font-family: monospace;
+      color: var(--navy);
+      margin: 1rem 0;
+      word-break: break-all;
+    }
+  </style>
+  <!-- Include QR Code generation library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+  <nav>
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <svg viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="48" fill="none" stroke="currentColor" stroke-width="2"/>
+          <path d="M35 30 L50 45 L35 60" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="50" y1="25" x2="50" y2="75" stroke="currentColor" stroke-width="2"/>
+          <line x1="65" y1="30" x2="65" y2="70" stroke="currentColor" stroke-width="2"/>
+        </svg>
+        <span>The Carpenter</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="gospel.html">Gospel</a></li>
+        <li><a href="work.html">Your Work</a></li>
+        <li><a href="stories.html">Stories</a></li>
+        <li><a href="tools.html">Tools</a></li>
+        <li><a href="resources.html">Resources</a></li>
+      </ul>
+      <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+    </div>
+    <div class="mobile-nav" id="mobileNav">
+      <a href="index.html">Home</a>
+      <a href="gospel.html">Gospel</a>
+      <a href="work.html">Your Work</a>
+      <a href="stories.html">Stories</a>
+      <a href="tools.html">Tools</a>
+      <a href="resources.html">Resources</a>
+    </div>
+  </nav>
+
+  <div class="qr-container">
+    <div class="qr-card">
+      <h1 style="color: var(--navy); margin-bottom: 1rem;">Your Welcome QR Code</h1>
+      <p style="color: var(--graphite); margin-bottom: 2rem;">
+        Share this QR code to invite others to The Carpenter with a personalized welcome experience.
+      </p>
+
+      <div id="qrcode" class="qr-code-display"></div>
+
+      <div class="qr-url">
+        <strong>URL:</strong><br>
+        <span id="welcomeUrl"></span>
+      </div>
+
+      <button onclick="downloadQR()" class="btn btn-primary" style="margin-top: 1rem;">
+        Download QR Code
+      </button>
+
+      <div class="qr-instructions">
+        <h3>How to Use This QR Code</h3>
+        <ol>
+          <li>Download the QR code using the button above</li>
+          <li>Print it on cards, flyers, or display it digitally</li>
+          <li>When people scan it, they'll be welcomed by name and given a guided tour</li>
+          <li>They'll learn about the biblical theology of work in a personal way</li>
+        </ol>
+
+        <h3 style="margin-top: 2rem;">Ideas for Sharing</h3>
+        <ul style="padding-left: 1.5rem; line-height: 2;">
+          <li>Business cards for your church</li>
+          <li>Table tents at workplace Bible studies</li>
+          <li>Handouts for conferences or events</li>
+          <li>Share digitally on social media or email</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h3 class="footer-title">The Carpenter</h3>
+          <p class="footer-text">Helping every follower of Jesus see their everyday work as worship—because God sees it, and it matters forever.</p>
+        </div>
+        <div>
+          <h3 class="footer-title">Quick Links</h3>
+          <div class="footer-links">
+            <a href="gospel.html">Gospel</a>
+            <a href="work.html">Your Work</a>
+            <a href="stories.html">Stories</a>
+            <a href="tools.html">Tools</a>
+            <a href="resources.html">Resources</a>
+          </div>
+        </div>
+        <div>
+          <h3 class="footer-title">Statement of Faith</h3>
+          <p class="footer-text">We affirm salvation by grace alone through faith alone in Christ alone. We hold to historic Protestant orthodoxy and the Westminster Standards (PCA).</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 The Carpenter. All Scripture quotations are from the ESV® Bible.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // Generate QR Code
+    const welcomeUrl = window.location.origin + '/welcome.html';
+    document.getElementById('welcomeUrl').textContent = welcomeUrl;
+
+    // Create QR code
+    new QRCode(document.getElementById("qrcode"), {
+      text: welcomeUrl,
+      width: 256,
+      height: 256,
+      colorDark: "#0B1E2D",
+      colorLight: "#ffffff",
+      correctLevel: QRCode.CorrectLevel.H
+    });
+
+    // Download QR Code function
+    function downloadQR() {
+      const canvas = document.querySelector('#qrcode canvas');
+      if (canvas) {
+        const url = canvas.toDataURL('image/png');
+        const link = document.createElement('a');
+        link.download = 'the-carpenter-qr-code.png';
+        link.href = url;
+        link.click();
+      }
+    }
+  </script>
+</body>
+</html>
+

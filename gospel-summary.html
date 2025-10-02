@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gospel Summary - The Carpenter</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .pdf-page {
+      max-width: 8.5in;
+      margin: 2rem auto;
+      background: white;
+      padding: 1in;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .pdf-header {
+      text-align: center;
+      border-bottom: 3px solid var(--gold);
+      padding-bottom: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .pdf-header h1 {
+      color: var(--navy);
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .gospel-movement {
+      margin-bottom: 2rem;
+      padding: 1.5rem;
+      background: var(--linen);
+      border-left: 6px solid var(--gold);
+      page-break-inside: avoid;
+    }
+
+    .movement-number {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--navy);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 40px;
+      font-weight: bold;
+      font-size: 1.5rem;
+      margin-right: 0.5rem;
+    }
+
+    .movement-title {
+      color: var(--navy);
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .verse-box {
+      background: white;
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 4px;
+      font-style: italic;
+      color: var(--graphite);
+    }
+
+    .verse-ref-pdf {
+      color: var(--olive);
+      font-size: 0.875rem;
+      font-weight: 600;
+      display: block;
+      margin-top: 0.5rem;
+    }
+
+    .how-to-believe {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      background: white;
+      border: 2px solid var(--navy);
+      border-radius: 8px;
+      page-break-inside: avoid;
+    }
+
+    .how-to-believe h2 {
+      color: var(--navy);
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .belief-step {
+      margin: 1rem 0;
+      padding-left: 2rem;
+      position: relative;
+    }
+
+    .belief-step::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-weight: bold;
+      font-size: 1.25rem;
+    }
+
+    .prayer-box {
+      background: var(--linen);
+      padding: 1.5rem;
+      margin-top: 1.5rem;
+      border-radius: 8px;
+      font-style: italic;
+    }
+
+    @media print {
+      body { background: white; }
+      .no-print { display: none !important; }
+      .pdf-page { 
+        box-shadow: none; 
+        margin: 0; 
+        padding: 0.75in;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="no-print" style="background: var(--navy); padding: 1rem; text-align: center;">
+    <button onclick="window.print()" class="btn btn-primary">
+      Download as PDF
+    </button>
+    <a href="resources.html" class="btn btn-secondary" style="margin-left: 1rem;">
+      Back to Resources
+    </a>
+  </div>
+
+  <div class="pdf-page">
+    <div class="pdf-header">
+      <h1>The Gospel Summary</h1>
+      <p>Creation, Fall, Redemption, Restoration</p>
+    </div>
+
+    <div class="gospel-movement">
+      <div class="movement-title">
+        <span class="movement-number">1</span>
+        <span>Creation</span>
+      </div>
+      <p><strong>God made us to reflect His glory in all of life—including work.</strong> Every task, every skill, every job is an opportunity to image our Creator. Work was given before the Fall; it is not a curse but a calling.</p>
+      <div class="verse-box">
+        "Then God said, 'Let us make man in our image, after our likeness. And let them have dominion...'"
+        <span class="verse-ref-pdf">— Genesis 1:26–28; 1 Corinthians 10:31</span>
+      </div>
+    </div>
+
+    <div class="gospel-movement">
+      <div class="movement-title">
+        <span class="movement-number">2</span>
+        <span>Fall</span>
+      </div>
+      <p><strong>Sin broke our relationship with God, others, and work itself.</strong> Toil, futility, and frustration entered the workplace. We often work for the wrong reasons—pride, greed, or mere survival—rather than for God's glory.</p>
+      <div class="verse-box">
+        "Cursed is the ground because of you; in pain you shall eat of it all the days of your life..."
+        <span class="verse-ref-pdf">— Genesis 3; Romans 8:20–22</span>
+      </div>
+    </div>
+
+    <div class="gospel-movement">
+      <div class="movement-title">
+        <span class="movement-number">3</span>
+        <span>Redemption</span>
+      </div>
+      <p><strong>Jesus lived the perfect life we couldn't live, died the death we deserved, and rose to give us new life.</strong> Sinners are saved by grace through faith—not by our works, but for good works.</p>
+      <div class="verse-box">
+        "For by grace you have been saved through faith. And this is not your own doing; it is the gift of God, not a result of works..."
+        <span class="verse-ref-pdf">— Ephesians 2:8–9; Romans 10:9–10</span>
+      </div>
+    </div>
+
+    <div class="gospel-movement">
+      <div class="movement-title">
+        <span class="movement-number">4</span>
+        <span>Restoration</span>
+      </div>
+      <p><strong>In Christ we are God's "workmanship," recreated for good works He prepared in advance.</strong> Our labor in the Lord is not in vain. God is making all things new—including our work.</p>
+      <div class="verse-box">
+        "For we are his workmanship, created in Christ Jesus for good works, which God prepared beforehand, that we should walk in them."
+        <span class="verse-ref-pdf">— Ephesians 2:10; 1 Corinthians 15:58</span>
+      </div>
+    </div>
+
+    <div class="how-to-believe">
+      <h2>How Do People Become Believers?</h2>
+      
+      <div class="belief-step">
+        <strong>Hear the Gospel</strong> — Faith comes from hearing the word of Christ (Romans 10:17)
+      </div>
+      
+      <div class="belief-step">
+        <strong>Be Born of the Spirit</strong> — New birth is God's work; the Holy Spirit gives spiritual life (John 3:5–8)
+      </div>
+      
+      <div class="belief-step">
+        <strong>Repent & Believe</strong> — Turn from sin and trust in Jesus' death and resurrection (Romans 10:9–10)
+      </div>
+      
+      <div class="belief-step">
+        <strong>Confess Jesus as Lord</strong> — The Spirit enables us to confess "Jesus is Lord" (1 Corinthians 12:3)
+      </div>
+
+      <div class="prayer-box">
+        <strong>A Prayer to Begin:</strong><br><br>
+        "Lord Jesus, I turn from my sin and trust You. You died and rose for me. Make me new by Your Spirit. Be my Lord. Teach me to honor You in all my life and work. Amen."
+      </div>
+    </div>
+
+    <div style="margin-top: 2rem; padding-top: 1rem; border-top: 2px solid var(--linen); text-align: center; font-size: 0.875rem; color: var(--olive);">
+      <p>© 2025 The Carpenter • thecarpenter.com</p>
+    </div>
+  </div>
+</body>
+</html>
+
