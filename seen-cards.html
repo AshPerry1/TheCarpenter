@@ -30,6 +30,49 @@
       box-sizing: border-box;
     }
 
+    /* 3D Flip Card Preview */
+    .flip-card-container {
+      width: 3.5in;
+      height: 2in;
+      margin: 2rem auto;
+      perspective: 1000px;
+      cursor: pointer;
+    }
+
+    .flip-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+    }
+
+    .flip-card-container.flipped .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .flip-card-front,
+    .flip-card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 0.125in;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    }
+
+    .flip-card-back {
+      transform: rotateY(180deg);
+    }
+
+    .flip-hint {
+      text-align: center;
+      color: var(--olive);
+      font-size: 0.875rem;
+      margin-top: 1rem;
+      font-style: italic;
+    }
+
     /* Safe area for content (0.125in from edges) */
     .card-safe-area {
       padding: 0.25in;
@@ -270,32 +313,41 @@
     <!-- Single Card Preview -->
     <div class="card-preview no-print">
       <h2 style="color: var(--navy); text-align: center; margin-bottom: 1rem;">Preview</h2>
-      <p style="text-align: center; margin-bottom: 2rem; color: var(--olive);">Front and Back</p>
-    </div>
-
-    <div class="business-card card-front">
-      <div class="card-safe-area" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
-        <h1>You are seen.<br>You are loved.</h1>
-        <h2>Your work matters to God.</h2>
-        <p>"God is not unjust so as to overlook your work …" — Hebrews 6:10 (ESV)</p>
+      <p style="text-align: center; margin-bottom: 1rem; color: var(--olive);">Click the card to flip and see both sides</p>
+      
+      <!-- 3D Flip Card -->
+      <div class="flip-card-container" id="flipCard" onclick="this.classList.toggle('flipped')">
+        <div class="flip-card-inner">
+          <!-- Front -->
+          <div class="flip-card-front card-front">
+            <div class="card-safe-area" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+              <h1>You are seen.<br>You are loved.</h1>
+              <h2>Your work matters to God.</h2>
+              <p>"God is not unjust so as to overlook your work …" — Hebrews 6:10 (ESV)</p>
+            </div>
+          </div>
+          
+          <!-- Back -->
+          <div class="flip-card-back card-back">
+            <div class="card-back-content">
+              <h3>The Carpenter</h3>
+              <p style="font-weight: 600;">Scan to explore thecarpenter.com</p>
+              <ul>
+                <li>Work as worship</li>
+                <li>Why your job matters</li>
+                <li>A hopeful gospel</li>
+              </ul>
+              <p class="verse-small">"Let your light shine …" — Matthew 5:16 (ESV)</p>
+            </div>
+            <div class="card-qr">
+              <div id="cardQR"></div>
+              <p>No tip expected.<br>This is a gift.</p>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-
-    <div class="business-card card-back">
-      <div class="card-back-content">
-        <h3>The Carpenter</h3>
-        <p style="font-weight: 600;">Scan to explore thecarpenter.com</p>
-        <ul>
-          <li>Work as worship</li>
-          <li>Why your job matters</li>
-          <li>A hopeful gospel</li>
-        </ul>
-        <p class="verse-small">"Let your light shine …" — Matthew 5:16 (ESV)</p>
-      </div>
-      <div class="card-qr">
-        <div id="cardQR"></div>
-        <p>No tip expected.<br>This is a gift.</p>
-      </div>
+      
+      <p class="flip-hint">Tap or click the card to flip</p>
     </div>
 
     <!-- Instructions -->
