@@ -34,6 +34,10 @@ document.addEventListener('click', (e) => {
   }
 });
 
+// Make functions globally available
+window.closeWelcomePopup = closeWelcomePopup;
+window.showWelcomePopup = showWelcomePopup;
+
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', showWelcomePopup);
 

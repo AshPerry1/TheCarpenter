@@ -132,12 +132,18 @@ function finishTour() {
   localStorage.setItem('carpenterTourComplete', 'true');
 }
 
+// Make functions globally available
+window.startSiteTour = startSiteTour;
+window.nextTourStep = nextTourStep;
+window.prevTourStep = prevTourStep;
+window.finishTour = finishTour;
+
 // Handle window resize during tour
 let tourResizeTimer;
 window.addEventListener('resize', () => {
   clearTimeout(tourResizeTimer);
   tourResizeTimer = setTimeout(() => {
-    if (document.getElementById('tourOverlay').classList.contains('active')) {
+    if (document.getElementById('tourOverlay') && document.getElementById('tourOverlay').classList.contains('active')) {
       showTourStep();
     }
   }, 250);

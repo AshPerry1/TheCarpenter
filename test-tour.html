@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Tour</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div style="padding: 2rem; text-align: center;">
+    <h1>Test the Tour</h1>
+    <p>Click the button below to test if the tour works:</p>
+    <button onclick="testTour()" class="btn btn-primary" style="margin: 2rem;">
+      Test Tour Function
+    </button>
+    <div id="testOutput" style="margin-top: 2rem; padding: 1rem; background: var(--linen); border-radius: 8px;"></div>
+  </div>
+
+  <section id="heroSection" style="height: 300px; background: lightblue; display: flex; align-items: center; justify-content: center;">
+    <h2>Hero Section</h2>
+  </section>
+
+  <section id="behindNameSection" style="height: 300px; background: lightgreen; display: flex; align-items: center; justify-content: center;">
+    <h2>Behind Name Section</h2>
+  </section>
+
+  <div id="tourOverlay" class="tour-overlay">
+    <div id="tourContent" class="tour-content"></div>
+  </div>
+
+  <style>
+    .tour-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(11, 30, 45, 0.92);
+      z-index: 9999;
+      display: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .tour-overlay.active {
+      display: block;
+      opacity: 1;
+    }
+
+    .tour-content {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      border-radius: 12px;
+      padding: 2rem;
+      max-width: 420px;
+      width: 90%;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+    }
+
+    .tour-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 1.5rem;
+    }
+
+    .tour-dots {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .tour-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--olive);
+      opacity: 0.3;
+    }
+
+    .tour-dot.active {
+      opacity: 1;
+      width: 24px;
+      border-radius: 4px;
+      background: var(--gold);
+    }
+  </style>
+
+  <script src="site-tour.js"></script>
+  <script>
+    function testTour() {
+      const output = document.getElementById('testOutput');
+      output.innerHTML = '<p>Testing tour...</p>';
+      
+      try {
+        if (typeof startSiteTour === 'function') {
+          output.innerHTML += '<p style="color: green;">✓ startSiteTour function exists</p>';
+          
+          // Manually trigger tour
+          currentTourStep = 0;
+          const overlay = document.getElementById('tourOverlay');
+          output.innerHTML += `<p>Overlay found: ${overlay ? 'YES' : 'NO'}</p>`;
+          
+          if (overlay) {
+            overlay.classList.add('active');
+            showTourStep();
+            output.innerHTML += '<p style="color: green;">✓ Tour should be visible now!</p>';
+          }
+        } else {
+          output.innerHTML += '<p style="color: red;">✗ startSiteTour function NOT found</p>';
+        }
+      } catch (error) {
+        output.innerHTML += `<p style="color: red;">Error: ${error.message}</p>`;
+      }
+    }
+  </script>
+</body>
+</html>
+
