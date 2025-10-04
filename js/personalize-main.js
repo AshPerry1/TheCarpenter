@@ -81,3 +81,6 @@ window.PersonalizationSystem = (function() {
 // Initialize the personalization system
 const personalizationSystem = new window.PersonalizationSystem();
 personalizationSystem.init();
+
+// Make it globally available for debugging and manual updates
+window.personalizationSystem = personalizationSystem;

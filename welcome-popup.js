@@ -26,10 +26,27 @@ function setNameAndContinue() {
   
   if (nameInput && nameInput.value.trim()) {
     const name = nameInput.value.trim();
+    console.log('Setting name:', name);
+    
     // Save name using the personalization system
     if (window.PersonalizeUtils) {
       window.PersonalizeUtils.setName(name);
+      console.log('Name saved to personalization system');
+      
+      // Force update all personalization components
+      if (window.personalizationSystem) {
+        window.personalizationSystem.refresh();
+        console.log('Personalization system refreshed');
+      }
+      
+      // Manual update as backup
+      updateAllNameElements(name);
+    } else {
+      console.error('PersonalizeUtils not available');
+      // Manual update as fallback
+      updateAllNameElements(name);
     }
+    
     // Update display
     if (displayName) {
       displayName.textContent = name;
@@ -38,6 +55,28 @@ function setNameAndContinue() {
   
   // Move to welcome step
   showWelcomeStep();
+}
+
+// Manual function to update all name elements on the page
+function updateAllNameElements(name) {
+  console.log('Manually updating name elements with:', name);
+  
+  // Update all elements with data-name attribute
+  const nameElements = document.querySelectorAll('[data-name]');
+  nameElements.forEach(element => {
+    const fallback = element.getAttribute('data-name-fallback') || 'friend';
+    const displayName = name || fallback;
+    element.textContent = displayName;
+    console.log('Updated element:', element, 'with:', displayName);
+  });
+  
+  // Update localStorage directly as backup
+  try {
+    localStorage.setItem('tc:name', name);
+    console.log('Name saved to localStorage:', name);
+  } catch (e) {
+    console.error('Failed to save to localStorage:', e);
+  }
 }
 
 function useFriendAndContinue() {
@@ -98,6 +137,11 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-// Initialize on page load
-document.addEventListener('DOMContentLoaded', showWelcomePopup);
+// Initialize on page load with delay to ensure personalization system is ready
+document.addEventListener('DOMContentLoaded', () => {
+  // Wait a bit for personalization system to load
+  setTimeout(() => {
+    showWelcomePopup();
+  }, 1500);
+});
 
