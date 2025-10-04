@@ -317,7 +317,11 @@
   <div class="no-print" style="background: var(--navy); color: var(--linen); padding: 2rem; text-align: center;">
     <h1 style="margin-bottom: 1rem;">Print "Seen Cards"</h1>
     <p style="margin-bottom: 1.5rem; opacity: 0.9;">Business cards to leave as anonymous encouragement—in restaurants, books, or around town</p>
-    <button onclick="window.print()" class="btn btn-primary">Print Cards</button>
+    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1rem;">
+      <button onclick="downloadCardFront()" class="btn" style="background: var(--gold); color: var(--navy);">Download Front Design</button>
+      <button onclick="downloadCardBack()" class="btn" style="background: var(--olive); color: var(--linen);">Download Back Design</button>
+    </div>
+    <button onclick="window.print()" class="btn btn-primary">Print DIY Version</button>
   </div>
 
   <div class="print-container">
@@ -363,15 +367,33 @@
 
     <!-- Instructions -->
     <div class="no-print" style="background: var(--linen); padding: 2rem; border-radius: 12px; margin: 3rem 0;">
-      <h3 style="color: var(--navy); margin-bottom: 1rem;">Printing Instructions</h3>
-      <ol style="padding-left: 1.5rem; line-height: 2; color: var(--graphite);">
-        <li>Click "Print Cards" above</li>
-        <li>Print on heavy cardstock (67lb or higher)</li>
-        <li>Print front, flip paper, print back (test alignment first)</li>
-        <li>Cut along the guides to 3.5" × 2" size</li>
-        <li>Optional: Round corners with a 1/8" corner rounder</li>
-        <li>Leave in restaurant billfolds, books, or anywhere someone might need encouragement</li>
-      </ol>
+      <h3 style="color: var(--navy); margin-bottom: 1rem;">How to Order Professional Business Cards</h3>
+      <div style="background: var(--gold); padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem;">
+        <h4 style="color: var(--navy); margin-bottom: 1rem;">Option 1: Professional Printing (Recommended)</h4>
+        <ol style="padding-left: 1.5rem; line-height: 1.8; color: var(--navy);">
+          <li><strong>Download the designs:</strong> Click "Download Front Design" and "Download Back Design" above</li>
+          <li><strong>Upload to printing service:</strong> Use VistaPrint, Staples, Office Depot, or any business card service</li>
+          <li><strong>Specifications:</strong> 3.5" × 2" standard business card size, matte finish recommended</li>
+          <li><strong>QR Code:</strong> The back design has a placeholder for the QR code - most services can add this automatically</li>
+          <li><strong>Quantity:</strong> Order 250-500 cards for about $20-40</li>
+        </ol>
+      </div>
+      
+      <div style="background: var(--olive); color: var(--linen); padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem;">
+        <h4 style="margin-bottom: 1rem;">Option 2: DIY Printing</h4>
+        <ol style="padding-left: 1.5rem; line-height: 1.8;">
+          <li>Click "Print DIY Version" above</li>
+          <li>Print on heavy cardstock (67lb or higher)</li>
+          <li>Print front, flip paper, print back (test alignment first)</li>
+          <li>Cut along the guides to 3.5" × 2" size</li>
+          <li>Optional: Round corners with a 1/8" corner rounder</li>
+        </ol>
+      </div>
+      
+      <div style="color: var(--graphite);">
+        <p style="margin-bottom: 1rem;"><strong>How to Use the Cards:</strong></p>
+        <p>Leave these cards in restaurant billfolds, books, coffee shops, or anywhere someone might need encouragement. The QR code leads to a personalized message about finding purpose in work.</p>
+      </div>
     </div>
 
     <!-- 10-up Sheet FRONT (for printing multiple) -->
@@ -444,6 +466,90 @@
         correctLevel: QRCode.CorrectLevel.H
       });
     });
+
+    // Download functions for business card printing services
+    function downloadCardFront() {
+      const svgContent = `
+        <svg width="3.5in" height="2in" viewBox="0 0 252 144" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <style>
+              .card-front { fill: #0B1E2D; }
+              .text-linen { fill: #FAF6EF; }
+              .text-gold { fill: #C9A227; }
+              .title { font-family: 'Cinzel', serif; font-size: 18pt; font-weight: 600; }
+              .subtitle { font-family: 'Cinzel', serif; font-size: 15pt; font-weight: 600; }
+              .verse { font-family: 'Inter', sans-serif; font-size: 8.5pt; font-style: italic; }
+            </style>
+          </defs>
+          <rect width="252" height="144" class="card-front"/>
+          <circle cx="126" cy="72" r="70" fill="#FAF6EF" opacity="0.07"/>
+          <text x="126" y="45" text-anchor="middle" class="title text-linen">You are seen.</text>
+          <text x="126" y="65" text-anchor="middle" class="title text-linen">You are loved.</text>
+          <text x="126" y="85" text-anchor="middle" class="subtitle text-gold">Your work matters to God.</text>
+          <text x="126" y="105" text-anchor="middle" class="verse text-linen">"God is not unjust so as to overlook your work …"</text>
+          <text x="126" y="120" text-anchor="middle" class="verse text-linen">— Hebrews 6:10 (ESV)</text>
+        </svg>
+      `;
+      
+      downloadSVG(svgContent, 'carpenter-seen-card-front.svg');
+    }
+
+    function downloadCardBack() {
+      const svgContent = `
+        <svg width="3.5in" height="2in" viewBox="0 0 252 144" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <style>
+              .card-back { fill: #FAF6EF; }
+              .text-navy { fill: #0B1E2D; }
+              .text-gold { fill: #C9A227; }
+              .text-olive { fill: #7A8471; }
+              .title { font-family: 'Cinzel', serif; font-size: 13pt; font-weight: 700; }
+              .subtitle { font-family: 'Inter', sans-serif; font-size: 7.5pt; font-weight: 600; }
+              .body { font-family: 'Inter', sans-serif; font-size: 7pt; }
+              .verse { font-family: 'Inter', sans-serif; font-size: 6.5pt; font-style: italic; }
+              .qr-text { font-family: 'Inter', sans-serif; font-size: 6pt; }
+            </style>
+          </defs>
+          <rect width="252" height="144" class="card-back"/>
+          
+          <!-- Left side content -->
+          <g transform="translate(18, 18)">
+            <text x="0" y="15" class="title text-navy">The Carpenter</text>
+            <text x="0" y="30" class="subtitle text-navy">Scan to explore</text>
+            <text x="0" y="45" class="body text-navy">• Work as worship</text>
+            <text x="0" y="57" class="body text-navy">• Why your job matters</text>
+            <text x="0" y="69" class="body text-navy">• A hopeful gospel</text>
+            <text x="0" y="85" class="verse text-olive">"Let your light shine …"</text>
+            <text x="0" y="98" class="verse text-olive">— Matthew 5:16 (ESV)</text>
+          </g>
+          
+          <!-- Right side QR area -->
+          <g transform="translate(180, 36)">
+            <rect x="0" y="0" width="36" height="36" fill="#0B1E2D"/>
+            <rect x="2" y="2" width="32" height="32" fill="#FAF6EF"/>
+            <text x="18" y="55" text-anchor="middle" class="qr-text text-olive">Scan me</text>
+          </g>
+          
+          <!-- Note: QR code will need to be added by the printing service -->
+          <text x="198" y="25" class="body text-navy" font-size="5pt">QR CODE</text>
+          <text x="198" y="35" class="body text-navy" font-size="5pt">HERE</text>
+        </svg>
+      `;
+      
+      downloadSVG(svgContent, 'carpenter-seen-card-back.svg');
+    }
+
+    function downloadSVG(content, filename) {
+      const blob = new Blob([content], { type: 'image/svg+xml' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
   </script>
 </body>
 </html>
