@@ -46,19 +46,22 @@ function startSiteTour() {
   console.log('Starting site tour...');
   
   // Close welcome popup first
-  closeWelcomePopup();
+  if (typeof closeWelcomePopup === 'function') {
+    closeWelcomePopup();
+  }
   
   // Start tour after brief delay
   setTimeout(() => {
     currentTourStep = 0;
     const overlay = document.getElementById('tourOverlay');
-    console.log('Tour overlay:', overlay);
+    console.log('Tour overlay found:', !!overlay);
     
     if (overlay) {
+      console.log('Activating tour overlay...');
       overlay.classList.add('active');
       showTourStep();
     } else {
-      console.error('Tour overlay not found');
+      console.error('Tour overlay not found - check HTML structure');
     }
   }, 500);
 }
@@ -68,6 +71,8 @@ function showTourStep() {
   const step = tourSteps[currentTourStep];
   const content = document.getElementById('tourContent');
   
+  console.log('Showing tour step:', currentTourStep, step.title);
+  
   if (!content) {
     console.error('Tour content element not found');
     return;
@@ -75,10 +80,13 @@ function showTourStep() {
   
   // Get target element
   const targetEl = document.getElementById(step.elementId);
+  console.log('Target element found:', !!targetEl, 'for ID:', step.elementId);
   
   if (targetEl) {
     // Scroll to element
     targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  } else {
+    console.warn('Target element not found:', step.elementId);
   }
   
   // Build tour content HTML
