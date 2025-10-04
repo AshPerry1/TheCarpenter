@@ -490,25 +490,44 @@
       
       <img src="images/logo-icon-text.png" alt="The Carpenter" style="height: 80px; width: auto; margin: 0 auto 1.5rem; display: block;">
       
-      <h2 style="color: var(--navy); font-size: 1.75rem; margin-bottom: 1rem; text-align: center;">Looking for Purpose in Your Work, <span data-name data-name-fallback="friend">friend</span>?</h2>
-      
-      <p style="color: var(--graphite); line-height: 1.7; margin-bottom: 1rem; text-align: center;">
-        Whether you're a believer or simply searching for meaning, we're here to show you that your everyday work—your spreadsheets, your routes, your lesson plans—has profound significance.
-      </p>
-      
-      <div style="background: var(--linen); padding: 1.25rem; border-radius: 8px; margin-bottom: 1.5rem;">
-        <p style="color: var(--graphite); margin-bottom: 0.75rem; text-align: center; font-size: 1.125rem;">
-          What if your job matters more than you think?
+      <!-- Name Collection Step -->
+      <div id="nameStep" class="popup-step active">
+        <h2 style="color: var(--navy); font-size: 1.75rem; margin-bottom: 1rem; text-align: center;">Welcome to The Carpenter Movement</h2>
+        
+        <p style="color: var(--graphite); line-height: 1.7; margin-bottom: 1.5rem; text-align: center;">
+          We'd love to personalize your experience. What should we call you?
         </p>
-        <p style="font-style: italic; color: var(--graphite); margin-bottom: 0.5rem; text-align: center; font-size: 0.95rem;">
-          "God is not unjust so as to overlook your work..."
-        </p>
-        <p style="color: var(--olive); font-size: 0.875rem; font-weight: 600; text-align: center;">— Hebrews 6:10</p>
+        
+        <input type="text" id="nameInput" placeholder="Your first name" class="name-input" style="width: 100%; padding: 1rem; border: 2px solid var(--navy); border-radius: 8px; font-size: 1.125rem; margin-bottom: 1rem; font-family: 'Inter', sans-serif; text-align: center;">
+        
+        <div style="display: flex; gap: 0.75rem; flex-direction: column;">
+          <button onclick="setNameAndContinue()" class="btn btn-primary" style="text-align: center;">Continue with Name</button>
+          <button onclick="useFriendAndContinue()" class="btn btn-secondary" style="text-align: center;">Keep it as Friend</button>
+        </div>
       </div>
       
-      <div style="display: flex; gap: 0.75rem; flex-direction: column;">
-        <button onclick="startSiteTour()" class="btn" style="background: var(--gold); color: var(--navy); text-align: center;">Take a Tour</button>
-        <button onclick="closeWelcomePopup()" class="btn btn-secondary">Explore the Site</button>
+      <!-- Welcome Step -->
+      <div id="welcomeStep" class="popup-step">
+        <h2 style="color: var(--navy); font-size: 1.75rem; margin-bottom: 1rem; text-align: center;">Looking for Purpose in Your Work, <span id="displayName">friend</span>?</h2>
+        
+        <p style="color: var(--graphite); line-height: 1.7; margin-bottom: 1rem; text-align: center;">
+          Whether you're a believer or simply searching for meaning, we're here to show you that your everyday work—your spreadsheets, your routes, your lesson plans—has profound significance.
+        </p>
+        
+        <div style="background: var(--linen); padding: 1.25rem; border-radius: 8px; margin-bottom: 1.5rem;">
+          <p style="color: var(--graphite); margin-bottom: 0.75rem; text-align: center; font-size: 1.125rem;">
+            What if your job matters more than you think?
+          </p>
+          <p style="font-style: italic; color: var(--graphite); margin-bottom: 0.5rem; text-align: center; font-size: 0.95rem;">
+            "God is not unjust so as to overlook your work..."
+          </p>
+          <p style="color: var(--olive); font-size: 0.875rem; font-weight: 600; text-align: center;">— Hebrews 6:10</p>
+        </div>
+        
+        <div style="display: flex; gap: 0.75rem; flex-direction: column;">
+          <button onclick="startSiteTour()" class="btn" style="background: var(--gold); color: var(--navy); text-align: center;">Take a Tour</button>
+          <button onclick="closeWelcomePopup()" class="btn btn-secondary">Explore the Site</button>
+        </div>
       </div>
     </div>
   </div>
@@ -595,6 +614,22 @@
     .welcome-popup-close:hover {
       background: var(--linen);
       color: var(--navy);
+    }
+
+    .popup-step {
+      display: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .popup-step.active {
+      display: block;
+      opacity: 1;
+    }
+
+    .name-input:focus {
+      outline: none;
+      border-color: var(--gold);
     }
 
   </style>
