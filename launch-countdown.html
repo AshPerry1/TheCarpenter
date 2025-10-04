@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coming Soon - The Carpenter Movement</title>
+  <meta name="description" content="The Carpenter Movement launches at 6PM CST. Join us as we help every follower of Jesus see their everyday work as worship.">
+  <link rel="icon" type="image/png" href="images/logo-icon-only.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --navy: #0B1E2D;
+      --gold: #C9A227;
+      --linen: #FAF6EF;
+      --graphite: #2E2E2E;
+      --olive: #5B6B4D;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, var(--navy) 0%, #1a2d42 100%);
+      color: var(--linen);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Animated background */
+    .bg-animation {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="%23C9A227" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+      animation: float 20s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(1deg); }
+    }
+
+    .container {
+      text-align: center;
+      max-width: 800px;
+      padding: 2rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .logo {
+      margin-bottom: 2rem;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.9; }
+      50% { transform: scale(1.05); opacity: 1; }
+    }
+
+    .logo img {
+      height: 120px;
+      width: auto;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+    }
+
+    h1 {
+      font-family: 'Cinzel', serif;
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+      background: linear-gradient(45deg, var(--linen), var(--gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 3s ease-in-out infinite;
+    }
+
+    @keyframes shimmer {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    .subtitle {
+      font-size: 1.5rem;
+      margin-bottom: 3rem;
+      opacity: 0.9;
+      line-height: 1.6;
+    }
+
+    .countdown-container {
+      background: rgba(250, 246, 239, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(201, 162, 39, 0.3);
+      border-radius: 20px;
+      padding: 2.5rem;
+      margin: 2rem 0;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    }
+
+    .countdown-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.8rem;
+      margin-bottom: 2rem;
+      color: var(--gold);
+    }
+
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .countdown-item {
+      text-align: center;
+      min-width: 100px;
+    }
+
+    .countdown-number {
+      font-family: 'Cinzel', serif;
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--gold);
+      display: block;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+      animation: bounce 2s ease-in-out infinite;
+    }
+
+    .countdown-label {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      opacity: 0.8;
+      margin-top: 0.5rem;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+
+    .description {
+      font-size: 1.2rem;
+      line-height: 1.7;
+      margin: 2rem 0;
+      opacity: 0.9;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .verse {
+      font-style: italic;
+      font-size: 1.1rem;
+      margin: 2rem 0;
+      opacity: 0.8;
+      border-left: 3px solid var(--gold);
+      padding-left: 1.5rem;
+    }
+
+    .launch-time {
+      background: var(--gold);
+      color: var(--navy);
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      display: inline-block;
+      margin: 1rem 0;
+      box-shadow: 0 4px 15px rgba(201, 162, 39, 0.4);
+    }
+
+    .social-links {
+      margin-top: 3rem;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .social-link {
+      color: var(--linen);
+      text-decoration: none;
+      padding: 0.75rem 1.5rem;
+      border: 1px solid rgba(201, 162, 39, 0.5);
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+
+    .social-link:hover {
+      background: var(--gold);
+      color: var(--navy);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(201, 162, 39, 0.4);
+    }
+
+    .footer {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.9rem;
+      opacity: 0.7;
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.5rem;
+      }
+      
+      .subtitle {
+        font-size: 1.2rem;
+      }
+      
+      .countdown {
+        gap: 1rem;
+      }
+      
+      .countdown-number {
+        font-size: 2.5rem;
+      }
+      
+      .countdown-item {
+        min-width: 80px;
+      }
+      
+      .container {
+        padding: 1rem;
+      }
+      
+      .countdown-container {
+        padding: 1.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 2rem;
+      }
+      
+      .countdown {
+        gap: 0.5rem;
+      }
+      
+      .countdown-number {
+        font-size: 2rem;
+      }
+      
+      .countdown-item {
+        min-width: 60px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-animation"></div>
+  
+  <div class="container">
+    <div class="logo">
+      <img src="images/logo-icon-text.png" alt="The Carpenter Movement">
+    </div>
+    
+    <h1>Coming Soon</h1>
+    
+    <p class="subtitle">Something beautiful is being built</p>
+    
+    <div class="countdown-container">
+      <h2 class="countdown-title">Launch Countdown</h2>
+      <div class="countdown">
+        <div class="countdown-item">
+          <span class="countdown-number" id="hours">00</span>
+          <span class="countdown-label">Hours</span>
+        </div>
+        <div class="countdown-item">
+          <span class="countdown-number" id="minutes">00</span>
+          <span class="countdown-label">Minutes</span>
+        </div>
+        <div class="countdown-item">
+          <span class="countdown-number" id="seconds">00</span>
+          <span class="countdown-label">Seconds</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="launch-time">
+      🚀 Launching at 6:00 PM CST
+    </div>
+    
+    <p class="description">
+      We're putting the finishing touches on The Carpenter Movement—a resource to help every follower of Jesus see their everyday work as worship to God.
+    </p>
+    
+    <div class="verse">
+      "Whatever you do, work heartily, as for the Lord and not for men, knowing that from the Lord you will receive the inheritance as your reward. You are serving the Lord Christ."<br>
+      <strong>— Colossians 3:23–24 (ESV)</strong>
+    </div>
+    
+    <div class="social-links">
+      <a href="mailto:thecarpentermovement@gmail.com" class="social-link">📧 Email Us</a>
+      <a href="https://instagram.com/thecarpentermovement" target="_blank" class="social-link">📱 Instagram</a>
+    </div>
+  </div>
+  
+  <div class="footer">
+    <p>&copy; 2025 The Carpenter Movement. All rights reserved.</p>
+  </div>
+
+  <script>
+    // Launch time: 6:00 PM CST today
+    function getLaunchTime() {
+      const now = new Date();
+      const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      const launchTime = new Date(today.getTime() + 18 * 60 * 60 * 1000); // 6 PM CST (18:00)
+      
+      // If it's already past 6 PM today, set launch for tomorrow
+      if (now >= launchTime) {
+        launchTime.setDate(launchTime.getDate() + 1);
+      }
+      
+      return launchTime;
+    }
+
+    function updateCountdown() {
+      const now = new Date();
+      const launchTime = getLaunchTime();
+      const timeLeft = launchTime - now;
+      
+      if (timeLeft <= 0) {
+        // Launch time reached - redirect to main site
+        window.location.href = 'index.html';
+        return;
+      }
+      
+      const hours = Math.floor(timeLeft / (1000 * 60 * 60));
+      const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+      
+      document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+      document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+      document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+    }
+
+    // Update countdown every second
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+    
+    // Add some interactive sparkle effect
+    document.addEventListener('click', function(e) {
+      const sparkle = document.createElement('div');
+      sparkle.style.position = 'fixed';
+      sparkle.style.left = e.clientX + 'px';
+      sparkle.style.top = e.clientY + 'px';
+      sparkle.style.width = '6px';
+      sparkle.style.height = '6px';
+      sparkle.style.background = 'var(--gold)';
+      sparkle.style.borderRadius = '50%';
+      sparkle.style.pointerEvents = 'none';
+      sparkle.style.animation = 'sparkle 1s ease-out forwards';
+      sparkle.style.zIndex = '1000';
+      
+      document.body.appendChild(sparkle);
+      
+      setTimeout(() => {
+        document.body.removeChild(sparkle);
+      }, 1000);
+    });
+    
+    // Add sparkle animation
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes sparkle {
+        0% {
+          transform: scale(0) rotate(0deg);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(1) rotate(180deg);
+          opacity: 0;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+  </script>
+</body>
+</html>
