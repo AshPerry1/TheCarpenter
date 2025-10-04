@@ -1,22 +1,21 @@
 // Personalization modal for collecting visitor names
-import { setName, getCurrentName } from './personalize.js';
 
-export class PersonalizeModal {
-  constructor() {
+window.PersonalizeModal = (function() {
+  function PersonalizeModal() {
     this.modal = null;
     this.input = null;
     this.isOpen = false;
     this.init();
   }
 
-  init() {
+  PersonalizeModal.prototype.init = function() {
     // Check if we need to show the modal
-    if (!getCurrentName()) {
+    if (!window.PersonalizeUtils.getCurrentName()) {
       this.show();
     }
-  }
+  };
 
-  createModal() {
+  PersonalizeModal.prototype.createModal = function() {
     const modal = document.createElement('div');
     modal.className = 'personalize-modal';
     modal.innerHTML = `
@@ -157,9 +156,9 @@ export class PersonalizeModal {
 
     document.head.insertAdjacentHTML('beforeend', styles);
     return modal;
-  }
+  };
 
-  show() {
+  PersonalizeModal.prototype.show = function() {
     if (this.isOpen) return;
     
     this.modal = this.createModal();
@@ -175,18 +174,18 @@ export class PersonalizeModal {
     
     // Trap focus within modal
     this.trapFocus();
-  }
+  };
 
-  hide() {
+  PersonalizeModal.prototype.hide = function() {
     if (!this.isOpen || !this.modal) return;
     
     document.body.removeChild(this.modal);
     this.modal = null;
     this.input = null;
     this.isOpen = false;
-  }
+  };
 
-  attachEventListeners() {
+  PersonalizeModal.prototype.attachEventListeners = function() {
     if (!this.modal) return;
 
     const form = this.modal.querySelector('.personalize-modal-form');
@@ -197,7 +196,7 @@ export class PersonalizeModal {
       e.preventDefault();
       const name = this.input.value.trim();
       if (name) {
-        setName(name);
+        window.PersonalizeUtils.setName(name);
         this.hide();
       }
     });
@@ -220,9 +219,9 @@ export class PersonalizeModal {
         this.hide();
       }
     });
-  }
+  };
 
-  trapFocus() {
+  PersonalizeModal.prototype.trapFocus = function() {
     if (!this.modal) return;
     
     const focusableElements = this.modal.querySelectorAll(
@@ -246,14 +245,16 @@ export class PersonalizeModal {
         }
       }
     });
-  }
-}
+  };
+
+  return PersonalizeModal;
+})();
 
 // Auto-initialize when DOM is ready
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', () => {
-    new PersonalizeModal();
+    new window.PersonalizeModal();
   });
 } else {
-  new PersonalizeModal();
+  new window.PersonalizeModal();
 }

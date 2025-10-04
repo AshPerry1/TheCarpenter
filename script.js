@@ -40,11 +40,30 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 // Initialize personalization system
 document.addEventListener('DOMContentLoaded', () => {
-  // Load personalization system
-  if (typeof window !== 'undefined') {
-    import('./js/personalize-main.js').catch(() => {
-      console.log('Personalization system not available');
-    });
-  }
+  // Load personalization system scripts
+  const scripts = [
+    'js/personalize.js',
+    'js/name-component.js', 
+    'js/personalize-modal.js',
+    'js/name-edit.js',
+    'js/personalize-main.js'
+  ];
+  
+  let loadedCount = 0;
+  
+  scripts.forEach((src, index) => {
+    const script = document.createElement('script');
+    script.src = src;
+    script.onload = () => {
+      loadedCount++;
+      if (loadedCount === scripts.length) {
+        console.log('Personalization system loaded successfully');
+      }
+    };
+    script.onerror = () => {
+      console.log('Failed to load personalization script:', src);
+    };
+    document.head.appendChild(script);
+  });
 });
 

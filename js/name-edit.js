@@ -1,26 +1,24 @@
 // Name editing functionality for header/profile
-import { getCurrentName, setName, clearName, addNameListener } from './personalize.js';
-
-export class NameEditComponent {
-  constructor(container) {
+window.NameEditComponent = (function() {
+  function NameEditComponent(container) {
     this.container = container;
-    this.name = getCurrentName();
+    this.name = window.PersonalizeUtils.getCurrentName();
     this.listener = null;
     this.init();
   }
 
-  init() {
+  NameEditComponent.prototype.init = function() {
     this.render();
     this.attachEventListeners();
     
     // Listen for name changes
-    this.listener = addNameListener((newName) => {
+    this.listener = window.PersonalizeUtils.addNameListener((newName) => {
       this.name = newName;
       this.render();
     });
-  }
+  };
 
-  render() {
+  NameEditComponent.prototype.render = function() {
     const displayName = this.name || 'friend';
     
     this.container.innerHTML = `
@@ -70,9 +68,9 @@ export class NameEditComponent {
         }
       </style>
     `;
-  }
+  };
 
-  attachEventListeners() {
+  NameEditComponent.prototype.attachEventListeners = function() {
     const editBtn = this.container.querySelector('.name-edit-btn');
     const clearBtn = this.container.querySelector('.name-clear-btn');
     
@@ -83,34 +81,39 @@ export class NameEditComponent {
     clearBtn.addEventListener('click', () => {
       this.clearName();
     });
-  }
+  };
 
-  editName() {
+  NameEditComponent.prototype.editName = function() {
     const newName = prompt('Edit your first name:', this.name || '');
     if (newName !== null) {
-      setName(newName);
+      window.PersonalizeUtils.setName(newName);
     }
-  }
+  };
 
-  clearName() {
+  NameEditComponent.prototype.clearName = function() {
     if (confirm('Clear your saved name?')) {
-      clearName();
+      window.PersonalizeUtils.clearName();
     }
-  }
+  };
 
-  destroy() {
+  NameEditComponent.prototype.destroy = function() {
     if (this.listener) {
       this.listener();
     }
     this.container.innerHTML = '';
-  }
-}
+  };
 
-// Helper function to attach name edit to a container
-export function attachNameEdit(selector) {
-  const container = document.querySelector(selector);
-  if (container) {
-    return new NameEditComponent(container);
+  // Helper function to attach name edit to a container
+  function attachNameEdit(selector) {
+    const container = document.querySelector(selector);
+    if (container) {
+      return new NameEditComponent(container);
+    }
+    return null;
   }
-  return null;
-}
+
+  return {
+    NameEditComponent,
+    attachNameEdit
+  };
+})();

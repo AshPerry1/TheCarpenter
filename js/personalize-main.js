@@ -1,16 +1,12 @@
 // Main personalization system initialization
-import { getCurrentName, addNameListener } from './personalize.js';
-import { attachNameComponent, updateNamePlaceholders } from './name-component.js';
-import { attachNameEdit } from './name-edit.js';
-
-class PersonalizationSystem {
-  constructor() {
+window.PersonalizationSystem = (function() {
+  function PersonalizationSystem() {
     this.nameComponents = [];
     this.nameEditComponent = null;
     this.initialized = false;
   }
 
-  init() {
+  PersonalizationSystem.prototype.init = function() {
     if (this.initialized) return;
     
     // Wait for DOM to be ready
@@ -21,9 +17,9 @@ class PersonalizationSystem {
     }
     
     this.initialized = true;
-  }
+  };
 
-  setup() {
+  PersonalizationSystem.prototype.setup = function() {
     // Attach name components to elements with data-name attributes
     this.attachNameComponents();
     
@@ -34,12 +30,12 @@ class PersonalizationSystem {
     this.attachNameEdit();
     
     // Listen for name changes to update all components
-    addNameListener(() => {
+    window.PersonalizeUtils.addNameListener(() => {
       this.updateAll();
     });
-  }
+  };
 
-  attachNameComponents() {
+  PersonalizationSystem.prototype.attachNameComponents = function() {
     // Look for elements with data-name attributes
     const nameElements = document.querySelectorAll('[data-name]');
     
@@ -47,24 +43,24 @@ class PersonalizationSystem {
       const fallback = element.getAttribute('data-name-fallback') || 'friend';
       const casing = element.getAttribute('data-name-casing') || 'title';
       
-      const component = new (await import('./name-component.js')).NameComponent(fallback, casing);
+      const component = new window.NameComponent.NameComponent(fallback, casing);
       component.attach(element);
       this.nameComponents.push(component);
     });
-  }
+  };
 
-  updatePlaceholders() {
-    updateNamePlaceholders('friend');
-  }
+  PersonalizationSystem.prototype.updatePlaceholders = function() {
+    window.NameComponent.updateNamePlaceholders('friend');
+  };
 
-  attachNameEdit() {
+  PersonalizationSystem.prototype.attachNameEdit = function() {
     const editContainer = document.querySelector('[data-name-edit]');
     if (editContainer) {
-      this.nameEditComponent = attachNameEdit('[data-name-edit]');
+      this.nameEditComponent = window.NameEditComponent.attachNameEdit('[data-name-edit]');
     }
-  }
+  };
 
-  updateAll() {
+  PersonalizationSystem.prototype.updateAll = function() {
     // Update all name components
     this.nameComponents.forEach(component => {
       component.update();
@@ -72,17 +68,16 @@ class PersonalizationSystem {
     
     // Update placeholders
     this.updatePlaceholders();
-  }
+  };
 
   // Public method to manually trigger updates
-  refresh() {
+  PersonalizationSystem.prototype.refresh = function() {
     this.updateAll();
-  }
-}
+  };
+
+  return PersonalizationSystem;
+})();
 
 // Initialize the personalization system
-const personalizationSystem = new PersonalizationSystem();
+const personalizationSystem = new window.PersonalizationSystem();
 personalizationSystem.init();
-
-// Export for manual use if needed
-window.PersonalizationSystem = personalizationSystem;
