@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://thecarpentermovement.com/sitemap.xml
+
+# Disallow private areas (if any)
+Disallow: /card/
+Disallow: /*.js$
+Disallow: /*.css$
+Disallow: /node_modules/
+Disallow: /.git/
+
+# Allow important files
+Allow: /images/
+Allow: /styles.css
+Allow: /script.js
