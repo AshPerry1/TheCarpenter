@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Weekly Resources - The Carpenter</title>
+  <title>Resources - The Carpenter</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -36,43 +36,11 @@
 
   <div class="page-header">
     <div class="container-sm">
-      <h1>Weekly Resources</h1>
-      <p>Printable guides organized for everyday use and by week—helping you see your work as worship all year long.</p>
-      <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(250, 246, 239, 0.2); border-radius: 8px;">
-        <label for="weekSelector" style="font-size: 1.125rem; font-weight: 600; display: block; margin-bottom: 0.75rem;">Select Your Week:</label>
-        <select id="weekSelector" style="width: 100%; max-width: 300px; padding: 0.75rem; border-radius: 8px; border: 2px solid var(--navy); font-size: 1rem; background: white; cursor: pointer;">
-          <!-- Options will be populated by JavaScript -->
-        </select>
-        <p style="margin-top: 0.5rem; font-size: 0.875rem; opacity: 0.7;">Current week: <span id="currentWeekIndicator"></span></p>
-      </div>
+      <h1>Resources</h1>
+      <p>Printable guides and tools to help you see your work as worship every day.</p>
     </div>
   </div>
 
-  <!-- Add All Weeks Reminders -->
-  <section class="section-navy" style="padding: 2rem 0;">
-    <div class="container">
-      <div class="text-center">
-        <h2 style="font-size: 2rem; margin-bottom: 1rem; color: var(--linen);">Add Reminders for All Unlocked Weeks</h2>
-        <p style="color: rgba(250, 246, 239, 0.8); margin-bottom: 2rem; max-width: 700px; margin-left: auto; margin-right: auto;">
-          Get accountability reminders for every week you've unlocked. Set once, stay on track all year.
-        </p>
-        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-          <button onclick="addAllWeeksReminders('all')" class="btn btn-primary">
-            Add All Weeks (Full Schedule)
-          </button>
-          <button onclick="addAllWeeksReminders('morning')" class="btn" style="background: var(--gold); color: var(--navy);">
-            All Weeks - Morning Only
-          </button>
-          <button onclick="addAllWeeksReminders('lunch')" class="btn" style="background: var(--gold); color: var(--navy);">
-            All Weeks - Lunch Only
-          </button>
-        </div>
-        <p style="color: rgba(250, 246, 239, 0.6); font-size: 0.875rem; margin-top: 1rem;">
-          <span id="totalWeeksAvailable"></span> weeks currently available
-        </p>
-      </div>
-    </div>
-  </section>
 
   <!-- Everyday Resources -->
   <section class="section-white">
@@ -120,43 +88,6 @@
     </div>
   </section>
 
-  <!-- This Week's Resources -->
-  <section class="section-linen">
-    <div class="container">
-      <h2 class="section-title">This Week's Resources</h2>
-      <p class="section-subtitle">Week <span id="weekNumberDisplay"></span> of 52</p>
-
-      <div id="weeklyContent" class="container-sm">
-        <!-- Dynamic weekly content will be inserted here -->
-      </div>
-
-      <div class="text-center mt-4">
-        <a href="#weekly-archive" class="text-link">Browse All 52 Weeks →</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Weekly Archive -->
-  <section id="weekly-archive" class="section-white">
-    <div class="container">
-      <h2 class="section-title">Browse by Week</h2>
-      <p class="section-subtitle">52 weeks of resources for seeing your work as worship</p>
-
-      <div class="grid-3" id="weekCardsGrid">
-        <!-- Week cards will be populated by JavaScript -->
-      </div>
-
-      <div class="text-center mt-4">
-        <p style="color: var(--olive); font-style: italic;">
-          Weeks unlock at midnight as you progress through the year. Use the dropdown above to explore unlocked weeks.
-        </p>
-      </div>
-
-      <div class="grid-3" id="highlightWeeksGrid" style="margin-top: 2rem;">
-        <!-- Highlight weeks will be populated by JavaScript -->
-      </div>
-    </div>
-  </section>
 
   <footer>
     <div class="container">
@@ -211,8 +142,6 @@
   </footer>
 
   <script src="script.js"></script>
-  <script src="resources.js"></script>
-  <script src="calendar-reminders.js"></script>
 </body>
 </html>
 
