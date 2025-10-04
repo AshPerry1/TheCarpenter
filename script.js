@@ -38,3 +38,13 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
+// Initialize personalization system
+document.addEventListener('DOMContentLoaded', () => {
+  // Load personalization system
+  if (typeof window !== 'undefined') {
+    import('./js/personalize-main.js').catch(() => {
+      console.log('Personalization system not available');
+    });
+  }
+});
+
