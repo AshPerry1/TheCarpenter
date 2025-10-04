@@ -182,19 +182,9 @@ function showGreeting() {
           If you want someone to pray for you, you can share a request. We won't sell your data; we'll simply pray. <span class="scripture-refs" style="opacity: 0.8;">(${V.TIM_2_1_3.ref})</span>
         </p>
         
-        <form id="prayerForm" class="prayer-form">
-          <textarea 
-            placeholder="Share your prayer request (optional)"
-            name="request"
-          ></textarea>
-          <label>
-            <input type="checkbox" required>
-            I consent to having this prayer request read and prayed over.
-          </label>
-          <button type="submit" class="btn" style="background: var(--gold); color: var(--navy); width: 100%;">
-            Submit Prayer Request
-          </button>
-        </form>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfgsoYCw8L-kYlGC1YzpptwHpKJg31y2SmZ4KmH7hk6C_tFrA/viewform?usp=sharing&ouid=101582787600466197691" target="_blank" class="btn" style="background: var(--gold); color: var(--navy); width: 100%; margin-top: 1.5rem;">
+          Submit Prayer Request
+        </a>
         
         <div id="prayerConfirmation" class="hidden" style="background: rgba(250, 246, 239, 0.2); padding: 1.5rem; border-radius: 8px; margin-top: 1rem;">
           <p>Thank you. We'll be praying for you.</p>
@@ -207,16 +197,7 @@ function showGreeting() {
     </div>
   `;
   
-  // Handle prayer form
-  const prayerForm = document.getElementById('prayerForm');
-  if (prayerForm) {
-    prayerForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      // In production, send to prayer team
-      document.getElementById('prayerForm').classList.add('hidden');
-      document.getElementById('prayerConfirmation').classList.remove('hidden');
-    });
-  }
+  // Prayer form now uses Google Forms - no JavaScript needed
 }
 
 // Initialize on page load
