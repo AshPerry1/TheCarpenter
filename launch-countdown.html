@@ -30,10 +30,8 @@
       background: linear-gradient(135deg, var(--navy) 0%, #1a2d42 100%);
       color: var(--linen);
       min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
+      overflow-x: hidden;
+      overflow-y: auto;
       position: relative;
     }
 
@@ -59,6 +57,11 @@
       padding: 2rem;
       position: relative;
       z-index: 2;
+      margin: 0 auto;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
     .logo {
@@ -220,10 +223,7 @@
     }
 
     .footer {
-      position: absolute;
-      bottom: 2rem;
-      left: 50%;
-      transform: translateX(-50%);
+      margin-top: 3rem;
       font-size: 0.9rem;
       opacity: 1;
       color: var(--linen);
