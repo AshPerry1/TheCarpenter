@@ -1,7 +1,7 @@
 // Card Landing Page - Token-Gated Flow
 
 const VALID_TOKEN = 'evangel-2025-01';
-const CARD_URL = 'https://ashperry1.github.io/TheCarpenter/card.html?t=evangel-2025-01';
+const CARD_URL = 'https://thecarpentermovement.com/card/evangel-2025-01';
 
 let userName = '';
 let currentStage = 'validate'; // validate → name → greet
