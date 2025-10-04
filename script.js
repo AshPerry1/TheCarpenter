@@ -4,8 +4,10 @@ const mobileNav = document.getElementById('mobileNav');
 
 if (mobileMenuBtn && mobileNav) {
   mobileMenuBtn.addEventListener('click', () => {
+    const isActive = mobileNav.classList.contains('active');
     mobileNav.classList.toggle('active');
-    mobileMenuBtn.textContent = mobileNav.classList.contains('active') ? '✕' : '☰';
+    mobileMenuBtn.textContent = isActive ? '☰' : '✕';
+    mobileMenuBtn.setAttribute('aria-expanded', !isActive);
   });
 }
 
