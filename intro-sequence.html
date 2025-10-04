@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Carpenter Movement - Introduction</title>
+  <link rel="icon" type="image/png" href="images/logo-icon-only.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --navy: #0B1E2D;
+      --gold: #C9A227;
+      --linen: #FAF6EF;
+      --graphite: #2E2E2E;
+      --olive: #5B6B4D;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--navy);
+      color: var(--linen);
+      overflow: hidden;
+      height: 100vh;
+    }
+
+    .intro-container {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .intro-section {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 1s ease-in-out;
+    }
+
+    .intro-section.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .intro-section.fade-out {
+      opacity: 0;
+      transform: translateY(-50px);
+    }
+
+    .logo {
+      margin-bottom: 2rem;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.9; }
+      50% { transform: scale(1.05); opacity: 1; }
+    }
+
+    .logo img {
+      height: 120px;
+      width: auto;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+    }
+
+    h1 {
+      font-family: 'Cinzel', serif;
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+      background: linear-gradient(45deg, var(--linen), var(--gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 2.5rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      color: var(--gold);
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    }
+
+    .intro-text {
+      font-size: 1.3rem;
+      line-height: 1.7;
+      max-width: 800px;
+      margin: 0 auto 2rem;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    }
+
+    .verse {
+      font-style: italic;
+      font-size: 1.2rem;
+      margin: 2rem 0;
+      border-left: 3px solid var(--gold);
+      padding-left: 1.5rem;
+      text-align: left;
+      max-width: 600px;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    }
+
+    .continue-btn {
+      background: var(--gold);
+      color: var(--navy);
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(201, 162, 39, 0.4);
+      margin-top: 2rem;
+    }
+
+    .continue-btn:hover {
+      background: var(--linen);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(201, 162, 39, 0.6);
+    }
+
+    .progress-dots {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 1rem;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(201, 162, 39, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .dot.active {
+      background: var(--gold);
+      transform: scale(1.2);
+    }
+
+    .skip-btn {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      background: transparent;
+      color: var(--linen);
+      border: 1px solid rgba(201, 162, 39, 0.5);
+      padding: 0.5rem 1rem;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 0.9rem;
+    }
+
+    .skip-btn:hover {
+      background: rgba(201, 162, 39, 0.2);
+      border-color: var(--gold);
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.5rem;
+      }
+      
+      h2 {
+        font-size: 2rem;
+      }
+      
+      .intro-text {
+        font-size: 1.1rem;
+      }
+      
+      .verse {
+        font-size: 1rem;
+      }
+      
+      .logo img {
+        height: 80px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 2rem;
+      }
+      
+      h2 {
+        font-size: 1.5rem;
+      }
+      
+      .intro-text {
+        font-size: 1rem;
+      }
+      
+      .logo img {
+        height: 60px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <button class="skip-btn" onclick="skipIntro()">Skip Intro</button>
+  
+  <div class="intro-container">
+    <!-- Section 1: Welcome -->
+    <div class="intro-section active" id="section1">
+      <div class="logo">
+        <img src="images/logo-icon-text.png" alt="The Carpenter Movement">
+      </div>
+      <h1>Welcome to The Carpenter Movement</h1>
+      <p class="intro-text">
+        Where we help every follower of Jesus see their everyday work as worship to God.
+      </p>
+    </div>
+
+    <!-- Section 2: The Problem -->
+    <div class="intro-section" id="section2">
+      <h2>The Problem</h2>
+      <p class="intro-text">
+        Many Christians struggle to see how their daily work connects to their faith. 
+        We feel like our "real ministry" happens outside of work, not in it.
+      </p>
+      <p class="intro-text">
+        But what if your work IS your ministry?
+      </p>
+    </div>
+
+    <!-- Section 3: The Truth -->
+    <div class="intro-section" id="section3">
+      <h2>The Truth</h2>
+      <p class="intro-text">
+        God sees your work. Every email, every meeting, every project, every interaction 
+        with a coworker—it all matters to Him.
+      </p>
+      <div class="verse">
+        "Whatever you do, work heartily, as for the Lord and not for men, knowing that from the Lord you will receive the inheritance as your reward. You are serving the Lord Christ."
+        <br><strong>— Colossians 3:23–24 (ESV)</strong>
+      </div>
+    </div>
+
+    <!-- Section 4: The Mission -->
+    <div class="intro-section" id="section4">
+      <h2>Our Mission</h2>
+      <p class="intro-text">
+        The Carpenter Movement exists to help you see your work through God's eyes. 
+        We provide biblical theology, practical tools, and community to help you 
+        glorify God in everything you do.
+      </p>
+      <p class="intro-text">
+        Because your job matters to God, and it matters forever.
+      </p>
+    </div>
+
+    <!-- Section 5: Enter -->
+    <div class="intro-section" id="section5">
+      <h2>Ready to Begin?</h2>
+      <p class="intro-text">
+        Your work is worship. Your job is ministry. Your calling is right where you are.
+      </p>
+      <button class="continue-btn" onclick="enterSite()">Enter The Carpenter Movement</button>
+    </div>
+  </div>
+
+  <div class="progress-dots">
+    <div class="dot active" id="dot1"></div>
+    <div class="dot" id="dot2"></div>
+    <div class="dot" id="dot3"></div>
+    <div class="dot" id="dot4"></div>
+    <div class="dot" id="dot5"></div>
+  </div>
+
+  <script>
+    let currentSection = 1;
+    const totalSections = 5;
+    let autoAdvanceTimer;
+
+    function showSection(sectionNumber) {
+      // Hide all sections
+      document.querySelectorAll('.intro-section').forEach(section => {
+        section.classList.remove('active');
+      });
+      
+      // Remove active dots
+      document.querySelectorAll('.dot').forEach(dot => {
+        dot.classList.remove('active');
+      });
+      
+      // Show current section
+      const currentSectionElement = document.getElementById(`section${sectionNumber}`);
+      if (currentSectionElement) {
+        currentSectionElement.classList.add('active');
+      }
+      
+      // Activate current dot
+      const currentDot = document.getElementById(`dot${sectionNumber}`);
+      if (currentDot) {
+        currentDot.classList.add('active');
+      }
+      
+      currentSection = sectionNumber;
+      
+      // Auto-advance after 4 seconds (except last section)
+      if (sectionNumber < totalSections) {
+        clearTimeout(autoAdvanceTimer);
+        autoAdvanceTimer = setTimeout(() => {
+          nextSection();
+        }, 4000);
+      }
+    }
+
+    function nextSection() {
+      if (currentSection < totalSections) {
+        showSection(currentSection + 1);
+      }
+    }
+
+    function prevSection() {
+      if (currentSection > 1) {
+        showSection(currentSection - 1);
+      }
+    }
+
+    function skipIntro() {
+      // Check if user has seen intro before
+      localStorage.setItem('tc:intro-seen', 'true');
+      window.location.href = 'index.html';
+    }
+
+    function enterSite() {
+      // Mark intro as seen
+      localStorage.setItem('tc:intro-seen', 'true');
+      window.location.href = 'index.html';
+    }
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ') {
+        e.preventDefault();
+        nextSection();
+      } else if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        prevSection();
+      } else if (e.key === 'Escape') {
+        skipIntro();
+      }
+    });
+
+    // Click to advance
+    document.addEventListener('click', (e) => {
+      // Don't advance if clicking buttons
+      if (e.target.classList.contains('continue-btn') || e.target.classList.contains('skip-btn')) {
+        return;
+      }
+      nextSection();
+    });
+
+    // Initialize
+    showSection(1);
+  </script>
+</body>
+</html>

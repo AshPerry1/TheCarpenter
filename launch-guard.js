@@ -1,4 +1,4 @@
-// Launch guard - redirects to countdown ONLY until first launch (6PM CST on launch day)
+// Launch guard - redirects to countdown until launch, then to intro sequence
 (function() {
   // The launch date and time - once this passes, the site is permanently accessible
   const LAUNCH_DATE = '2025-10-04'; // YYYY-MM-DD format
@@ -15,28 +15,50 @@
     return now >= launchDateTime;
   }
 
+  function hasSeenIntro() {
+    // Check if user has seen the intro sequence
+    return localStorage.getItem('tc:intro-seen') === 'true';
+  }
+
   function shouldRedirect() {
-    // NEVER redirect if we're already past the launch date
+    // If before launch, redirect to countdown
+    if (!isAfterLaunch()) {
+      // Don't redirect if we're already on the countdown page
+      if (window.location.pathname.includes('launch-countdown.html')) {
+        return false;
+      }
+      // Don't redirect if there's a specific bypass parameter
+      if (window.location.search.includes('bypass=true')) {
+        return false;
+      }
+      // Redirect to countdown page
+      return { redirect: true, page: 'launch-countdown.html' };
+    }
+    
+    // If after launch, check if they need to see intro
     if (isAfterLaunch()) {
-      return false;
+      // Don't redirect if we're already on the intro page
+      if (window.location.pathname.includes('intro-sequence.html')) {
+        return false;
+      }
+      // Don't redirect if they've seen the intro
+      if (hasSeenIntro()) {
+        return false;
+      }
+      // Don't redirect if there's a specific bypass parameter
+      if (window.location.search.includes('bypass=true')) {
+        return false;
+      }
+      // Redirect to intro sequence
+      return { redirect: true, page: 'intro-sequence.html' };
     }
     
-    // Don't redirect if we're already on the countdown page
-    if (window.location.pathname.includes('launch-countdown.html')) {
-      return false;
-    }
-    
-    // Don't redirect if there's a specific bypass parameter
-    if (window.location.search.includes('bypass=true')) {
-      return false;
-    }
-    
-    // Redirect to countdown page
-    return true;
+    return false;
   }
 
   // Check if we should redirect
-  if (shouldRedirect()) {
-    window.location.href = 'launch-countdown.html';
+  const redirectInfo = shouldRedirect();
+  if (redirectInfo && redirectInfo.redirect) {
+    window.location.href = redirectInfo.page;
   }
 })();
