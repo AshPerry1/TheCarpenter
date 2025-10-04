@@ -128,9 +128,30 @@ function prevTourStep() {
 
 // Finish tour
 function finishTour() {
-  document.getElementById('tourOverlay').classList.remove('active');
+  const overlay = document.getElementById('tourOverlay');
+  if (overlay) {
+    overlay.classList.remove('active');
+  }
   localStorage.setItem('carpenterTourComplete', 'true');
 }
+
+// Close tour with escape key
+document.addEventListener('keydown', (e) => {
+  const tourOverlay = document.getElementById('tourOverlay');
+  if (e.key === 'Escape' && tourOverlay && tourOverlay.classList.contains('active')) {
+    finishTour();
+  }
+});
+
+// Close tour when clicking outside
+document.addEventListener('click', (e) => {
+  const tourOverlay = document.getElementById('tourOverlay');
+  const tourContent = document.getElementById('tourContent');
+  
+  if (tourOverlay && tourOverlay.classList.contains('active') && e.target === tourOverlay) {
+    finishTour();
+  }
+});
 
 // Make functions globally available
 window.startSiteTour = startSiteTour;
