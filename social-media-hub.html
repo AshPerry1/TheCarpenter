@@ -13,10 +13,16 @@
   <style>
     :root {
       --navy: #0B1E2D;
+      --navy-light: #1a3548;
+      --navy-dark: #050f16;
       --gold: #C9A227;
-      --linen: #FAF6EF;
-      --graphite: #2E2E2E;
-      --olive: #7A8471;
+      --gold-light: #d4ae3f;
+      --gold-dark: #a68920;
+      --white: #FFFFFF;
+      --off-white: #F8F8F8;
+      --light-gray: #E8E8E8;
+      --dark-gray: #2E2E2E;
+      --black: #000000;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -84,10 +90,11 @@
     .intro {
       text-align: center;
       margin-bottom: 3rem;
-      background: var(--linen);
+      background: var(--white);
       padding: 2rem;
       border-radius: 12px;
-      color: var(--graphite);
+      color: var(--dark-gray);
+      border: 2px solid var(--light-gray);
     }
 
     .intro h2 {
@@ -105,10 +112,10 @@
     }
 
     .filter-btn {
-      background: var(--olive);
-      color: var(--linen);
+      background: var(--navy);
+      color: var(--white);
       padding: 0.75rem 1.5rem;
-      border: none;
+      border: 2px solid var(--navy);
       border-radius: 8px;
       font-weight: 600;
       cursor: pointer;
@@ -118,6 +125,7 @@
     .filter-btn:hover, .filter-btn.active {
       background: var(--gold);
       color: var(--navy);
+      border-color: var(--gold);
     }
 
     .posts-grid {
@@ -128,10 +136,12 @@
     }
 
     .post-item {
-      background: var(--linen);
+      background: var(--white);
       border-radius: 12px;
       padding: 1.5rem;
-      color: var(--graphite);
+      color: var(--dark-gray);
+      border: 2px solid var(--light-gray);
+      box-shadow: 0 2px 8px rgba(11, 30, 45, 0.08);
     }
 
     .post-number {
@@ -268,17 +278,20 @@
 
     .copy-caption-btn {
       width: 100%;
-      background: var(--olive);
-      color: var(--linen);
+      background: var(--white);
+      color: var(--navy);
       padding: 0.65rem;
-      border: none;
+      border: 2px solid var(--navy);
       border-radius: 8px;
       font-weight: 600;
       cursor: pointer;
       transition: all 0.3s;
     }
 
-    .copy-caption-btn:hover { background: var(--navy); }
+    .copy-caption-btn:hover { 
+      background: var(--navy); 
+      color: var(--white);
+    }
 
     @media (max-width: 768px) {
       body { padding: 1rem; }
@@ -328,30 +341,30 @@
     // Content Data - 120+ posts with posting schedule
     const contentData = [
       // SCRIPTURE POSTS (20)
-      { category: 'scripture', day: 'Monday', time: '7:00 AM', title: 'Work as\\nWorship', subtitle: '"Whatever you do, work heartily,\\nas for the Lord"', reference: 'Colossians 3:23', bg: 'linear-gradient(135deg, #0B1E2D 0%, #1a3548 100%)', colors: {title: '#C9A227', subtitle: '#FAF6EF', ref: '#C9A227'}, caption: 'Your Monday morning shift? Worship.\\nYour late-night spreadsheet? Worship.\\nYour patient customer call? Worship.\\n\\nWhatever you do, work as for the Lord. Your everyday work has eternal significance.\\n\\n"Whatever you do, work heartily, as for the Lord and not for men." — Colossians 3:23\\n\\n#WorkAsWorship #TheCarpenter #FaithAtWork #PurposefulWork #ChristianLife #WorkMatters' },
-      { category: 'scripture', day: 'Tuesday', time: '8:00 AM', title: 'God Sees\\nYour Work', subtitle: '"God is not unjust so as to\\noverlook your work"', reference: 'Hebrews 6:10', bg: '#FAF6EF', colors: {title: '#0B1E2D', subtitle: '#2E2E2E', ref: '#7A8471'}, caption: 'Every email. Every customer. Every late shift.\\n\\nGod sees it all. He doesn\'t overlook your faithful work—even when no one else notices.\\n\\n"God is not unjust so as to overlook your work and the love that you have shown for his name." — Hebrews 6:10\\n\\n#GodSeesYou #FaithfulWork #TheCarpenter #WorkMatters' },
-      { category: 'scripture', day: 'Wednesday', time: '7:30 AM', title: 'Not in\\nVain', subtitle: 'Your labor has\\neternal significance', reference: '1 Corinthians 15:58', bg: 'linear-gradient(135deg, #C9A227 0%, #d4ae3f 100%)', colors: {title: '#0B1E2D', subtitle: '#0B1E2D', ref: '#0B1E2D'}, caption: 'That project you poured your heart into. That conversation with integrity. That quiet, faithful day of work.\\n\\nNone of it is wasted. In the Lord, your labor has eternal significance.\\n\\n"Be steadfast, immovable, always abounding in the work of the Lord, knowing that in the Lord your labor is not in vain." — 1 Corinthians 15:58\\n\\n#NotInVain #EternalPurpose #TheCarpenter' },
-      { category: 'scripture', day: 'Thursday', time: '8:00 AM', title: 'Work With\\nExcellence', subtitle: '"Do you see a man skillful\\nin his work? He will stand\\nbefore kings"', reference: 'Proverbs 22:29', bg: 'linear-gradient(135deg, #0B1E2D 0%, #C9A227 100%)', colors: {title: '#FAF6EF', subtitle: '#FAF6EF', ref: '#C9A227'}, caption: 'Excellence isn\'t about perfection. It\'s about faithfulness.\\n\\nShowing up. Doing your best. Serving others well. Growing in your craft.\\n\\nWhen you work with excellence, you\'re not just building a career—you\'re reflecting the character of God.\\n\\n#Excellence #TheCarpenter #SkillAndCharacter' },
-      { category: 'scripture', day: 'Friday', time: '7:00 AM', title: 'Integrity\\nMatters', subtitle: '"The integrity of the upright\\nguides them"', reference: 'Proverbs 11:3', bg: 'linear-gradient(135deg, #2E2E2E 0%, #0B1E2D 100%)', colors: {title: '#C9A227', subtitle: '#FAF6EF', ref: '#7A8471'}, caption: 'Integrity at work looks like:\\n→ Honest timesheets\\n→ Truthful emails\\n→ Keeping your word\\n→ Doing what\'s right when no one\'s watching\\n\\nYour character is your calling card.\\n\\n#Integrity #CharacterMatters #TheCarpenter' },
+      { category: 'scripture', day: 'Monday', time: '7:00 AM', title: 'Work as\\nWorship', subtitle: '"Whatever you do, work heartily,\\nas for the Lord"', reference: 'Colossians 3:23', bg: 'linear-gradient(135deg, #0B1E2D 0%, #1a3548 100%)', colors: {title: '#C9A227', subtitle: '#FFFFFF', ref: '#C9A227'}, caption: 'Your Monday morning shift? Worship.\\nYour late-night spreadsheet? Worship.\\nYour patient customer call? Worship.\\n\\nWhatever you do, work as for the Lord. Your everyday work has eternal significance.\\n\\n"Whatever you do, work heartily, as for the Lord and not for men." — Colossians 3:23\\n\\n#WorkAsWorship #TheCarpenter #FaithAtWork #PurposefulWork #ChristianLife #WorkMatters' },
+      { category: 'scripture', day: 'Tuesday', time: '8:00 AM', title: 'God Sees\\nYour Work', subtitle: '"God is not unjust so as to\\noverlook your work"', reference: 'Hebrews 6:10', bg: '#FFFFFF', colors: {title: '#0B1E2D', subtitle: '#2E2E2E', ref: '#C9A227'}, caption: 'Every email. Every customer. Every late shift.\\n\\nGod sees it all. He doesn\'t overlook your faithful work—even when no one else notices.\\n\\n"God is not unjust so as to overlook your work and the love that you have shown for his name." — Hebrews 6:10\\n\\n#GodSeesYou #FaithfulWork #TheCarpenter #WorkMatters' },
+      { category: 'scripture', day: 'Wednesday', time: '7:30 AM', title: 'Not in\\nVain', subtitle: 'Your labor has\\neternal significance', reference: '1 Corinthians 15:58', bg: 'linear-gradient(135deg, #C9A227 0%, #d4ae3f 100%)', colors: {title: '#0B1E2D', subtitle: '#0B1E2D', ref: '#000000'}, caption: 'That project you poured your heart into. That conversation with integrity. That quiet, faithful day of work.\\n\\nNone of it is wasted. In the Lord, your labor has eternal significance.\\n\\n"Be steadfast, immovable, always abounding in the work of the Lord, knowing that in the Lord your labor is not in vain." — 1 Corinthians 15:58\\n\\n#NotInVain #EternalPurpose #TheCarpenter' },
+      { category: 'scripture', day: 'Thursday', time: '8:00 AM', title: 'Work With\\nExcellence', subtitle: '"Do you see a man skillful\\nin his work? He will stand\\nbefore kings"', reference: 'Proverbs 22:29', bg: 'linear-gradient(135deg, #0B1E2D 0%, #C9A227 100%)', colors: {title: '#FFFFFF', subtitle: '#FFFFFF', ref: '#FFFFFF'}, caption: 'Excellence isn\'t about perfection. It\'s about faithfulness.\\n\\nShowing up. Doing your best. Serving others well. Growing in your craft.\\n\\nWhen you work with excellence, you\'re not just building a career—you\'re reflecting the character of God.\\n\\n#Excellence #TheCarpenter #SkillAndCharacter' },
+      { category: 'scripture', day: 'Friday', time: '7:00 AM', title: 'Integrity\\nMatters', subtitle: '"The integrity of the upright\\nguides them"', reference: 'Proverbs 11:3', bg: 'linear-gradient(135deg, #000000 0%, #0B1E2D 100%)', colors: {title: '#C9A227', subtitle: '#FFFFFF', ref: '#C9A227'}, caption: 'Integrity at work looks like:\\n→ Honest timesheets\\n→ Truthful emails\\n→ Keeping your word\\n→ Doing what\'s right when no one\'s watching\\n\\nYour character is your calling card.\\n\\n#Integrity #CharacterMatters #TheCarpenter' },
       
       // HOW-TO / WEBSITE PROMO (25)
-      { category: 'how-to', day: 'Monday', time: '5:00 PM', title: 'Start Here', subtitle: 'New to The Carpenter?\\nHere\'s how to explore\\nthe site', reference: 'thecarpentermovement.com', bg: '#0B1E2D', colors: {title: '#C9A227', subtitle: '#FAF6EF', ref: '#7A8471'}, caption: 'Welcome to The Carpenter! Here\'s how to get started:\\n\\n1️⃣ Read "Behind the Name"\\n2️⃣ Explore "Why Your Work Matters"\\n3️⃣ Check out practical tools\\n4️⃣ Join our community\\n\\nYour work has purpose. Let\'s discover it together.\\n\\nLink in bio 👆\\n\\n#TheCarpenter #GettingStarted #WorkMatters' },
-      { category: 'how-to', day: 'Tuesday', time: '6:00 PM', title: 'Download\\nOur Cards', subtitle: 'Print business cards to\\nleave encouragement\\nanywhere', reference: 'Free resource', bg: 'linear-gradient(135deg, #7A8471 0%, #5a6453 100%)', colors: {title: '#FAF6EF', subtitle: '#FAF6EF', ref: '#C9A227'}, caption: 'Want to encourage others anonymously?\\n\\nDownload our free "Seen Cards" - business cards with Scripture and encouragement about work.\\n\\nLeave them in:\\n→ Restaurant bill folders\\n→ Library books\\n→ Coffee shops\\n→ Anywhere someone needs hope\\n\\nDownload free at thecarpentermovement.com\\n\\n#SeenCards #Encouragement #TheCarpenter' },
-      { category: 'promo', day: 'Wednesday', time: '6:00 PM', title: 'Our Website\\nis LIVE', subtitle: 'Discover how your work\\nis worship', reference: 'thecarpentermovement.com', bg: 'linear-gradient(135deg, #C9A227 20%, #0B1E2D 80%)', colors: {title: '#FAF6EF', subtitle: '#FAF6EF', ref: '#C9A227'}, caption: '🎉 Our website just launched!\\n\\nExplore:\\n→ Why your work matters to God\\n→ Practical tools for Monday morning\\n→ Stories from everyday workers\\n→ Free resources to download\\n\\nYour spreadsheets, your commute, your customer calls—it all has eternal purpose.\\n\\nVisit: thecarpentermovement.com\\nLink in bio 👆\\n\\n#TheCarpenter #NewWebsite #WorkMatters' },
+      { category: 'how-to', day: 'Monday', time: '5:00 PM', title: 'Start Here', subtitle: 'New to The Carpenter?\\nHere\'s how to explore\\nthe site', reference: 'thecarpentermovement.com', bg: '#0B1E2D', colors: {title: '#C9A227', subtitle: '#FFFFFF', ref: '#C9A227'}, caption: 'Welcome to The Carpenter! Here\'s how to get started:\\n\\n1️⃣ Read "Behind the Name"\\n2️⃣ Explore "Why Your Work Matters"\\n3️⃣ Check out practical tools\\n4️⃣ Join our community\\n\\nYour work has purpose. Let\'s discover it together.\\n\\nLink in bio 👆\\n\\n#TheCarpenter #GettingStarted #WorkMatters' },
+      { category: 'how-to', day: 'Tuesday', time: '6:00 PM', title: 'Download\\nOur Cards', subtitle: 'Print business cards to\\nleave encouragement\\nanywhere', reference: 'Free resource', bg: '#FFFFFF', colors: {title: '#0B1E2D', subtitle: '#2E2E2E', ref: '#C9A227'}, caption: 'Want to encourage others anonymously?\\n\\nDownload our free "Seen Cards" - business cards with Scripture and encouragement about work.\\n\\nLeave them in:\\n→ Restaurant bill folders\\n→ Library books\\n→ Coffee shops\\n→ Anywhere someone needs hope\\n\\nDownload free at thecarpentermovement.com\\n\\n#SeenCards #Encouragement #TheCarpenter' },
+      { category: 'promo', day: 'Wednesday', time: '6:00 PM', title: 'Our Website\\nis LIVE', subtitle: 'Discover how your work\\nis worship', reference: 'thecarpentermovement.com', bg: 'linear-gradient(135deg, #C9A227 20%, #0B1E2D 80%)', colors: {title: '#FFFFFF', subtitle: '#FFFFFF', ref: '#FFFFFF'}, caption: '🎉 Our website just launched!\\n\\nExplore:\\n→ Why your work matters to God\\n→ Practical tools for Monday morning\\n→ Stories from everyday workers\\n→ Free resources to download\\n\\nYour spreadsheets, your commute, your customer calls—it all has eternal purpose.\\n\\nVisit: thecarpentermovement.com\\nLink in bio 👆\\n\\n#TheCarpenter #NewWebsite #WorkMatters' },
       
       // WEEKEND POSTS (15)
-      { category: 'weekend', day: 'Sunday', time: '8:00 AM', title: 'Sunday\\nPrayer', subtitle: 'Father, help me remember\\nthat the work I do today\\nis worship to You', reference: '', bg: 'linear-gradient(135deg, #0B1E2D 0%, #2E2E2E 100%)', colors: {title: '#C9A227', subtitle: '#FAF6EF', ref: '#7A8471'}, caption: 'Sunday Prayer:\\n\\nFather, help me to remember that the work I do today is valuable to You as an act of worship. May I serve You faithfully and honor Christ in all that I do. Amen.\\n\\nHave a blessed Sunday!\\n\\n#SundayPrayer #TheCarpenter #Worship' },
-      { category: 'weekend', day: 'Saturday', time: '9:00 AM', title: 'Rest Well', subtitle: 'Take your Sabbath seriously', reference: 'Matthew 11:28', bg: 'linear-gradient(135deg, #7A8471 0%, #5a6453 100%)', colors: {title: '#FAF6EF', subtitle: '#FAF6EF', ref: '#C9A227'}, caption: 'God designed work. But He also designed rest.\\n\\nYou were made to work faithfully, but not to burn out.\\n\\nRest isn\'t laziness. It\'s obedience. It\'s trusting that God holds everything together—even when you step away.\\n\\n"Come to me, all who labor and are heavy laden, and I will give you rest." — Matthew 11:28\\n\\n#RestInGod #Sabbath #TheCarpenter' },
-      { category: 'weekend', day: 'Sunday', time: '7:00 AM', title: 'Go to\\nChurch\\nToday', subtitle: 'Let Sunday be sacred', reference: '', bg: '#FAF6EF', colors: {title: '#0B1E2D', subtitle: '#7A8471', ref: ''}, caption: 'Before the week starts, gather with your church family.\\n\\nWorship. Rest. Remember. Reconnect.\\n\\nLet Sunday be sacred.\\n\\n#Sunday #ChurchMatters #TheCarpenter' },
+      { category: 'weekend', day: 'Sunday', time: '8:00 AM', title: 'Sunday\\nPrayer', subtitle: 'Father, help me remember\\nthat the work I do today\\nis worship to You', reference: '', bg: 'linear-gradient(135deg, #000000 0%, #0B1E2D 100%)', colors: {title: '#C9A227', subtitle: '#FFFFFF', ref: '#C9A227'}, caption: 'Sunday Prayer:\\n\\nFather, help me to remember that the work I do today is valuable to You as an act of worship. May I serve You faithfully and honor Christ in all that I do. Amen.\\n\\nHave a blessed Sunday!\\n\\n#SundayPrayer #TheCarpenter #Worship' },
+      { category: 'weekend', day: 'Saturday', time: '9:00 AM', title: 'Rest Well', subtitle: 'Take your Sabbath seriously', reference: 'Matthew 11:28', bg: '#FFFFFF', colors: {title: '#0B1E2D', subtitle: '#2E2E2E', ref: '#C9A227'}, caption: 'God designed work. But He also designed rest.\\n\\nYou were made to work faithfully, but not to burn out.\\n\\nRest isn\'t laziness. It\'s obedience. It\'s trusting that God holds everything together—even when you step away.\\n\\n"Come to me, all who labor and are heavy laden, and I will give you rest." — Matthew 11:28\\n\\n#RestInGod #Sabbath #TheCarpenter' },
+      { category: 'weekend', day: 'Sunday', time: '7:00 AM', title: 'Go to\\nChurch\\nToday', subtitle: 'Let Sunday be sacred', reference: '', bg: '#FFFFFF', colors: {title: '#0B1E2D', subtitle: '#2E2E2E', ref: ''}, caption: 'Before the week starts, gather with your church family.\\n\\nWorship. Rest. Remember. Reconnect.\\n\\nLet Sunday be sacred.\\n\\n#Sunday #ChurchMatters #TheCarpenter' },
       
       // MOTIVATION / ENCOURAGEMENT (30)
-      { category: 'motivation', day: 'Monday', time: '6:30 AM', title: 'Monday\\nMorning\\nMatters', subtitle: 'Your work is not just a job.\\nIt\'s a calling.', reference: '', bg: '#7A8471', colors: {title: '#FAF6EF', subtitle: '#FAF6EF', ref: ''}, caption: 'Monday morning isn\'t just the start of another week.\\n\\nIt\'s another opportunity to live out your calling. To serve others. To reflect Christ in your everyday work.\\n\\nYour spreadsheets, your customer calls, your commute—it all matters to God.\\n\\nThis Monday, remember: your work is worship.\\n\\n#MondayMotivation #TheCarpenter #WorkAsWorship' },
-      { category: 'motivation', day: 'Wednesday', time: '12:00 PM', title: 'Your Work\\nServes\\nOthers', subtitle: 'Every task helps someone', reference: 'Galatians 5:13', bg: '#C9A227', colors: {title: '#0B1E2D', subtitle: '#0B1E2D', ref: '#0B1E2D'}, caption: 'Your work isn\'t just about you.\\n\\nEvery task you complete serves someone.\\nEvery product you build helps someone.\\nEvery customer you help matters to someone.\\n\\nYour work is how you love your neighbor.\\n\\n"Serve one another in love." — Galatians 5:13\\n\\n#ServeOthers #TheCarpenter #LoveYourNeighbor' },
-      { category: 'motivation', day: 'Thursday', time: '5:00 PM', title: 'You Are\\nSeen', subtitle: 'Your faithful work\\nmatters to God', reference: '', bg: 'linear-gradient(135deg, #0B1E2D 0%, #7A8471 100%)', colors: {title: '#C9A227', subtitle: '#FAF6EF', ref: ''}, caption: 'That extra effort you put in.\\nThat patience with a difficult customer.\\nThat integrity when no one was watching.\\n\\nGod sees it. He doesn\'t miss a single moment of your faithful work.\\n\\nYou are seen. You are valued. Your work matters.\\n\\n#YouAreSeen #TheCarpenter #FaithfulWork' },
+      { category: 'motivation', day: 'Monday', time: '6:30 AM', title: 'Monday\\nMorning\\nMatters', subtitle: 'Your work is not just a job.\\nIt\'s a calling.', reference: '', bg: 'linear-gradient(135deg, #C9A227 0%, #d4ae3f 100%)', colors: {title: '#0B1E2D', subtitle: '#0B1E2D', ref: ''}, caption: 'Monday morning isn\'t just the start of another week.\\n\\nIt\'s another opportunity to live out your calling. To serve others. To reflect Christ in your everyday work.\\n\\nYour spreadsheets, your customer calls, your commute—it all matters to God.\\n\\nThis Monday, remember: your work is worship.\\n\\n#MondayMotivation #TheCarpenter #WorkAsWorship' },
+      { category: 'motivation', day: 'Wednesday', time: '12:00 PM', title: 'Your Work\\nServes\\nOthers', subtitle: 'Every task helps someone', reference: 'Galatians 5:13', bg: '#C9A227', colors: {title: '#0B1E2D', subtitle: '#000000', ref: '#000000'}, caption: 'Your work isn\'t just about you.\\n\\nEvery task you complete serves someone.\\nEvery product you build helps someone.\\nEvery customer you help matters to someone.\\n\\nYour work is how you love your neighbor.\\n\\n"Serve one another in love." — Galatians 5:13\\n\\n#ServeOthers #TheCarpenter #LoveYourNeighbor' },
+      { category: 'motivation', day: 'Thursday', time: '5:00 PM', title: 'You Are\\nSeen', subtitle: 'Your faithful work\\nmatters to God', reference: '', bg: 'linear-gradient(135deg, #0B1E2D 0%, #1a3548 100%)', colors: {title: '#C9A227', subtitle: '#FFFFFF', ref: ''}, caption: 'That extra effort you put in.\\nThat patience with a difficult customer.\\nThat integrity when no one was watching.\\n\\nGod sees it. He doesn\'t miss a single moment of your faithful work.\\n\\nYou are seen. You are valued. Your work matters.\\n\\n#YouAreSeen #TheCarpenter #FaithfulWork' },
       
       // PRACTICAL TIPS (20)
-      { category: 'practical', day: 'Tuesday', time: '12:00 PM', title: 'Integrity\\nCheck', subtitle: 'Questions for your\\nworkday', reference: '', bg: '#0B1E2D', colors: {title: '#C9A227', subtitle: '#FAF6EF', ref: ''}, caption: 'Workplace Integrity Check:\\n\\n✓ Do I accurately report my hours?\\n\\n✓ Am I honest in my communications?\\n✓ Do I give my best effort during work hours?\\n✓ Am I truthful about my abilities?\\n✓ Do I respect confidentiality?\\n✓ Am I fair and kind to coworkers?\\n\\nYour character is your calling card.\\n\\n#Integrity #TheCarpenter #CharacterMatters' },
-      { category: 'practical', day: 'Monday', time: '12:00 PM', title: 'Start Your\\nWeek With\\nPurpose', subtitle: 'Monday morning routine', reference: '', bg: '#FAF6EF', colors: {title: '#0B1E2D', subtitle: '#2E2E2E', ref: ''}, caption: 'Start your week with purpose:\\n\\n1. Pray before you commute\\n2. Remember who you\'re working for\\n3. Serve your coworkers well\\n4. Do your best, even in small tasks\\n5. Trust God with the results\\n\\nThis Monday, work as worship.\\n\\n#MondayMotivation #TheCarpenter #WorkAsWorship' },
+      { category: 'practical', day: 'Tuesday', time: '12:00 PM', title: 'Integrity\\nCheck', subtitle: 'Questions for your\\nworkday', reference: '', bg: '#0B1E2D', colors: {title: '#C9A227', subtitle: '#FFFFFF', ref: ''}, caption: 'Workplace Integrity Check:\\n\\n✓ Do I accurately report my hours?\\n\\n✓ Am I honest in my communications?\\n✓ Do I give my best effort during work hours?\\n✓ Am I truthful about my abilities?\\n✓ Do I respect confidentiality?\\n✓ Am I fair and kind to coworkers?\\n\\nYour character is your calling card.\\n\\n#Integrity #TheCarpenter #CharacterMatters' },
+      { category: 'practical', day: 'Monday', time: '12:00 PM', title: 'Start Your\\nWeek With\\nPurpose', subtitle: 'Monday morning routine', reference: '', bg: '#FFFFFF', colors: {title: '#0B1E2D', subtitle: '#2E2E2E', ref: ''}, caption: 'Start your week with purpose:\\n\\n1. Pray before you commute\\n2. Remember who you\'re working for\\n3. Serve your coworkers well\\n4. Do your best, even in small tasks\\n5. Trust God with the results\\n\\nThis Monday, work as worship.\\n\\n#MondayMotivation #TheCarpenter #WorkAsWorship' },
       
       // Add 50 more variations automatically
     ];
@@ -364,17 +377,18 @@
       'Friday': '9:00 AM'
     };
     
+    const bgOptions = ['#FFFFFF', '#0B1E2D', 'linear-gradient(135deg, #C9A227 0%, #d4ae3f 100%)', 'linear-gradient(135deg, #0B1E2D 0%, #000000 100%)'];
     const moreMotivation = [
       'Tuesday', 'Wednesday', 'Thursday', 'Friday'
-    ].map(day => ({
+    ].map((day, i) => ({
       category: 'motivation',
       day: day,
       time: dayTimes[day],
       title: `${day}\\nReminder`,
       subtitle: 'Your work is worship',
       reference: '',
-      bg: '#7A8471',
-      colors: {title: '#FAF6EF', subtitle: '#FAF6EF', ref: ''},
+      bg: bgOptions[i],
+      colors: {title: i % 2 === 0 ? '#0B1E2D' : '#C9A227', subtitle: i % 2 === 0 ? '#2E2E2E' : '#FFFFFF', ref: ''},
       caption: `Happy ${day}!\\n\\nYour work today matters to God. Every email, every task, every conversation.\\n\\nWork heartily, as for the Lord.\\n\\n#${day}Motivation #TheCarpenter #WorkAsWorship`
     }));
 
@@ -404,6 +418,7 @@
 
     // Weekend variations
     const weekendSchedule = [{day: 'Saturday', time: '10:00 AM'}, {day: 'Sunday', time: '9:00 AM'}, {day: 'Friday', time: '6:00 PM'}];
+    const weekendBgs = ['#FFFFFF', 'linear-gradient(135deg, #0B1E2D 0%, #1a3548 100%)', '#FFFFFF'];
     const moreWeekend = [
       'Saturday: Rest & Reflect', 'Sunday: Worship & Prepare', 'Friday Evening: Week Review'
     ].map((title, i) => ({
@@ -413,8 +428,8 @@
       title: title.split(':')[0],
       subtitle: title.split(':')[1],
       reference: '',
-      bg: i % 2 ? '#FAF6EF' : '#7A8471',
-      colors: {title: i % 2 ? '#0B1E2D' : '#FAF6EF', subtitle: i % 2 ? '#2E2E2E' : '#FAF6EF', ref: ''},
+      bg: weekendBgs[i],
+      colors: {title: i === 1 ? '#C9A227' : '#0B1E2D', subtitle: i === 1 ? '#FFFFFF' : '#2E2E2E', ref: ''},
       caption: `${title}\\n\\nTake time this weekend to rest, reflect, and remember what really matters.\\n\\n#Weekend #Rest #TheCarpenter`
     }));
 
@@ -422,6 +437,7 @@
 
     // How-To / Resources
     const howToSchedule = ['Thursday', 'Friday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Monday', 'Tuesday', 'Wednesday'];
+    const howToBgs = ['#0B1E2D', '#C9A227', '#FFFFFF', 'linear-gradient(135deg, #C9A227 0%, #0B1E2D 100%)', '#000000', '#FFFFFF', '#0B1E2D', '#C9A227', '#FFFFFF', 'linear-gradient(135deg, #0B1E2D 0%, #C9A227 100%)'];
     const moreHowTo = [
       'Download Free Liturgy Guide',
       'Explore Weekly Reflections',
@@ -440,8 +456,8 @@
       title: title.split(' ').slice(0, 2).join('\\n'),
       subtitle: title,
       reference: 'thecarpentermovement.com',
-      bg: i % 3 === 0 ? '#0B1E2D' : (i % 3 === 1 ? '#C9A227' : '#7A8471'),
-      colors: {title: '#FAF6EF', subtitle: i % 3 === 1 ? '#0B1E2D' : '#FAF6EF', ref: i % 3 === 1 ? '#0B1E2D' : '#C9A227'},
+      bg: howToBgs[i],
+      colors: {title: i % 3 === 2 ? '#0B1E2D' : (i % 3 === 1 ? '#0B1E2D' : '#C9A227'), subtitle: i % 3 === 2 ? '#2E2E2E' : (i % 3 === 1 ? '#000000' : '#FFFFFF'), ref: i % 3 === 2 ? '#C9A227' : (i % 3 === 1 ? '#000000' : '#FFFFFF')},
       caption: `${title}\\n\\nVisit thecarpentermovement.com to explore free resources that help you see your work as worship.\\n\\nLink in bio 👆\\n\\n#TheCarpenter #FreeResources #WorkMatters`
     }));
 
