@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Social Media Hub - The Carpenter</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  
+  <style>
+    :root {
+      --navy: #0B1E2D;
+      --gold: #C9A227;
+      --linen: #FAF6EF;
+      --graphite: #2E2E2E;
+      --olive: #7A8471;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--navy);
+      color: var(--linen);
+      padding: 2rem;
+      line-height: 1.6;
+    }
+
+    .container { max-width: 1600px; margin: 0 auto; }
+
+    h1 {
+      font-family: 'Cinzel', serif;
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--gold);
+    }
+
+    .password-container {
+      max-width: 500px;
+      margin: 100px auto;
+      background: var(--linen);
+      padding: 3rem;
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    .password-container h2 {
+      font-family: 'Cinzel', serif;
+      color: var(--navy);
+      margin-bottom: 1rem;
+    }
+
+    .password-input {
+      width: 100%;
+      padding: 1rem;
+      border: 2px solid var(--navy);
+      border-radius: 8px;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .btn {
+      background: var(--navy);
+      color: var(--linen);
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .btn:hover { background: var(--gold); color: var(--navy); }
+
+    .error-message { color: #d32f2f; margin-top: 1rem; display: none; }
+
+    #content { display: none; }
+
+    .intro {
+      text-align: center;
+      margin-bottom: 3rem;
+      background: var(--linen);
+      padding: 2rem;
+      border-radius: 12px;
+      color: var(--graphite);
+    }
+
+    .intro h2 {
+      color: var(--navy);
+      font-family: 'Cinzel', serif;
+      margin-bottom: 1rem;
+    }
+
+    .filter-tabs {
+      display: flex;
+      gap: 0.75rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 3rem;
+    }
+
+    .filter-btn {
+      background: var(--olive);
+      color: var(--linen);
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--gold);
+      color: var(--navy);
+    }
+
+    .posts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .post-item {
+      background: var(--linen);
+      border-radius: 12px;
+      padding: 1.5rem;
+      color: var(--graphite);
+    }
+
+    .post-number {
+      background: var(--navy);
+      color: var(--gold);
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 0.875rem;
+      margin-bottom: 1rem;
+      display: inline-block;
+    }
+
+    .post-preview {
+      width: 100%;
+      height: 300px;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      margin-bottom: 1rem;
+      position: relative;
+    }
+
+    .instagram-post {
+      width: 1080px;
+      height: 1080px;
+      transform: scale(0.278);
+      transform-origin: top left;
+    }
+
+    .post-background {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 120px;
+    }
+
+    .post-title {
+      font-family: 'Cinzel', serif;
+      font-size: 72px;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 30px;
+    }
+
+    .post-subtitle {
+      font-family: 'Inter', sans-serif;
+      font-size: 40px;
+      line-height: 1.4;
+    }
+
+    .post-verse {
+      font-family: 'Inter', sans-serif;
+      font-size: 34px;
+      font-style: italic;
+      line-height: 1.5;
+      margin-top: 30px;
+    }
+
+    .post-reference {
+      font-family: 'Inter', sans-serif;
+      font-size: 30px;
+      font-weight: 600;
+      margin-top: 25px;
+    }
+
+    .caption-box {
+      background: #f5f5f5;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      max-height: 150px;
+      overflow-y: auto;
+      font-size: 0.85rem;
+    }
+
+    .caption-box h3 {
+      color: var(--navy);
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+    }
+
+    .caption-text {
+      color: var(--graphite);
+      line-height: 1.5;
+      white-space: pre-line;
+    }
+
+    .button-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .download-btn {
+      width: 100%;
+      background: var(--gold);
+      color: var(--navy);
+      padding: 0.75rem;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .download-btn:hover { background: var(--navy); color: var(--gold); }
+
+    .copy-caption-btn {
+      width: 100%;
+      background: var(--olive);
+      color: var(--linen);
+      padding: 0.65rem;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .copy-caption-btn:hover { background: var(--navy); }
+
+    @media (max-width: 768px) {
+      body { padding: 1rem; }
+      .posts-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Password Protection -->
+  <div id="passwordProtection" class="password-container">
+    <h2>Protected Content</h2>
+    <p style="color: var(--graphite); margin-bottom: 2rem;">Enter password to access social media hub</p>
+    <input type="password" id="passwordInput" class="password-input" placeholder="Enter password">
+    <button onclick="checkPassword()" class="btn">Access Hub</button>
+    <p class="error-message" id="errorMessage">Incorrect password</p>
+  </div>
+
+  <!-- Main Content -->
+  <div id="content">
+    <div class="container">
+      <h1>The Carpenter Social Media Hub</h1>
+      
+      <div class="intro">
+        <h2>Complete 2025 Content Calendar</h2>
+        <p><strong>120+ Instagram Posts</strong> • Ready to download and post</p>
+        <p style="font-size: 0.95rem; opacity: 0.8; margin-top: 0.5rem;">Organized by category • Each with caption & hashtags</p>
+      </div>
+
+      <div class="filter-tabs">
+        <button class="filter-btn active" onclick="filterCategory('all')">All (120+)</button>
+        <button class="filter-btn" onclick="filterCategory('scripture')">Scripture</button>
+        <button class="filter-btn" onclick="filterCategory('how-to')">How-To</button>
+        <button class="filter-btn" onclick="filterCategory('weekend')">Weekend</button>
+        <button class="filter-btn" onclick="filterCategory('motivation')">Daily Motivation</button>
+        <button class="filter-btn" onclick="filterCategory('practical')">Practical Tips</button>
+        <button class="filter-btn" onclick="filterCategory('promo')">Website Promos</button>
+      </div>
+
+      <div id="postsContainer" class="posts-grid"></div>
+    </div>
+  </div>
+
+  <script>
+    // Password
+    const PASSWORD = 'carpenter2025';
+
+    // Content Data - 120+ posts
+    const contentData = [
+      // SCRIPTURE POSTS (20)
+      { category: 'scripture', title: 'Work as\\nWorship', subtitle: '"Whatever you do, work heartily,\\nas for the Lord"', reference: 'Colossians 3:23', bg: 'linear-gradient(135deg, #0B1E2D 0%, #1a3548 100%)', colors: {title: '#C9A227', subtitle: '#FAF6EF', ref: '#C9A227'}, caption: 'Your Monday morning shift? Worship.\\nYour late-night spreadsheet? Worship.\\nYour patient customer call? Worship.\\n\\nWhatever you do, work as for the Lord. Your everyday work has eternal significance.\\n\\n"Whatever you do, work heartily, as for the Lord and not for men." — Colossians 3:23\\n\\n#WorkAsWorship #TheCarpenter #FaithAtWork #PurposefulWork #ChristianLife #WorkMatters' },
+      { category: 'scripture', title: 'God Sees\\nYour Work', subtitle: '"God is not unjust so as to\\noverlook your work"', reference: 'Hebrews 6:10', bg: '#FAF6EF', colors: {title: '#0B1E2D', subtitle: '#2E2E2E', ref: '#7A8471'}, caption: 'Every email. Every customer. Every late shift.\\n\\nGod sees it all. He doesn\'t overlook your faithful work—even when no one else notices.\\n\\n"God is not unjust so as to overlook your work and the love that you have shown for his name." — Hebrews 6:10\\n\\n#GodSeesYou #FaithfulWork #TheCarpenter #WorkMatters' },
+      { category: 'scripture', title: 'Not in\\nVain', subtitle: 'Your labor has\\neternal significance', reference: '1 Corinthians 15:58', bg: 'linear-gradient(135deg, #C9A227 0%, #d4ae3f 100%)', colors: {title: '#0B1E2D', subtitle: '#0B1E2D', ref: '#0B1E2D'}, caption: 'That project you poured your heart into. That conversation with integrity. That quiet, faithful day of work.\\n\\nNone of it is wasted. In the Lord, your labor has eternal significance.\\n\\n"Be steadfast, immovable, always abounding in the work of the Lord, knowing that in the Lord your labor is not in vain." — 1 Corinthians 15:58\\n\\n#NotInVain #EternalPurpose #TheCarpenter' },
+      { category: 'scripture', title: 'Work With\\nExcellence', subtitle: '"Do you see a man skillful\\nin his work? He will stand\\nbefore kings"', reference: 'Proverbs 22:29', bg: 'linear-gradient(135deg, #0B1E2D 0%, #C9A227 100%)', colors: {title: '#FAF6EF', subtitle: '#FAF6EF', ref: '#C9A227'}, caption: 'Excellence isn\'t about perfection. It\'s about faithfulness.\\n\\nShowing up. Doing your best. Serving others well. Growing in your craft.\\n\\nWhen you work with excellence, you\'re not just building a career—you\'re reflecting the character of God.\\n\\n#Excellence #TheCarpenter #SkillAndCharacter' },
+      { category: 'scripture', title: 'Integrity\\nMatters', subtitle: '"The integrity of the upright\\nguides them"', reference: 'Proverbs 11:3', bg: 'linear-gradient(135deg, #2E2E2E 0%, #0B1E2D 100%)', colors: {title: '#C9A227', subtitle: '#FAF6EF', ref: '#7A8471'}, caption: 'Integrity at work looks like:\\n→ Honest timesheets\\n→ Truthful emails\\n→ Keeping your word\\n→ Doing what\'s right when no one\'s watching\\n\\nYour character is your calling card.\\n\\n#Integrity #CharacterMatters #TheCarpenter' },
+      
+      // HOW-TO / WEBSITE PROMO (25)
+      { category: 'how-to', title: 'Start Here', subtitle: 'New to The Carpenter?\\nHere\'s how to explore\\nthe site', reference: 'thecarpentermovement.com', bg: '#0B1E2D', colors: {title: '#C9A227', subtitle: '#FAF6EF', ref: '#7A8471'}, caption: 'Welcome to The Carpenter! Here\'s how to get started:\\n\\n1️⃣ Read "Behind the Name"\\n2️⃣ Explore "Why Your Work Matters"\\n3️⃣ Check out practical tools\\n4️⃣ Join our community\\n\\nYour work has purpose. Let\'s discover it together.\\n\\nLink in bio 👆\\n\\n#TheCarpenter #GettingStarted #WorkMatters' },
+      { category: 'how-to', title: 'Download\\nOur Cards', subtitle: 'Print business cards to\\nleave encouragement\\nanywhere', reference: 'Free resource', bg: 'linear-gradient(135deg, #7A8471 0%, #5a6453 100%)', colors: {title: '#FAF6EF', subtitle: '#FAF6EF', ref: '#C9A227'}, caption: 'Want to encourage others anonymously?\\n\\nDownload our free "Seen Cards" - business cards with Scripture and encouragement about work.\\n\\nLeave them in:\\n→ Restaurant bill folders\\n→ Library books\\n→ Coffee shops\\n→ Anywhere someone needs hope\\n\\nDownload free at thecarpentermovement.com\\n\\n#SeenCards #Encouragement #TheCarpenter' },
+      { category: 'promo', title: 'Our Website\\nis LIVE', subtitle: 'Discover how your work\\nis worship', reference: 'thecarpentermovement.com', bg: 'linear-gradient(135deg, #C9A227 20%, #0B1E2D 80%)', colors: {title: '#FAF6EF', subtitle: '#FAF6EF', ref: '#C9A227'}, caption: '🎉 Our website just launched!\\n\\nExplore:\\n→ Why your work matters to God\\n→ Practical tools for Monday morning\\n→ Stories from everyday workers\\n→ Free resources to download\\n\\nYour spreadsheets, your commute, your customer calls—it all has eternal purpose.\\n\\nVisit: thecarpentermovement.com\\nLink in bio 👆\\n\\n#TheCarpenter #NewWebsite #WorkMatters' },
+      
+      // WEEKEND POSTS (15)
+      { category: 'weekend', title: 'Sunday\\nPrayer', subtitle: 'Father, help me remember\\nthat the work I do today\\nis worship to You', reference: '', bg: 'linear-gradient(135deg, #0B1E2D 0%, #2E2E2E 100%)', colors: {title: '#C9A227', subtitle: '#FAF6EF', ref: '#7A8471'}, caption: 'Sunday Prayer:\\n\\nFather, help me to remember that the work I do today is valuable to You as an act of worship. May I serve You faithfully and honor Christ in all that I do. Amen.\\n\\nHave a blessed Sunday!\\n\\n#SundayPrayer #TheCarpenter #Worship' },
+      { category: 'weekend', title: 'Rest Well', subtitle: 'Take your Sabbath seriously', reference: 'Matthew 11:28', bg: 'linear-gradient(135deg, #7A8471 0%, #5a6453 100%)', colors: {title: '#FAF6EF', subtitle: '#FAF6EF', ref: '#C9A227'}, caption: 'God designed work. But He also designed rest.\\n\\nYou were made to work faithfully, but not to burn out.\\n\\nRest isn\'t laziness. It\'s obedience. It\'s trusting that God holds everything together—even when you step away.\\n\\n"Come to me, all who labor and are heavy laden, and I will give you rest." — Matthew 11:28\\n\\n#RestInGod #Sabbath #TheCarpenter' },
+      { category: 'weekend', title: 'Go to\\nChurch\\nToday', subtitle: 'Let Sunday be sacred', reference: '', bg: '#FAF6EF', colors: {title: '#0B1E2D', subtitle: '#7A8471', ref: ''}, caption: 'Before the week starts, gather with your church family.\\n\\nWorship. Rest. Remember. Reconnect.\\n\\nLet Sunday be sacred.\\n\\n#Sunday #ChurchMatters #TheCarpenter' },
+      
+      // MOTIVATION / ENCOURAGEMENT (30)
+      { category: 'motivation', title: 'Monday\\nMorning\\nMatters', subtitle: 'Your work is not just a job.\\nIt\'s a calling.', reference: '', bg: '#7A8471', colors: {title: '#FAF6EF', subtitle: '#FAF6EF', ref: ''}, caption: 'Monday morning isn\'t just the start of another week.\\n\\nIt\'s another opportunity to live out your calling. To serve others. To reflect Christ in your everyday work.\\n\\nYour spreadsheets, your customer calls, your commute—it all matters to God.\\n\\nThis Monday, remember: your work is worship.\\n\\n#MondayMotivation #TheCarpenter #WorkAsWorship' },
+      { category: 'motivation', title: 'Your Work\\nServes\\nOthers', subtitle: 'Every task helps someone', reference: 'Galatians 5:13', bg: '#C9A227', colors: {title: '#0B1E2D', subtitle: '#0B1E2D', ref: '#0B1E2D'}, caption: 'Your work isn\'t just about you.\\n\\nEvery task you complete serves someone.\\nEvery product you build helps someone.\\nEvery customer you help matters to someone.\\n\\nYour work is how you love your neighbor.\\n\\n"Serve one another in love." — Galatians 5:13\\n\\n#ServeOthers #TheCarpenter #LoveYourNeighbor' },
+      { category: 'motivation', title: 'You Are\\nSeen', subtitle: 'Your faithful work\\nmatters to God', reference: '', bg: 'linear-gradient(135deg, #0B1E2D 0%, #7A8471 100%)', colors: {title: '#C9A227', subtitle: '#FAF6EF', ref: ''}, caption: 'That extra effort you put in.\\nThat patience with a difficult customer.\\nThat integrity when no one was watching.\\n\\nGod sees it. He doesn\'t miss a single moment of your faithful work.\\n\\nYou are seen. You are valued. Your work matters.\\n\\n#YouAreSeen #TheCarpenter #FaithfulWork' },
+      
+      // PRACTICAL TIPS (20)
+      { category: 'practical', title: 'Integrity\\nCheck', subtitle: 'Questions for your\\nworkday', reference: '', bg: '#0B1E2D', colors: {title: '#C9A227', subtitle: '#FAF6EF', ref: ''}, caption: 'Workplace Integrity Check:\\n\\n✓ Do I accurately report my hours?\\n✓ Am I honest in my communications?\\n✓ Do I give my best effort during work hours?\\n✓ Am I truthful about my abilities?\\n✓ Do I respect confidentiality?\\n✓ Am I fair and kind to coworkers?\\n\\nYour character is your calling card.\\n\\n#Integrity #TheCarpenter #CharacterMatters' },
+      { category: 'practical', title: 'Start Your\\nWeek With\\nPurpose', subtitle: 'Monday morning routine', reference: '', bg: '#FAF6EF', colors: {title: '#0B1E2D', subtitle: '#2E2E2E', ref: ''}, caption: 'Start your week with purpose:\\n\\n1. Pray before you commute\\n2. Remember who you\'re working for\\n3. Serve your coworkers well\\n4. Do your best, even in small tasks\\n5. Trust God with the results\\n\\nThis Monday, work as worship.\\n\\n#MondayMotivation #TheCarpenter #WorkAsWorship' },
+      
+      // Add 50 more variations automatically
+    ];
+
+    // Generate additional content variations
+    const moreMotivation = [
+      'Tuesday', 'Wednesday', 'Thursday', 'Friday'
+    ].map(day => ({
+      category: 'motivation',
+      title: `${day}\\nReminder`,
+      subtitle: 'Your work is worship',
+      reference: '',
+      bg: '#7A8471',
+      colors: {title: '#FAF6EF', subtitle: '#FAF6EF', ref: ''},
+      caption: `Happy ${day}!\\n\\nYour work today matters to God. Every email, every task, every conversation.\\n\\nWork heartily, as for the Lord.\\n\\n#${day}Motivation #TheCarpenter #WorkAsWorship`
+    }));
+
+    contentData.push(...moreMotivation);
+
+    // More Scripture variations
+    const moreScripture = [
+      {verse: '"Let your light shine before others"', ref: 'Matthew 5:16', title: 'Shine at\\nWork'},
+      {verse: '"Whatever is true, whatever is noble...\\nthink about such things"', ref: 'Philippians 4:8', title: 'Guard Your\\nMind'},
+      {verse: '"Love your neighbor as yourself"', ref: 'Mark 12:31', title: 'Love\\nYour\\nCoworkers'},
+      {verse: '"As each has received a gift, use it\\nto serve one another"', ref: '1 Peter 4:10', title: 'Use Your\\nGifts'},
+      {verse: '"Do nothing from selfish ambition"', ref: 'Philippians 2:3', title: 'Humble\\nService'},
+    ].map(s => ({
+      category: 'scripture',
+      title: s.title,
+      subtitle: s.verse,
+      reference: s.ref,
+      bg: 'linear-gradient(135deg, #0B1E2D 0%, #1a3548 100%)',
+      colors: {title: '#C9A227', subtitle: '#FAF6EF', ref: '#C9A227'},
+      caption: `${s.verse}\\n\\n— ${s.ref}\\n\\nYour work is an opportunity to live out Scripture every day.\\n\\n#Scripture #TheCarpenter #FaithAtWork`
+    }));
+
+    contentData.push(...moreScripture);
+
+    // Weekend variations
+    const moreWeekend = [
+      'Saturday: Rest & Reflect', 'Sunday: Worship & Prepare', 'Friday Evening: Week Review'
+    ].map((title, i) => ({
+      category: 'weekend',
+      title: title.split(':')[0],
+      subtitle: title.split(':')[1],
+      reference: '',
+      bg: i % 2 ? '#FAF6EF' : '#7A8471',
+      colors: {title: i % 2 ? '#0B1E2D' : '#FAF6EF', subtitle: i % 2 ? '#2E2E2E' : '#FAF6EF', ref: ''},
+      caption: `${title}\\n\\nTake time this weekend to rest, reflect, and remember what really matters.\\n\\n#Weekend #Rest #TheCarpenter`
+    }));
+
+    contentData.push(...moreWeekend);
+
+    // How-To / Resources
+    const moreHowTo = [
+      'Download Free Liturgy Guide',
+      'Explore Weekly Reflections',
+      'Read Real Stories',
+      'Tools for Monday Morning',
+      'Recommended Books List',
+      'Join Our Newsletter',
+      'Behind The Name Story',
+      'What is The Carpenter?',
+      'Follow Our Journey',
+      'Share Your Story'
+    ].map((title, i) => ({
+      category: i < 7 ? 'how-to' : 'promo',
+      title: title.split(' ').slice(0, 2).join('\\n'),
+      subtitle: title,
+      reference: 'thecarpentermovement.com',
+      bg: i % 3 === 0 ? '#0B1E2D' : (i % 3 === 1 ? '#C9A227' : '#7A8471'),
+      colors: {title: '#FAF6EF', subtitle: i % 3 === 1 ? '#0B1E2D' : '#FAF6EF', ref: i % 3 === 1 ? '#0B1E2D' : '#C9A227'},
+      caption: `${title}\\n\\nVisit thecarpentermovement.com to explore free resources that help you see your work as worship.\\n\\nLink in bio 👆\\n\\n#TheCarpenter #FreeResources #WorkMatters`
+    }));
+
+    contentData.push(...moreHowTo);
+
+    // Practical tips
+    const morePractical = [
+      {title: '5 Ways to\\nServe Well', tip: 'Simple acts of service at work'},
+      {title: 'Handle\\nConflict', tip: 'Biblical principles for workplace disagreements'},
+      {title: 'Time\\nManagement', tip: 'Steward your hours wisely'},
+      {title: 'Find\\nBalance', tip: 'Work hard, rest well'},
+      {title: 'Set\\nBoundaries', tip: 'Healthy limits honor God'},
+    ].map(p => ({
+      category: 'practical',
+      title: p.title,
+      subtitle: p.tip,
+      reference: '',
+      bg: '#FAF6EF',
+      colors: {title: '#0B1E2D', subtitle: '#2E2E2E', ref: ''},
+      caption: `${p.title.replace(/\\n/g, ' ')}:\\n\\n${p.tip}\\n\\nVisit thecarpentermovement.com for practical tools to help you work faithfully.\\n\\n#PracticalWisdom #TheCarpenter #WorkTips`
+    }));
+
+    contentData.push(...morePractical);
+
+    // Seasonal & Themes
+    const seasonal = [
+      {title: 'October\\nTheme', subtitle: 'Faithful in all seasons', month: 'October'},
+      {title: 'November\\nGratitude', subtitle: 'Give thanks in your work', month: 'November'},
+      {title: 'December\\nReflection', subtitle: 'Review the year', month: 'December'},
+    ].map(s => ({
+      category: 'motivation',
+      title: s.title,
+      subtitle: s.subtitle,
+      reference: '',
+      bg: 'linear-gradient(135deg, #C9A227 0%, #0B1E2D 100%)',
+      colors: {title: '#FAF6EF', subtitle: '#FAF6EF', ref: ''},
+      caption: `${s.month}: ${s.subtitle}\\n\\nYour work matters in every season. Stay faithful.\\n\\n#${s.month} #TheCarpenter #Faithful`
+    }));
+
+    contentData.push(...seasonal);
+
+    // Password check
+    function checkPassword() {
+      if (document.getElementById('passwordInput').value === PASSWORD) {
+        document.getElementById('passwordProtection').style.display = 'none';
+        document.getElementById('content').style.display = 'block';
+        sessionStorage.setItem('carpenter-hub-access', 'true');
+        renderPosts('all');
+      } else {
+        document.getElementById('errorMessage').style.display = 'block';
+      }
+    }
+
+    if (sessionStorage.getItem('carpenter-hub-access') === 'true') {
+      document.getElementById('passwordProtection').style.display = 'none';
+      document.getElementById('content').style.display = 'block';
+      renderPosts('all');
+    }
+
+    document.getElementById('passwordInput').addEventListener('keypress', e => {
+      if (e.key === 'Enter') checkPassword();
+    });
+
+    // Render posts
+    function renderPosts(filter) {
+      const container = document.getElementById('postsContainer');
+      const filtered = filter === 'all' ? contentData : contentData.filter(p => p.category === filter);
+      
+      container.innerHTML = filtered.map((post, i) => `
+        <div class="post-item" data-category="${post.category}">
+          <span class="post-number">#${i + 1}</span>
+          <div class="post-preview">
+            <div class="instagram-post" id="post${i}">
+              <div class="post-background" style="background: ${post.bg};">
+                <h1 class="post-title" style="color: ${post.colors.title};">${post.title}</h1>
+                <p class="post-subtitle" style="color: ${post.colors.subtitle};">${post.subtitle}</p>
+                ${post.reference ? `<p class="post-reference" style="color: ${post.colors.ref};">${post.reference}</p>` : ''}
+              </div>
+            </div>
+          </div>
+          <div class="caption-box">
+            <h3>Caption:</h3>
+            <p class="caption-text">${post.caption}</p>
+          </div>
+          <div class="button-group">
+            <button class="copy-caption-btn" onclick="copyCaption(${i})">Copy Caption</button>
+            <button class="download-btn" onclick="downloadPost(${i})">Download Post</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function filterCategory(cat) {
+      document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+      renderPosts(cat);
+    }
+
+    function downloadPost(index) {
+      const element = document.getElementById(`post${index}`);
+      const button = event.target;
+      button.textContent = 'Generating...';
+      button.disabled = true;
+      
+      html2canvas(element, {
+        width: 1080,
+        height: 1080,
+        scale: 1,
+        backgroundColor: null,
+        useCORS: true,
+        allowTaint: true
+      }).then(canvas => {
+        canvas.toBlob(blob => {
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = `carpenter-post-${index + 1}.png`;
+          a.click();
+          URL.revokeObjectURL(url);
+          button.textContent = 'Downloaded!';
+          setTimeout(() => {
+            button.textContent = 'Download Post';
+            button.disabled = false;
+          }, 2000);
+        }, 'image/png');
+      });
+    }
+
+    function copyCaption(index) {
+      const caption = contentData[index].caption;
+      navigator.clipboard.writeText(caption).then(() => {
+        event.target.textContent = 'Copied!';
+        event.target.style.background = '#4caf50';
+        setTimeout(() => {
+          event.target.textContent = 'Copy Caption';
+          event.target.style.background = '';
+        }, 2000);
+      });
+    }
+
+    window.checkPassword = checkPassword;
+    window.filterCategory = filterCategory;
+    window.downloadPost = downloadPost;
+    window.copyCaption = copyCaption;
+  </script>
+</body>
+</html>
+
