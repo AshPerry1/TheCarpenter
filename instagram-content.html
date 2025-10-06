@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Instagram Content - The Carpenter</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <style>
+    :root {
+      --navy: #0B1E2D;
+      --gold: #C9A227;
+      --linen: #FAF6EF;
+      --graphite: #2E2E2E;
+      --olive: #7A8471;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--navy);
+      color: var(--linen);
+      padding: 2rem;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-family: 'Cinzel', serif;
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--gold);
+    }
+
+    .password-container {
+      max-width: 500px;
+      margin: 100px auto;
+      background: var(--linen);
+      padding: 3rem;
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    .password-container h2 {
+      font-family: 'Cinzel', serif;
+      color: var(--navy);
+      margin-bottom: 1rem;
+    }
+
+    .password-container p {
+      color: var(--graphite);
+      margin-bottom: 2rem;
+    }
+
+    .password-input {
+      width: 100%;
+      padding: 1rem;
+      border: 2px solid var(--navy);
+      border-radius: 8px;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .password-input:focus {
+      outline: none;
+      border-color: var(--gold);
+    }
+
+    .btn {
+      background: var(--navy);
+      color: var(--linen);
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .btn:hover {
+      background: var(--gold);
+      color: var(--navy);
+    }
+
+    .error-message {
+      color: #d32f2f;
+      margin-top: 1rem;
+      display: none;
+    }
+
+    #content {
+      display: none;
+    }
+
+    .intro {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .intro p {
+      font-size: 1.125rem;
+      opacity: 0.9;
+      margin-bottom: 1rem;
+    }
+
+    .posts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    .post-item {
+      background: var(--linen);
+      border-radius: 12px;
+      padding: 2rem;
+      color: var(--graphite);
+    }
+
+    .post-canvas-wrapper {
+      position: relative;
+      margin-bottom: 1.5rem;
+    }
+
+    .instagram-post {
+      width: 1080px;
+      height: 1080px;
+      position: relative;
+      overflow: hidden;
+      transform: scale(0.3);
+      transform-origin: top left;
+      border-radius: 12px;
+    }
+
+    .post-item .instagram-post {
+      width: 1080px;
+      height: 1080px;
+    }
+
+    .post-preview {
+      width: 324px;
+      height: 324px;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    .post-background {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 120px;
+      position: relative;
+    }
+
+    .post-background::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 500px;
+      height: 500px;
+      background: url('images/logo-icon-only.png') center/contain no-repeat;
+      opacity: 0.05;
+      pointer-events: none;
+    }
+
+    .post-logo {
+      width: 200px;
+      height: auto;
+      margin-bottom: 60px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .post-title {
+      font-family: 'Cinzel', serif;
+      font-size: 72px;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 40px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .post-subtitle {
+      font-family: 'Inter', sans-serif;
+      font-size: 42px;
+      line-height: 1.4;
+      font-weight: 400;
+      position: relative;
+      z-index: 1;
+    }
+
+    .post-verse {
+      font-family: 'Inter', sans-serif;
+      font-size: 36px;
+      font-style: italic;
+      line-height: 1.5;
+      position: relative;
+      z-index: 1;
+      margin-top: 40px;
+    }
+
+    .post-reference {
+      font-family: 'Inter', sans-serif;
+      font-size: 32px;
+      font-weight: 600;
+      margin-top: 30px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .caption-box {
+      background: #f5f5f5;
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+    }
+
+    .caption-box h3 {
+      color: var(--navy);
+      margin-bottom: 1rem;
+      font-size: 1.125rem;
+    }
+
+    .caption-text {
+      color: var(--graphite);
+      line-height: 1.8;
+      white-space: pre-line;
+    }
+
+    .download-btn {
+      width: 100%;
+      background: var(--gold);
+      color: var(--navy);
+      padding: 1rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .download-btn:hover {
+      background: var(--navy);
+      color: var(--gold);
+    }
+
+    .copy-caption-btn {
+      width: 100%;
+      background: var(--olive);
+      color: var(--linen);
+      padding: 0.75rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-family: 'Inter', sans-serif;
+      margin-top: 0.5rem;
+    }
+
+    .copy-caption-btn:hover {
+      background: var(--navy);
+    }
+
+    @media (max-width: 768px) {
+      .posts-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Password Protection -->
+  <div id="passwordProtection" class="password-container">
+    <h2>Protected Content</h2>
+    <p>Enter password to access Instagram content library</p>
+    <input type="password" id="passwordInput" class="password-input" placeholder="Enter password">
+    <button onclick="checkPassword()" class="btn">Access Content</button>
+    <p class="error-message" id="errorMessage">Incorrect password. Please try again.</p>
+  </div>
+
+  <!-- Main Content (hidden until password entered) -->
+  <div id="content">
+    <div class="container">
+      <h1>Instagram Content Library</h1>
+      <div class="intro">
+        <p>Downloadable Instagram posts designed with your brand assets</p>
+        <p>Click "Download Post" to save each image for posting to Instagram</p>
+      </div>
+
+      <div class="posts-grid">
+        <!-- Post 1: Work as Worship -->
+        <div class="post-item">
+          <div class="post-preview">
+            <div class="instagram-post" id="post1">
+              <div class="post-background" style="background: linear-gradient(135deg, #0B1E2D 0%, #1a3548 100%);">
+                <h1 class="post-title" style="color: #C9A227;">Your Work<br>Is Worship</h1>
+                <p class="post-subtitle" style="color: #FAF6EF;">"Whatever you do, work heartily,<br>as for the Lord"</p>
+                <p class="post-reference" style="color: #C9A227;">— Colossians 3:23</p>
+              </div>
+            </div>
+          </div>
+          <div class="caption-box">
+            <h3>Caption:</h3>
+            <p class="caption-text">Your Monday morning shift? Worship.
+Your late-night spreadsheet? Worship.
+Your patient customer call? Worship.
+
+Whatever you do, work as for the Lord. Your everyday work has eternal significance.
+
+"Whatever you do, work heartily, as for the Lord and not for men." — Colossians 3:23
+
+#WorkAsWorship #TheCarpenter #FaithAtWork #PurposefulWork #ChristianLife #WorkMatters</p>
+          </div>
+          <button class="copy-caption-btn" onclick="copyCaption(this)">Copy Caption</button>
+          <button class="download-btn" onclick="downloadPost('post1', 'work-as-worship.png')">Download Post</button>
+        </div>
+
+        <!-- Post 2: God Sees Your Work -->
+        <div class="post-item">
+          <div class="post-preview">
+            <div class="instagram-post" id="post2">
+              <div class="post-background" style="background: #FAF6EF;">
+                <img src="images/logo-icon-only.png" class="post-logo" alt="The Carpenter">
+                <h1 class="post-title" style="color: #0B1E2D;">God Sees<br>Your Work</h1>
+                <p class="post-verse" style="color: #2E2E2E;">"God is not unjust so as to<br>overlook your work"</p>
+                <p class="post-reference" style="color: #7A8471;">Hebrews 6:10</p>
+              </div>
+            </div>
+          </div>
+          <div class="caption-box">
+            <h3>Caption:</h3>
+            <p class="caption-text">Every email. Every customer. Every late shift.
+
+God sees it all. He doesn't overlook your faithful work—even when no one else notices.
+
+Your labor is not in vain. It matters to Him, and it matters forever.
+
+"God is not unjust so as to overlook your work and the love that you have shown for his name." — Hebrews 6:10
+
+#GodSeesYou #FaithfulWork #TheCarpenter #ChristianLife #WorkMatters #EternalPurpose</p>
+          </div>
+          <button class="copy-caption-btn" onclick="copyCaption(this)">Copy Caption</button>
+          <button class="download-btn" onclick="downloadPost('post2', 'god-sees-your-work.png')">Download Post</button>
+        </div>
+
+        <!-- Post 3: Not in Vain -->
+        <div class="post-item">
+          <div class="post-preview">
+            <div class="instagram-post" id="post3">
+              <div class="post-background" style="background: linear-gradient(135deg, #C9A227 0%, #d4ae3f 100%);">
+                <h1 class="post-title" style="color: #0B1E2D;">Your Labor<br>Is Not<br>In Vain</h1>
+                <p class="post-reference" style="color: #0B1E2D; margin-top: 60px;">1 Corinthians 15:58</p>
+              </div>
+            </div>
+          </div>
+          <div class="caption-box">
+            <h3>Caption:</h3>
+            <p class="caption-text">That project you poured your heart into.
+That conversation you had with integrity.
+That quiet, faithful day of work.
+
+None of it is wasted. In the Lord, your labor has eternal significance.
+
+"Be steadfast, immovable, always abounding in the work of the Lord, knowing that in the Lord your labor is not in vain." — 1 Corinthians 15:58
+
+#NotInVain #FaithfulWork #TheCarpenter #ChristianLife #EternalPurpose #WorkAsWorship</p>
+          </div>
+          <button class="copy-caption-btn" onclick="copyCaption(this)">Copy Caption</button>
+          <button class="download-btn" onclick="downloadPost('post3', 'not-in-vain.png')">Download Post</button>
+        </div>
+
+        <!-- Post 4: Monday Morning -->
+        <div class="post-item">
+          <div class="post-preview">
+            <div class="instagram-post" id="post4">
+              <div class="post-background" style="background: #7A8471;">
+                <h1 class="post-title" style="color: #FAF6EF;">Monday<br>Morning<br>Matters</h1>
+                <p class="post-subtitle" style="color: #FAF6EF; font-size: 36px;">Your work is not just a job.<br>It's a calling.</p>
+              </div>
+            </div>
+          </div>
+          <div class="caption-box">
+            <h3>Caption:</h3>
+            <p class="caption-text">Monday morning isn't just the start of another week.
+
+It's another opportunity to live out your calling. To serve others. To reflect Christ in your everyday work.
+
+Your spreadsheets, your customer calls, your commute—it all matters to God.
+
+This Monday, remember: your work is worship.
+
+#MondayMotivation #TheCarpenter #WorkAsWorship #ChristianLife #FaithAtWork #PurposefulWork</p>
+          </div>
+          <button class="copy-caption-btn" onclick="copyCaption(this)">Copy Caption</button>
+          <button class="download-btn" onclick="downloadPost('post4', 'monday-morning.png')">Download Post</button>
+        </div>
+
+        <!-- Post 5: Excellence -->
+        <div class="post-item">
+          <div class="post-preview">
+            <div class="instagram-post" id="post5">
+              <div class="post-background" style="background: linear-gradient(135deg, #0B1E2D 0%, #C9A227 100%);">
+                <h1 class="post-title" style="color: #FAF6EF;">Work With<br>Excellence</h1>
+                <p class="post-verse" style="color: #FAF6EF; font-size: 38px;">"Do you see a man skillful in his work?<br>He will stand before kings"</p>
+                <p class="post-reference" style="color: #C9A227;">Proverbs 22:29</p>
+              </div>
+            </div>
+          </div>
+          <div class="caption-box">
+            <h3>Caption:</h3>
+            <p class="caption-text">Excellence isn't about perfection. It's about faithfulness.
+
+It's showing up. Doing your best. Serving others well. Growing in your craft.
+
+When you work with excellence, you're not just building a career—you're reflecting the character of God.
+
+"Do you see a man skillful in his work? He will stand before kings." — Proverbs 22:29
+
+#Excellence #TheCarpenter #WorkAsWorship #ChristianLife #FaithfulWork #SkillAndCharacter</p>
+          </div>
+          <button class="copy-caption-btn" onclick="copyCaption(this)">Copy Caption</button>
+          <button class="download-btn" onclick="downloadPost('post5', 'excellence.png')">Download Post</button>
+        </div>
+
+        <!-- Post 6: The Carpenter -->
+        <div class="post-item">
+          <div class="post-preview">
+            <div class="instagram-post" id="post6">
+              <div class="post-background" style="background: #FAF6EF;">
+                <img src="images/logo-icon-text.png" style="width: 500px; height: auto; margin-bottom: 80px;" alt="The Carpenter">
+                <p class="post-subtitle" style="color: #0B1E2D; font-size: 48px;">Jesus was a carpenter for<br>30 years before His ministry.</p>
+                <p class="post-subtitle" style="color: #7A8471; font-size: 42px; margin-top: 60px;">Your work matters to Him.</p>
+              </div>
+            </div>
+          </div>
+          <div class="caption-box">
+            <h3>Caption:</h3>
+            <p class="caption-text">Before the sermons, before the miracles, before the crowds—Jesus worked with His hands.
+
+For 30 years, He was a carpenter. Building tables. Repairing doors. Serving customers.
+
+If the Son of God spent most of His life doing ordinary work, your work matters too.
+
+Your Monday morning has eternal significance.
+
+#TheCarpenter #JesusTheCarpenter #WorkMatters #FaithAtWork #ChristianLife #OrdinaryWork</p>
+          </div>
+          <button class="copy-caption-btn" onclick="copyCaption(this)">Copy Caption</button>
+          <button class="download-btn" onclick="downloadPost('post6', 'the-carpenter.png')">Download Post</button>
+        </div>
+
+        <!-- Post 7: Integrity -->
+        <div class="post-item">
+          <div class="post-preview">
+            <div class="instagram-post" id="post7">
+              <div class="post-background" style="background: linear-gradient(135deg, #2E2E2E 0%, #0B1E2D 100%);">
+                <h1 class="post-title" style="color: #C9A227;">Work With<br>Integrity</h1>
+                <p class="post-verse" style="color: #FAF6EF; font-size: 38px;">"The integrity of the upright<br>guides them"</p>
+                <p class="post-reference" style="color: #7A8471;">Proverbs 11:3</p>
+              </div>
+            </div>
+          </div>
+          <div class="caption-box">
+            <h3>Caption:</h3>
+            <p class="caption-text">Integrity at work looks like:
+→ Honest timesheets
+→ Truthful emails
+→ Keeping your word
+→ Doing what's right when no one's watching
+
+Your character is your calling card. Let integrity guide every decision you make.
+
+"The integrity of the upright guides them." — Proverbs 11:3
+
+#Integrity #TheCarpenter #CharacterMatters #ChristianLife #FaithAtWork #HonestWork</p>
+          </div>
+          <button class="copy-caption-btn" onclick="copyCaption(this)">Copy Caption</button>
+          <button class="download-btn" onclick="downloadPost('post7', 'integrity.png')">Download Post</button>
+        </div>
+
+        <!-- Post 8: Serve Others -->
+        <div class="post-item">
+          <div class="post-preview">
+            <div class="instagram-post" id="post8">
+              <div class="post-background" style="background: #C9A227;">
+                <h1 class="post-title" style="color: #0B1E2D;">Your Work<br>Serves<br>Others</h1>
+                <p class="post-subtitle" style="color: #0B1E2D; font-size: 40px; margin-top: 60px;">"Serve one another in love"</p>
+                <p class="post-reference" style="color: #0B1E2D;">Galatians 5:13</p>
+              </div>
+            </div>
+          </div>
+          <div class="caption-box">
+            <h3>Caption:</h3>
+            <p class="caption-text">Your work isn't just about you.
+
+Every task you complete serves someone. Every product you build helps someone. Every customer you help matters to someone.
+
+Your work is how you love your neighbor.
+
+"Serve one another in love." — Galatians 5:13
+
+#ServeOthers #TheCarpenter #WorkAsService #ChristianLife #FaithAtWork #LoveYourNeighbor</p>
+          </div>
+          <button class="copy-caption-btn" onclick="copyCaption(this)">Copy Caption</button>
+          <button class="download-btn" onclick="downloadPost('post8', 'serve-others.png')">Download Post</button>
+        </div>
+
+        <!-- Post 9: Rest -->
+        <div class="post-item">
+          <div class="post-preview">
+            <div class="instagram-post" id="post9">
+              <div class="post-background" style="background: linear-gradient(135deg, #7A8471 0%, #5a6453 100%);">
+                <h1 class="post-title" style="color: #FAF6EF;">Rest Is<br>Sacred Too</h1>
+                <p class="post-verse" style="color: #FAF6EF; font-size: 38px;">"Come to me, all who labor<br>and are heavy laden,<br>and I will give you rest"</p>
+                <p class="post-reference" style="color: #C9A227;">Matthew 11:28</p>
+              </div>
+            </div>
+          </div>
+          <div class="caption-box">
+            <h3>Caption:</h3>
+            <p class="caption-text">God designed work. But He also designed rest.
+
+You were made to work faithfully, but you were not made to burn out.
+
+Rest isn't laziness. It's obedience. It's trusting that God holds everything together—even when you step away.
+
+Take your Sabbath seriously. Your work will be better for it.
+
+"Come to me, all who labor and are heavy laden, and I will give you rest." — Matthew 11:28
+
+#RestInGod #Sabbath #TheCarpenter #ChristianLife #FaithAtWork #HealthyRhythms</p>
+          </div>
+          <button class="copy-caption-btn" onclick="copyCaption(this)">Copy Caption</button>
+          <button class="download-btn" onclick="downloadPost('post9', 'rest.png')">Download Post</button>
+        </div>
+
+        <!-- Post 10: Call to Action -->
+        <div class="post-item">
+          <div class="post-preview">
+            <div class="instagram-post" id="post10">
+              <div class="post-background" style="background: #0B1E2D;">
+                <img src="images/logo-icon-only.png" class="post-logo" alt="The Carpenter">
+                <h1 class="post-title" style="color: #C9A227;">Your Work<br>Has Purpose</h1>
+                <p class="post-subtitle" style="color: #FAF6EF; font-size: 40px;">Discover how your everyday<br>work is worship</p>
+                <p class="post-reference" style="color: #7A8471; margin-top: 60px;">thecarpentermovement.com</p>
+              </div>
+            </div>
+          </div>
+          <div class="caption-box">
+            <h3>Caption:</h3>
+            <p class="caption-text">What if your job matters more than you think?
+
+Your spreadsheets. Your routes. Your lesson plans. Your sales calls.
+
+It's not just work. It's worship.
+
+Visit thecarpentermovement.com to discover:
+→ Why your work matters to God
+→ How to find purpose in your job
+→ Practical tools for faithful work
+→ Stories from others like you
+
+Your Monday morning has eternal significance. Let's explore it together.
+
+Link in bio 👆
+
+#TheCarpenter #WorkAsWorship #FaithAtWork #ChristianLife #PurposefulWork #LinkInBio</p>
+          </div>
+          <button class="copy-caption-btn" onclick="copyCaption(this)">Copy Caption</button>
+          <button class="download-btn" onclick="downloadPost('post10', 'call-to-action.png')">Download Post</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Password protection
+    const PASSWORD = 'carpenter2025';
+
+    function checkPassword() {
+      const input = document.getElementById('passwordInput').value;
+      const errorMsg = document.getElementById('errorMessage');
+      
+      if (input === PASSWORD) {
+        document.getElementById('passwordProtection').style.display = 'none';
+        document.getElementById('content').style.display = 'block';
+        sessionStorage.setItem('instagram-access', 'true');
+      } else {
+        errorMsg.style.display = 'block';
+      }
+    }
+
+    // Check if already authenticated
+    if (sessionStorage.getItem('instagram-access') === 'true') {
+      document.getElementById('passwordProtection').style.display = 'none';
+      document.getElementById('content').style.display = 'block';
+    }
+
+    // Allow Enter key to submit password
+    document.getElementById('passwordInput').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        checkPassword();
+      }
+    });
+
+    // Download post as image
+    function downloadPost(postId, filename) {
+      const element = document.getElementById(postId);
+      const button = event.target;
+      
+      button.textContent = 'Generating...';
+      button.disabled = true;
+      
+      html2canvas(element, {
+        width: 1080,
+        height: 1080,
+        scale: 1,
+        backgroundColor: null,
+        logging: false,
+        useCORS: true
+      }).then(canvas => {
+        canvas.toBlob(blob => {
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = filename;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          URL.revokeObjectURL(url);
+          
+          button.textContent = 'Download Post';
+          button.disabled = false;
+        });
+      });
+    }
+
+    // Copy caption to clipboard
+    function copyCaption(button) {
+      const captionBox = button.previousElementSibling;
+      const captionText = captionBox.querySelector('.caption-text').textContent;
+      
+      navigator.clipboard.writeText(captionText).then(() => {
+        const originalText = button.textContent;
+        button.textContent = 'Copied!';
+        button.style.background = '#4caf50';
+        
+        setTimeout(() => {
+          button.textContent = originalText;
+          button.style.background = '';
+        }, 2000);
+      });
+    }
+
+    // Make functions globally available
+    window.checkPassword = checkPassword;
+    window.downloadPost = downloadPost;
+    window.copyCaption = copyCaption;
+  </script>
+</body>
+</html>
+
