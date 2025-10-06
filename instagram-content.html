@@ -173,18 +173,7 @@
       position: relative;
     }
 
-    .post-background::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 500px;
-      height: 500px;
-      background: url('images/logo-icon-only.png') center/contain no-repeat;
-      opacity: 0.05;
-      pointer-events: none;
-    }
+    /* Background watermark removed for better image generation */
 
     .post-logo {
       width: 200px;
@@ -312,7 +301,8 @@
       <h1>Instagram Content Library</h1>
       <div class="intro">
         <p>Downloadable Instagram posts designed with your brand assets</p>
-        <p>Click "Download Post" to save each image for posting to Instagram</p>
+        <p>Click "Download Post" to save each image (1080x1080) for Instagram</p>
+        <p style="font-size: 0.9rem; opacity: 0.8;">Note: Some posts with logos may take a moment to generate. If download fails, try refreshing the page.</p>
       </div>
 
       <div class="posts-grid">
@@ -639,27 +629,50 @@ Link in bio 👆
       button.textContent = 'Generating...';
       button.disabled = true;
       
+      // Use html2canvas with better options
       html2canvas(element, {
         width: 1080,
         height: 1080,
         scale: 1,
         backgroundColor: null,
-        logging: false,
-        useCORS: true
+        logging: true,
+        useCORS: true,
+        allowTaint: true,
+        foreignObjectRendering: false,
+        imageTimeout: 0,
+        removeContainer: true
       }).then(canvas => {
+        // Convert to blob and download
         canvas.toBlob(blob => {
-          const url = URL.createObjectURL(blob);
-          const a = document.createElement('a');
-          a.href = url;
-          a.download = filename;
-          document.body.appendChild(a);
-          a.click();
-          document.body.removeChild(a);
-          URL.revokeObjectURL(url);
-          
-          button.textContent = 'Download Post';
+          if (blob) {
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            button.textContent = 'Downloaded!';
+            setTimeout(() => {
+              button.textContent = 'Download Post';
+            }, 2000);
+          } else {
+            button.textContent = 'Error - Try Again';
+            setTimeout(() => {
+              button.textContent = 'Download Post';
+            }, 2000);
+          }
           button.disabled = false;
-        });
+        }, 'image/png', 1.0);
+      }).catch(error => {
+        console.error('Error generating image:', error);
+        button.textContent = 'Error - Try Again';
+        button.disabled = false;
+        setTimeout(() => {
+          button.textContent = 'Download Post';
+        }, 2000);
       });
     }
 
